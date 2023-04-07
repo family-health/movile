@@ -32,7 +32,7 @@ class SingInController extends GetxController {
   }
 
   void goToRegisterPage() {
-    Get.toNamed("/auth/signup");
+    Get.toNamed(Environment.ROUTE_SING_UP);
   }
 
   void goToHomePage() {

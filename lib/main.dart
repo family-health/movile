@@ -1,3 +1,5 @@
+import 'package:app/src/environment/environment.dart';
+
 import 'src/pages/auth/singIn/singInScreen.dart';
 import 'src/pages/auth/singUp/singUpScreen.dart';
 import 'src/pages/tabulador/tabuladorScreen.dart';
@@ -35,8 +37,8 @@ class MyApp extends StatelessWidget {
       // home: const ProfileScreen(),
       getPages: [
         GetPage(name: '/tabulator', page: () => TabulatorScreen()),
-        GetPage(name: '/auth/signin', page: () => SingnInScreen()),
-        GetPage(name: '/auth/signup', page: () => SingnUpScreen()),
+        GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInScreen()),
+        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpScreen()),
       ],
     );
   }
