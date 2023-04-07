@@ -1,4 +1,5 @@
 import 'package:app/src/environment/environment.dart';
+import 'package:app/src/pages/home/home_page.dart';
 
 import 'src/pages/auth/singIn/singInScreen.dart';
 import 'src/pages/auth/singUp/singUpScreen.dart';
@@ -33,10 +34,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Family Health',
       debugShowCheckedModeBanner: false,
-      initialRoute: (token != "") ? "/tabulator" : "/auth/signin",
+      initialRoute:
+          (token != "") ? Environment.ROUTE_HOME : Environment.ROUTE_SING_IN,
       // home: const ProfileScreen(),
       getPages: [
-        GetPage(name: '/tabulator', page: () => TabulatorScreen()),
+        GetPage(name: Environment.ROUTE_HOME, page: () => HomePage()),
         GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInScreen()),
         GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpScreen()),
       ],

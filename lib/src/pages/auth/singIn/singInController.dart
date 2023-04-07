@@ -42,6 +42,6 @@ class SingInController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil('/tabulator', (route) => false);
+    Get.offNamedUntil(Environment.ROUTE_HOME, (route) => false);
   }
 }
