@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/widgets/custom_animated_bottom_bar.dart';
 import 'package:app/src/pages/dashboard/dashboard_screen.dart';
+import 'package:app/src/pages/settings/main/settings_main_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
               DashboardScreen(),
               DashboardScreen(),
               DashboardScreen(),
-              DashboardScreen()
+              SettingsMainPage()
             ],
           ))),
       bottomNavigationBar: _bottomBar(),

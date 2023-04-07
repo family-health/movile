@@ -1,4 +1,5 @@
 import 'package:app/src/environment/environment.dart';
+import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/home/home_page.dart';
 
 import 'src/pages/auth/singIn/singin_page.dart';
@@ -9,6 +10,9 @@ import 'package:get_storage/get_storage.dart';
 //screens
 // import 'package:app/features/tabulator/screens/tabulator_screen.dart';
 // import 'package:app/features/auth/screens/singnin_screen.dart';
+
+User userSession =
+    User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
 
 void main() async {
   // SystemChrome.setSystemUIOverlayStyle(
@@ -27,19 +31,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetStorage box = GetStorage();
-    String token = box.read('token') ?? "";
-
     return GetMaterialApp(
       title: 'Family Health',
       debugShowCheckedModeBanner: false,
-      initialRoute:
-          (token != "") ? Environment.ROUTE_HOME : Environment.ROUTE_SING_IN,
-      // home: const ProfileScreen(),
+      initialRoute: userSession.id != null
+          ? Environment.ROUTE_HOME
+          : Environment.ROUTE_SING_IN,
       getPages: [
         GetPage(name: Environment.ROUTE_HOME, page: () => HomePage()),
-        GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInScreen()),
-        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpScreen()),
+        GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInPage()),
+        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpPage()),
       ],
     );
   }
