@@ -1,6 +1,6 @@
-import './src/screens/auth/singIn/singInScreen.dart';
-import './src/screens/auth/singUp/singUpScreen.dart';
-import './src/screens/tabulador/tabuladorScreen.dart';
+import 'src/pages/auth/singIn/singInScreen.dart';
+import 'src/pages/auth/singUp/singUpScreen.dart';
+import 'src/pages/tabulador/tabuladorScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/screens/auth/singUp/singUpController.dart';
+import 'package:app/src/pages/auth/singUp/singUpController.dart';
 
 class SingnUpScreen extends StatelessWidget {
   SingnUpScreen({Key? key}) : super(key: key);

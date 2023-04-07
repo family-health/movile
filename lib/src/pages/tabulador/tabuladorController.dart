@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:app/src/screens/dashboard/dashboard_screen.dart';
+import 'package:app/src/pages/dashboard/dashboard_screen.dart';
 import '../family/familyScreen.dart';
 import '../profile/profileScreen.dart';
-import 'package:app/src/screens/security/securityScreen.dart';
+import 'package:app/src/pages/security/securityScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
