@@ -12,8 +12,12 @@ class SingnUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(children:  [
-          const HeaderImage(assetName: "assets/images/auth/register.png"),
+        body: Column(children: const [
+          HeaderImage(
+            assetName: "assets/images/auth/register.png",
+            height: 100,
+            width: double.infinity,
+          ),
           Expanded(child: SingUpForm()),
         ]),
       ),
