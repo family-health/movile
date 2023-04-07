@@ -52,7 +52,7 @@ class SingnInScreen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       width: double.infinity,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => _con.login(context),
           child: const Text(
             "Login",
             style: TextStyle(color: Colors.black),
