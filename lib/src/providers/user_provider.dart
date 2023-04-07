@@ -1,9 +1,11 @@
+import 'package:app/src/models/user.dart';
 import 'package:get/get.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/responseApi.dart';
 
 class UserProvider extends GetConnect {
-    String url = "${Environment.API_URL}/api/auth";
+  String url = "${Environment.API_URL}/api/auth";
+
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
         "$url/signin", {'email': email, 'password': password},
@@ -14,6 +16,18 @@ class UserProvider extends GetConnect {
       return ResponseApi();
     }
 
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    return responseApi;
+  }
+
+  // ⁡⁣⁣⁡⁢⁢⁢crear usuario sin imagen⁡⁡
+  Future<ResponseApi> create(User user) async {
+    Response response = await post("$url/signup", user.toJsonForCreate(),
+        headers: {'Content-Type': 'application/json'});
+    if (response.body == null) {
+      Get.snackbar("Error", "Hubo un error en la petición");
+      return ResponseApi();
+    }
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
     return responseApi;
   }

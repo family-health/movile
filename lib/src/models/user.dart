@@ -12,6 +12,7 @@ class User {
   String? lastname;
   String? email;
   String? phone;
+  String? password;
   String? avatar;
   bool? isActive;
   List<Family>? family;
@@ -21,6 +22,7 @@ class User {
     this.id,
     this.name,
     this.lastname,
+    this.password,
     this.email,
     this.phone,
     this.avatar,
@@ -34,10 +36,11 @@ class User {
         name: json["name"],
         lastname: json["lastname"],
         email: json["email"],
+        password: json["password"],
         phone: json["phone"],
         avatar: json["avatar"],
         isActive: json["isActive"],
-        family: json["family"] == null
+        family: json["family"] == null || json["family"] == []
             ? []
             : List<Family>.from(
                 json["family"].map((model) => Family.fromJson(model))),
@@ -48,11 +51,20 @@ class User {
         "id": id,
         "name": name,
         "lastname": lastname,
+        "password": password,
         "email": email,
         "phone": phone,
         "avatar": avatar,
         "isActive": isActive,
-        "family": List<dynamic>.from(family!.map((x) => x)),
+        "family": family,
         "token": token,
+      };
+  Map<String, dynamic> toJsonForCreate() => {
+        "name": name,
+        "lastname": lastname,
+        "password": password,
+        "email": email,
+        "phone": phone,
+        "avatar": avatar,
       };
 }

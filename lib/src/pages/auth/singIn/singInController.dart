@@ -12,6 +12,12 @@ class SingInController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   UserProvider userProvider = UserProvider();
+  @override
+  void onClose() {
+    super.onClose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   void login(BuildContext context) async {
     ProgressDialog progressDialog = ProgressDialog(context: context);
