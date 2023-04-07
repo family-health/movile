@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Submit extends StatelessWidget {
-  const Submit({super.key});
-
+  const Submit({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Container();

@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:app/src/widgets/all.dart' as widgets;
 
 class SingnInScreen extends StatelessWidget {
-  SingnInScreen({super.key});
   final SingInController _con = Get.put(SingInController());
+
+  SingnInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class SingnInScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: buildNavigationBar(context),
-        body: Column(children: const [
-          widgets.HeaderImage(assetName: "assets/images/auth/login.png"),
-          Expanded(child: widgets.SingnInForm()),
+        body: Column(children:  [
+          const widgets.HeaderImage(assetName: "assets/images/auth/login.png"),
+          Expanded(child: const widgets.SingnInForm()),
         ]),
       ),
     );

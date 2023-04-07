@@ -5,18 +5,10 @@ import 'package:get/get.dart';
 
 import './tabuladorController.dart';
 
-/*
-..######...######..########..########.########.##....##
-.##....##.##....##.##.....##.##.......##.......###...##
-.##.......##.......##.....##.##.......##.......####..##
-..######..##.......########..######...######...##.##.##
-.......##.##.......##...##...##.......##.......##..####
-.##....##.##....##.##....##..##.......##.......##...###
-..######...######..##.....##.########.########.##....##
-*/
 
 class TabulatorScreen extends StatelessWidget {
-  const TabulatorScreen({super.key});
+  const TabulatorScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

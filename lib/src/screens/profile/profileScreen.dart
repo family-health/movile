@@ -5,7 +5,7 @@ import '../../widgets/menu_option.dart';
 import '../../widgets/category_option.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _Menu extends StatelessWidget {
       const SizedBox(height: 10),
       Table(
         // border: TableBorder.all(width: 10.0),
-        children: const [
+        children:  [
           TableRow(children: [
             TableCell(
                 child: Padding(

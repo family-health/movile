@@ -5,7 +5,7 @@ import '../screens/auth/singUp/singUpController.dart';
 import 'package:app/src/widgets/input_widget.dart';
 
 class SingnInForm extends StatelessWidget {
-  const SingnInForm({super.key});
+  const SingnInForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

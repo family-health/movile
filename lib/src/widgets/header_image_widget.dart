@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class HeaderImage extends StatelessWidget {
   final String assetName;
-  const HeaderImage({super.key, required this.assetName});
+
+  const HeaderImage({Key? key, required this.assetName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

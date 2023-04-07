@@ -4,7 +4,13 @@ class Input extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  const Input({super.key, required this.hintText, required this.controller, required this.obscureText});
+
+  const Input(
+      {Key? key,
+      required this.hintText,
+      required this.controller,
+      required this.obscureText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

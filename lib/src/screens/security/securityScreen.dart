@@ -4,7 +4,8 @@ import 'package:app/src/widgets/security_card.dart';
 import 'package:flutter/material.dart';
 
 class SecurityScreen extends StatelessWidget {
-  const SecurityScreen({super.key});
+  const SecurityScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

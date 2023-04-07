@@ -4,7 +4,10 @@ class PeopleCard extends StatelessWidget {
   final String image;
   final String name;
   final String email;
-  const PeopleCard({super.key, required this.image, required this.name, required this.email});
+
+  const PeopleCard(
+      {Key? key, required this.image, required this.name, required this.email})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,9 @@ class PeopleCard extends StatelessWidget {
           backgroundColor: Colors.grey[100],
           child: Image.asset(image),
         ),
-        title: Text(name, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500)),
+        title: Text(name,
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w500)),
         subtitle: Text(email),
       ),
     );

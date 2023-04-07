@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class OptionCard extends StatelessWidget {
   final String title;
-  const OptionCard({super.key, required this.title});
+
+  const OptionCard({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

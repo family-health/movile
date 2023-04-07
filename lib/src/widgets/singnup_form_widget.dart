@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SingUpForm extends StatelessWidget {
-  const SingUpForm({super.key});
+  const SingUpForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-      SingUpController con = Get.put(SingUpController());
+    SingUpController con = Get.put(SingUpController());
 
     return Container(
       color: Colors.white70,
@@ -20,9 +20,18 @@ class SingUpForm extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             buildFormTitle(),
-            Input(controller: con.nameTextEditingController, hintText: "Name", obscureText: false),
-            Input(controller: con.usernameTextEditingController, hintText: "Username", obscureText: false),
-            Input(controller: con.passwordTextEditingController, hintText: "Password", obscureText: true),
+            Input(
+                controller: con.nameTextEditingController,
+                hintText: "Name",
+                obscureText: false),
+            Input(
+                controller: con.usernameTextEditingController,
+                hintText: "Username",
+                obscureText: false),
+            Input(
+                controller: con.passwordTextEditingController,
+                hintText: "Password",
+                obscureText: true),
             const SizedBox(height: 15.0),
             buildFormSubmit(),
             const Padding(
@@ -42,7 +51,8 @@ class SingUpForm extends StatelessWidget {
   //? [buildFormSubmit] : Build Singn Up button
 
   Widget buildFormTitle() {
-    TextStyle style = const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold);
+    TextStyle style =
+        const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold);
     return Text("Register", style: style);
   }
 
@@ -66,7 +76,8 @@ class SingUpForm extends StatelessWidget {
         backgroundColor: Colors.white,
         minimumSize: const Size.fromHeight(50),
       ),
-      label: const Text("Sign in with google", style: TextStyle(color: Colors.black)),
+      label: const Text("Sign in with google",
+          style: TextStyle(color: Colors.black)),
     );
   }
 

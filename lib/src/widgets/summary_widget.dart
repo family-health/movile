@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
 
-/*
-.##......##.####.########...######...########.########
-.##..##..##..##..##.....##.##....##..##..........##...
-.##..##..##..##..##.....##.##........##..........##...
-.##..##..##..##..##.....##.##...####.######......##...
-.##..##..##..##..##.....##.##....##..##..........##...
-.##..##..##..##..##.....##.##....##..##..........##...
-..###..###..####.########...######...########....##...
-*/
-
 class Summary extends StatelessWidget {
-  const Summary({super.key});
+  const Summary({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +55,8 @@ class Summary extends StatelessWidget {
                 ),
                 Text(
                   "Administrador",
-                  style: TextStyle(color: Colors.black45, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      color: Colors.black45, fontWeight: FontWeight.w600),
                 ),
               ],
             )
@@ -80,7 +71,8 @@ class Summary extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Family Resume", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+        const Text("Family Resume",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
         const SizedBox(height: 10.0),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           buildSummaryItem(Colors.red),
@@ -95,7 +87,8 @@ class Summary extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Family Health", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+        const Text("Family Health",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
         const SizedBox(height: 10.0),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           buildTaskItem(Colors.red),

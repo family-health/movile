@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../widgets/health_card.dart';
 import '../../widgets/people_card.dart';
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  const DashboardScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,8 @@ class DashboardScreen extends StatelessWidget {
 }
 
 class DashboardHeader extends StatelessWidget {
-  const DashboardHeader({super.key});
+  const DashboardHeader({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class DashboardHeader extends StatelessWidget {
 }
 
 class DashboardStatics extends StatelessWidget {
-  const DashboardStatics({super.key});
+  const DashboardStatics({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +83,8 @@ class DashboardStatics extends StatelessWidget {
 }
 
 class DashboardHealth extends StatelessWidget {
-  const DashboardHealth({super.key});
+  const DashboardHealth({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +110,8 @@ class DashboardHealth extends StatelessWidget {
 }
 
 class DashboardMembers extends StatelessWidget {
-  const DashboardMembers({super.key});
+  const DashboardMembers({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
