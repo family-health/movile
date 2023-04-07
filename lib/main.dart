@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
       initialRoute: (token != "") ? "/tabulator" : "/auth/signin",
       // home: const ProfileScreen(),
       getPages: [
-        GetPage(name: '/tabulator', page: () => const TabulatorScreen()),
+        GetPage(name: '/tabulator', page: () => TabulatorScreen()),
         GetPage(name: '/auth/signin', page: () => SingnInScreen()),
-        GetPage(name: '/auth/signup', page: () => const SingnUpScreen()),
+        GetPage(name: '/auth/signup', page: () => SingnUpScreen()),
       ],
     );
   }

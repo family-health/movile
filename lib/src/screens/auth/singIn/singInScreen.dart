@@ -1,9 +1,8 @@
 // ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/src/screens/auth/singIn/singInController.dart';
-import 'package:app/src/widgets/input_widget.dart';
-import 'package:app/src/widgets/header_image_widget.dart';
 
 class SingnInScreen extends StatelessWidget {
   SingnInScreen({Key? key}) : super(key: key);
@@ -11,58 +10,96 @@ class SingnInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        bottomNavigationBar: SizedBox(height: 70, child: _textDontHaveAcount()),
-        body: Column(children: [
-          const HeaderImage(
-            assetName: "assets/images/auth/login.png",
-            height: 100,
-            width: double.infinity,
-          ),
-          Expanded(child: _content()),
-        ]),
+    return Scaffold(
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: _textDontHaveAcount(),
       ),
-    );
-  }
-
-  Widget _content() {
-    return Container(
-      color: Colors.white70,
-      padding: const EdgeInsets.only(top: 20.0, left: 8.0, right: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: Stack(
         children: [
-          _textLogin(),
-          Input(
-            controller: _con.emailTextEditingController,
-            hintText: "Email",
-            obscureText: false,
+          _backgroundCover(context),
+          _boxForm(context),
+          Column(
+            children: [_imagenCover(), _textAppName()],
           ),
-          Input(
-            controller: _con.passwordTextEditingController,
-            hintText: "Password",
-            obscureText: true,
-          ),
-          const SizedBox(height: 15.0),
-          Center(child: buildFormSubmit()),
-          const Padding(
-            padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Center(child: Text("Or Singn in with")),
-          ),
-          // Center(child: buildSingnInWithGoogle()),
         ],
       ),
     );
   }
 
-  Widget _textLogin() {
-    TextStyle style =
-        const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold);
+  Widget _boxForm(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 30), child: Text("Login", style: style));
+      decoration: const BoxDecoration(boxShadow: <BoxShadow>[
+        BoxShadow(
+            color: Colors.black54, blurRadius: 15, offset: Offset(0, 0.75))
+      ], color: Colors.white),
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.33, left: 50, right: 50),
+      height: MediaQuery.of(context).size.height * 0.45,
+      child: SingleChildScrollView(
+        child: Column(children: [
+          _textYourInfo(),
+          _textFieldEmail(),
+          _textFieldPassword(),
+          _buttonLogin(context)
+        ]),
+      ),
+    );
+  }
+
+  Widget _buttonLogin(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      width: double.infinity,
+      child: ElevatedButton(
+          onPressed: () {},
+          child: const Text(
+            "Login",
+            style: TextStyle(color: Colors.black),
+          )),
+    );
+  }
+
+  Widget _textFieldEmail() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        controller: _con.emailController,
+        keyboardType: TextInputType.emailAddress,
+        decoration: const InputDecoration(
+            hintText: "Correo electronico", prefixIcon: Icon(Icons.email)),
+      ),
+    );
+  }
+
+  Widget _textFieldPassword() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        controller: _con.passwordController,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: const InputDecoration(
+            hintText: "Contraseña", prefixIcon: Icon(Icons.lock)),
+      ),
+    );
+  }
+
+  Widget _textYourInfo() {
+    return Container(
+        margin: const EdgeInsets.only(top: 40, bottom: 50),
+        child: const Text(
+          "Ingresa esta información",
+          style: TextStyle(color: Colors.black),
+        ));
+  }
+
+  Widget _backgroundCover(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.3,
+      color: Colors.transparent,
+    );
   }
 
   Widget _textDontHaveAcount() {
@@ -88,14 +125,25 @@ class SingnInScreen extends StatelessWidget {
     );
   }
 
-  Widget buildFormSubmit() {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(20.0),
-        minimumSize: const Size.fromHeight(50),
+  Widget _imagenCover() {
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.only(top: 20, bottom: 15),
+        alignment: Alignment.center,
+        child: Image.asset(
+          "assets/images/auth/login.png",
+          width: 200,
+          height: 130,
+        ),
       ),
-      child: const Text("Singn In"),
+    );
+  }
+
+  Widget _textAppName() {
+    return const Text(
+      "Family Health App",
+      style: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
     );
   }
 
