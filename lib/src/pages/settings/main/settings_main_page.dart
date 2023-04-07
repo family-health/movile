@@ -11,20 +11,23 @@ class SettingsMainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Configuraciones")),
       body: ListView(children: [
-        _optionCard("Perfil"),
-        _optionCard("Dispositivos"),
+        GestureDetector(
+          onTap: () => _con.goToProfileInfo(),
+          child: _optionCard("Perfil", Icons.person),
+        ),
+        _optionCard("Dispositivos", Icons.devices),
         GestureDetector(
           onTap: () => _con.singOut(),
-          child: _optionCard("Cerrar Sesion"),
+          child: _optionCard("Cerrar Sesion", Icons.power_settings_new),
         ),
       ]),
     );
   }
 
-  Widget _optionCard(String title) {
+  Widget _optionCard(String title, IconData icon) {
     return Card(
       child: ListTile(
-        leading: const Icon(Icons.settings),
+        leading: Icon(icon),
         trailing: const Icon(Icons.keyboard_arrow_right),
         title: Text(title),
       ),

@@ -1,6 +1,8 @@
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/home/home_page.dart';
+import 'package:app/src/pages/settings/profile/info/settings_profile_info_page.dart';
+import 'package:app/src/pages/settings/profile/update/settings_profile_update_page.dart';
 
 import 'src/pages/auth/singIn/singin_page.dart';
 import 'src/pages/auth/singUp/singup_page.dart';
@@ -41,6 +43,12 @@ class MyApp extends StatelessWidget {
         GetPage(name: Environment.ROUTE_HOME, page: () => HomePage()),
         GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInPage()),
         GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpPage()),
+        GetPage(
+            name: Environment.ROUTE_SETTINGS_PROFILE_INFO,
+            page: () => SettingsProfileInfoPage()),
+        GetPage(
+            name: Environment.ROUTE_SETTINGS_PROFILE_UPDATE,
+            page: () => SettingsProfileUpdatePage()),
       ],
     );
   }

@@ -12,4 +12,7 @@ class Environment {
   static const String ROUTE_SING_IN = "/auth/signin";
   static const String ROUTE_SING_UP = "/auth/signup";
   static const String ROUTE_HOME = "/home";
+
+  static const String ROUTE_SETTINGS_PROFILE_INFO = "/settings/profile/info";
+  static const String ROUTE_SETTINGS_PROFILE_UPDATE = "/settings/profile/update";
 }

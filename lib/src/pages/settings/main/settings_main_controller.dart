@@ -7,4 +7,8 @@ class SettingsMainController extends GetxController {
     GetStorage().remove(Environment.USER_STORAGE);
     Get.offNamedUntil(Environment.ROUTE_SING_IN, (route) => false);
   }
+
+    void goToProfileInfo() {
+    Get.toNamed(Environment.ROUTE_SETTINGS_PROFILE_INFO);
+  }
 }
