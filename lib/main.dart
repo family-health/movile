@@ -1,9 +1,8 @@
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/pages/home/home_page.dart';
 
-import 'src/pages/auth/singIn/singInScreen.dart';
-import 'src/pages/auth/singUp/singUpScreen.dart';
-import 'src/pages/tabulador/tabuladorScreen.dart';
+import 'src/pages/auth/singIn/singin_page.dart';
+import 'src/pages/auth/singUp/singup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';

@@ -1,10 +1,8 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/providers/user_provider.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:app/src/utils/validate_inputs.dart';
 import 'package:app/src/models/responseApi.dart';

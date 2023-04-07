@@ -1,11 +1,9 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/pages/auth/singIn/singInController.dart';
+import 'package:app/src/pages/auth/singIn/singin_controller.dart';
 
-class SingnInScreen extends StatelessWidget {
-  SingnInScreen({Key? key}) : super(key: key);
+class SingnInPage extends StatelessWidget {
+  SingnInPage({Key? key}) : super(key: key);
   final SingInController _con = Get.put(SingInController());
 
   @override

@@ -12,7 +12,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Obx((() => IndexedStack(
             index: _con.indexTab.value,
-            children: [DashboardScreen(), DashboardScreen()],
+            children: [
+              DashboardScreen(),
+              DashboardScreen(),
+              DashboardScreen(),
+              DashboardScreen()
+            ],
           ))),
       bottomNavigationBar: _bottomBar(),
     );
@@ -34,15 +39,20 @@ class HomePage extends StatelessWidget {
                 inactiveColor: Colors.black,
                 title: const Text("Dasboard")),
             BottomNavyBarItem(
-                icon: const Icon(Icons.list),
+                icon: const Icon(Icons.family_restroom),
                 activeColor: Colors.white,
                 inactiveColor: Colors.black,
-                title: const Text("Mis pedidos")),
-            // BottomNavyBarItem(
-            //     icon: const Icon(Icons.person),
-            //     activeColor: Colors.white,
-            //     inactiveColor: Colors.black,
-            //     title: const Text("Perfil")),
+                title: const Text("Familia")),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.security),
+                activeColor: Colors.white,
+                inactiveColor: Colors.black,
+                title: const Text("Seguridad")),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.settings),
+                activeColor: Colors.white,
+                inactiveColor: Colors.black,
+                title: const Text("Opciones")),
           ],
         ));
   }

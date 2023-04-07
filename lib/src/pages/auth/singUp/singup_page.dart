@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/pages/auth/singUp/singUpController.dart';
+import 'package:app/src/pages/auth/singUp/singup_controller.dart';
 
-class SingnUpScreen extends StatelessWidget {
-  SingnUpScreen({Key? key}) : super(key: key);
+class SingnUpPage extends StatelessWidget {
+  SingnUpPage({Key? key}) : super(key: key);
   final SingUpController _con = Get.put(SingUpController());
 
   @override
