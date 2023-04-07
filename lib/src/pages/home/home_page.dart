@@ -1,4 +1,4 @@
-import 'package:app/src/pages/family/familyScreen.dart';
+import 'package:app/src/pages/family/family_screen.dart';
 import 'package:app/src/pages/security/securityScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
