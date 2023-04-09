@@ -68,7 +68,7 @@ class FamilyPage extends StatelessWidget {
         color: Colors.white,
       ),
       margin: const EdgeInsets.only(left: 20, right: 20),
-      height: MediaQuery.of(context).size.height * 0.45,
+      height: MediaQuery.of(context).size.height * 0.50,
       child: SingleChildScrollView(
         child: Column(children: [
           _textYourInfo(),
@@ -158,10 +158,11 @@ class FamilyPage extends StatelessWidget {
 
   Widget _textYourInfo() {
     return Container(
-        margin: const EdgeInsets.only(top: 20, bottom: 20),
+        margin: const EdgeInsets.only(top: 30, bottom: 20),
         child: const Text(
           "Crear nuevo Familiar",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
         ));
   }
 }

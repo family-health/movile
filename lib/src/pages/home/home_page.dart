@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/widgets/custom_animated_bottom_bar.dart';
-import 'package:app/src/pages/dashboard/dashboard_screen.dart';
+import 'package:app/src/pages/dashboard/dashboard_page.dart';
 import 'package:app/src/pages/settings/main/settings_main_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: Obx((() => IndexedStack(
             index: _con.indexTab.value,
             children: [
-              DashboardScreen(),
+              DashboardPage(),
               FamilyPage(),
               SecurityScreen(),
               SettingsMainPage()

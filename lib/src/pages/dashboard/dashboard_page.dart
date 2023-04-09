@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../widgets/health_card.dart';
 import '../../widgets/people_card.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,26 +11,49 @@ class DashboardScreen extends StatelessWidget {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(children: const [
-            DashboardHeader(),
-            SizedBox(height: 20.0),
-            DashboardStatics(),
-            SizedBox(height: 20.0),
-            DashboardHealth(),
-            SizedBox(height: 20.0),
-            DashboardMembers(),
+          child: Column(children: [
+            _header(),
+            const SizedBox(height: 20.0),
+            _statics(),
+            const SizedBox(height: 20.0),
+            _families(),
           ]),
         ),
       ),
     );
   }
-}
 
-class DashboardHeader extends StatelessWidget {
-  const DashboardHeader({Key? key}) : super(key: key);
+  Widget _families() {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text("Familiares",
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
+          Text("Ver todos", style: TextStyle(color: Colors.black45)),
+        ],
+      ),
+      const SizedBox(height: 15.0),
+      Column(
+        children: const [
+          PeopleCard(
+              name: "Joseph Garcia",
+              email: "josephdgb1996@gmail.com",
+              image: "assets/images/avatar/user_profile.png"),
+          PeopleCard(
+              name: "Joseph Garcia",
+              email: "josephdgb1996@gmail.com",
+              image: "assets/images/avatar/user_profile.png"),
+          PeopleCard(
+              name: "Joseph Garcia",
+              email: "josephdgb1996@gmail.com",
+              image: "assets/images/avatar/user_profile.png"),
+        ],
+      ),
+    ]);
+  }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _header() {
     TextStyle textStyle = const TextStyle(
         color: Colors.blue, fontSize: 25.0, fontWeight: FontWeight.w600);
 
@@ -46,13 +69,8 @@ class DashboardHeader extends StatelessWidget {
       ],
     );
   }
-}
 
-class DashboardStatics extends StatelessWidget {
-  const DashboardStatics({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _statics() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -95,59 +113,5 @@ class DashboardStatics extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class DashboardHealth extends StatelessWidget {
-  const DashboardHealth({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text("Mi Salud",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
-          Text("Ver todos", style: TextStyle(color: Colors.black45)),
-        ],
-      ),
-      const SizedBox(height: 15.0),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          HealthCard(),
-          HealthCard(),
-          HealthCard(),
-        ],
-      ),
-    ]);
-  }
-}
-
-class DashboardMembers extends StatelessWidget {
-  const DashboardMembers({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text("Miembros",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
-          Text("Ver todos", style: TextStyle(color: Colors.black45)),
-        ],
-      ),
-      const SizedBox(height: 15.0),
-      Column(
-        children: const [
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-        ],
-      ),
-    ]);
   }
 }
