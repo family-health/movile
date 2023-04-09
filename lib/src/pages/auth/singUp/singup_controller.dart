@@ -7,6 +7,7 @@ import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:app/src/utils/validate_inputs.dart';
 import 'package:app/src/models/responseApi.dart';
 import 'package:app/src/environment/environment.dart';
+import 'package:app/src/utils/toast_alert.dart';
 
 class SingUpController extends GetxController {
   final UserProvider _userProvider = UserProvider();
@@ -49,14 +50,14 @@ class SingUpController extends GetxController {
           password: password,
           phone: phone);
 
-      progressDialog.show(max: 10, msg: "Autenticando usuario ...");
+      progressDialog.show(max: 10, msg: "Registrando usuario ...");
       ResponseApi responseApi = await _userProvider.create(user);
       progressDialog.close();
       if (responseApi.success == true) {
         GetStorage().write(Environment.USER_STORAGE, responseApi.data);
         goToHomePage();
       } else {
-        Get.snackbar("Error!", responseApi.message ?? "Hubo un error");
+        Alertas.error(responseApi.message ?? "Hubo un error");
       }
     }
     progressDialog.close();

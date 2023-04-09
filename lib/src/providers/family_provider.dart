@@ -2,6 +2,7 @@ import 'package:app/src/models/family.dart';
 import 'package:get/get.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/utils/toast_alert.dart';
 
 class FamilyProvider extends GetConnect {
   String url = "${Environment.API_URL}/api/family";
@@ -14,12 +15,12 @@ class FamilyProvider extends GetConnect {
     }); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
 
     if (response.body == null) {
-      Get.snackbar('Error', 'No se pudo actualizar la informacion');
+      Alertas.error('No se pudo actualizar la informacion');
       return ResponseApi();
     }
 
     if (response.statusCode == 401) {
-      Get.snackbar('Error', 'No estas autorizado para realizar esta peticion');
+      Alertas.error('No estas autorizado para realizar esta peticion');
       return ResponseApi();
     }
 

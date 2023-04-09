@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:app/src/utils/validate_inputs.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
+import 'package:app/src/utils/toast_alert.dart';
 import 'package:get/get.dart';
 
 class FamilyController extends GetxController {
@@ -43,9 +44,9 @@ class FamilyController extends GetxController {
       progressDialog.close();
       if (responseApi.success == true) {
         clearForm();
-        Get.snackbar("Exito!", responseApi.message ?? 'Todo correcto');
+        Alertas.success(responseApi.message ?? 'Todo correcto');
       } else {
-        Get.snackbar("Error!", "Usuario no se pudo autenticar");
+        Alertas.error("Usuario no se pudo autenticar");
       }
     }
   }

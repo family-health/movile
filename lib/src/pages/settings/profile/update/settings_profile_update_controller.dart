@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
+import 'package:app/src/utils/toast_alert.dart';
 
 class ClientProfileUpdateController extends GetxController {
   final UserProvider _userProvider = UserProvider();
@@ -26,7 +27,7 @@ class ClientProfileUpdateController extends GetxController {
   TextEditingController phoneController = TextEditingController();
 
   ClientProfileUpdateController() {
-    nameController.text = user.name ?? "hhhhh";
+    nameController.text = user.name ?? "";
     lastNameController.text = user.lastname ?? "";
     phoneController.text = user.phone ?? "";
   }
@@ -55,9 +56,9 @@ class ClientProfileUpdateController extends GetxController {
         //     GetStorage().write(Environment.USER_STORAGE, responseApi.data);
         //     _clientProfileInfoController.user.value = User.fromJson(
         //         GetStorage().read(Environment.USER_STORAGE) ?? {});
-        //     Get.snackbar("Actualizado!", responseApi.message ?? "");
+            // Alertas.success(responseApi.message ?? "Actualizado");
         //   } else {
-        //     Get.snackbar('Registro fallido', responseApi.message ?? '');
+            // Alertas.error(responseApi.message ?? 'Registro fallido');
         //   }
         // });
       } else {
@@ -67,9 +68,11 @@ class ClientProfileUpdateController extends GetxController {
 
         ResponseApi responseApi = await _userProvider.updateWithOutImage(
             myUser, user.id!, user.token!);
-
-        Get.snackbar("Vuelva a Iniciar Session para ver los cambios!",
-            responseApi.message ?? "");
+        if (responseApi.success ?? false) {
+          Alertas.success("Vuelva a Iniciar Session para ver los cambios!");
+        } else {
+          Alertas.error(responseApi.message ?? 'Error');
+        }
       }
 
       progressDialog.close();

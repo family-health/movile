@@ -6,6 +6,7 @@ import 'package:app/src/utils/validate_inputs.dart';
 import 'package:app/src/models/responseApi.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:app/src/utils/toast_alert.dart';
 
 class SingInController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -31,7 +32,7 @@ class SingInController extends GetxController {
         GetStorage().write(Environment.USER_STORAGE, responseApi.data);
         goToHomePage();
       } else {
-        Get.snackbar("Error!", responseApi.message ?? "datos incorrectos");
+        Alertas.error(responseApi.message ?? "datos incorrectos");
       }
     }
   }
