@@ -67,4 +67,9 @@ class User {
         "phone": phone,
         "avatar": avatar,
       };
+  Map<String, dynamic> toJsonForUpdateWithOutImage() => {
+        "name": name,
+        "lastname": lastname,
+        "phone": phone,
+      };
 }

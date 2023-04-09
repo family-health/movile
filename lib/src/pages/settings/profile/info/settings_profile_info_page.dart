@@ -95,7 +95,7 @@ class SettingsProfileInfoPage extends StatelessWidget {
           onPressed: () => _con.goToProfileUpdate(),
           child: const Text(
             "Actualizar Datos",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           )),
     );
   }

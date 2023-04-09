@@ -68,3 +68,27 @@ bool isValidRegisterForm(String email, String password, String repeatPassword,
 
   return true;
 }
+
+bool isValidUpdateUserForm(String name, String lastName, String phone) {
+  if (name.isEmpty) {
+    Get.snackbar("Error", "El nombre es requerido");
+    return false;
+  }
+
+  if (lastName.isEmpty) {
+    Get.snackbar("Error", "El apellido es requerido");
+    return false;
+  }
+
+  if (phone.isEmpty) {
+    Get.snackbar("Error", "El celular es requerido");
+    return false;
+  }
+
+  if (phone.length < 7) {
+    Get.snackbar("Error", "El telefono debe ser mayor a 6");
+    return false;
+  }
+
+  return true;
+}
