@@ -21,7 +21,7 @@ class Alertas {
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.red[600],
-      textColor: Colors.black,
+      textColor: Colors.white,
       fontSize: 16.0,
     );
   }
@@ -33,7 +33,7 @@ class Alertas {
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.green[600],
-      textColor: Colors.black,
+      textColor: Colors.white,
       fontSize: 16.0,
     );
   }
