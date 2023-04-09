@@ -51,7 +51,7 @@ class SettingsProfileInfoPage extends StatelessWidget {
           child: CircleAvatar(
             backgroundImage: _con.user.value.avatar != null
                 ? NetworkImage(_con.user.value.avatar!)
-                : const AssetImage("assets/images/avatar/male-1.png")
+                : const AssetImage("assets/images/avatar/user_profile.png")
                     as ImageProvider,
             // backgroundImage: _con.user.image != null ? NetworkImage(_con.user.image) : const AssetImage("assets/img/user_profile.png"),
             radius: 85,

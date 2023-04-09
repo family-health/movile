@@ -145,7 +145,7 @@ class DashboardMembers extends StatelessWidget {
           PeopleCard(
               name: "Joseph Garcia",
               email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/male-5.png"),
+              image: "assets/images/avatar/user_profile.png"),
         ],
       ),
     ]);

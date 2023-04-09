@@ -26,7 +26,6 @@ class ClientProfileUpdateController extends GetxController {
   TextEditingController phoneController = TextEditingController();
 
   ClientProfileUpdateController() {
-    print(user);
     nameController.text = user.name ?? "hhhhh";
     lastNameController.text = user.lastname ?? "";
     phoneController.text = user.phone ?? "";

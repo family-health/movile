@@ -40,7 +40,7 @@ class Summary extends StatelessWidget {
               radius: 20.0,
               backgroundColor: Colors.pink[500],
               child: Image.asset(
-                "assets/images/avatar/male-1.png",
+                "assets/images/avatar/user_profile.png",
                 height: 38.0,
               ),
             ),
