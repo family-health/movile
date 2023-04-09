@@ -58,6 +58,7 @@ class SingUpController extends GetxController {
         goToHomePage();
       } else {
         Alertas.error(responseApi.message ?? "Hubo un error");
+        progressDialog.close();
       }
     }
     progressDialog.close();
