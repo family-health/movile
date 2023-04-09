@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/src/pages/auth/singIn/singin_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SingnInPage extends StatelessWidget {
   SingnInPage({Key? key}) : super(key: key);
@@ -128,8 +129,8 @@ class SingnInPage extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 20, bottom: 15),
         alignment: Alignment.center,
-        child: Image.asset(
-          "assets/images/auth/login.png",
+        child: SvgPicture.asset(
+          "assets/images/auth/doctor.svg",
           width: 200,
           height: 130,
         ),
