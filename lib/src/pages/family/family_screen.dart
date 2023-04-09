@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:app/src/widgets/summary_widget.dart';
+import 'package:app/src/pages/family/widgets/summary_widget.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FamilyScreen extends StatelessWidget {
   const FamilyScreen({Key? key}) : super(key: key);
@@ -19,10 +20,10 @@ class FamilyScreen extends StatelessWidget {
             child: Summary(),
           ),
           Positioned(
-            top: 50.0,
+            top: 45.0,
             left: 0.0,
             right: 0.0,
-            child: Image.asset("assets/images/family/summary.png",
+            child: SvgPicture.asset("assets/images/family/family.svg",
                 height: 150.0, width: 150.0),
           )
         ],

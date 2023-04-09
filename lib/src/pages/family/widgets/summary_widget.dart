@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Summary extends StatelessWidget {
   const Summary({Key? key}) : super(key: key);
@@ -6,7 +7,7 @@ class Summary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450.0,
+      height: MediaQuery.of(context).size.height * 0.6,
       padding: const EdgeInsets.only(top: 40.0, left: 25.0, right: 25.0),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -38,7 +39,7 @@ class Summary extends StatelessWidget {
               // minRadius: 20,
               // maxRadius: 40,
               radius: 20.0,
-              backgroundColor: Colors.pink[500],
+              backgroundColor: Color.fromARGB(255, 230, 221, 224),
               child: Image.asset(
                 "assets/images/avatar/user_profile.png",
                 height: 38.0,

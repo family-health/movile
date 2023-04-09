@@ -1,11 +1,10 @@
 // ignore_for_file: file_names
-
 import 'package:app/src/widgets/security_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SecurityScreen extends StatelessWidget {
   const SecurityScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +12,12 @@ class SecurityScreen extends StatelessWidget {
       children: [
         Container(
           color: Colors.grey.shade100,
-          height: MediaQuery.of(context).size.height * 0.35,
-          child: const Center(
-            child: CircleAvatar(
-              radius: 80.0,
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.security, size: 100.0, color: Colors.white),
+          height: MediaQuery.of(context).size.height * 0.4,
+          child: Center(
+            child: SvgPicture.asset(
+              "assets/images/security/security.svg",
+              height: 150,
+              width: 150,
             ),
           ),
         ),
