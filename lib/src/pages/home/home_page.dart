@@ -1,4 +1,4 @@
-import 'package:app/src/pages/family/family_screen.dart';
+import 'package:app/src/pages/family/family_page.dart';
 import 'package:app/src/pages/security/securityScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             index: _con.indexTab.value,
             children: [
               DashboardScreen(),
-              FamilyScreen(),
+              FamilyPage(),
               SecurityScreen(),
               SettingsMainPage()
             ],

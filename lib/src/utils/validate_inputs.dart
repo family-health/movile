@@ -92,3 +92,35 @@ bool isValidUpdateUserForm(String name, String lastName, String phone) {
 
   return true;
 }
+
+bool isValidCreateFamilyForm(
+    String name, String lastName, String phone, String email, String relation) {
+  if (name.isEmpty) {
+    Get.snackbar("Error", "La relacion es requerido");
+    return false;
+  }
+  if (lastName.isEmpty) {
+    Get.snackbar("Error", "La relacion es requerido");
+    return false;
+  }
+  if (phone.isEmpty) {
+    Get.snackbar("Error", "La relacion es requerido");
+    return false;
+  }
+
+  if (email.isEmpty) {
+    Get.snackbar("Error", "El email is requerido");
+    return false;
+  }
+
+  if (!GetUtils.isEmail(email)) {
+    Get.snackbar("Error", "El email no es valido");
+    return false;
+  }
+
+  if (relation.isEmpty) {
+    Get.snackbar("Error", "La relacion es requerido");
+    return false;
+  }
+  return true;
+}

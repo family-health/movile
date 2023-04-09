@@ -11,7 +11,8 @@ class Family {
   String? phone;
   String? email;
   String? relation;
-  
+  String? userId;
+
   Family({
     this.id,
     this.name,
@@ -19,6 +20,7 @@ class Family {
     this.phone,
     this.email,
     this.relation,
+    this.userId,
   });
 
   factory Family.fromJson(Map<String, dynamic> json) => Family(
@@ -28,6 +30,7 @@ class Family {
         phone: json["phone"],
         email: json["email"],
         relation: json["relation"],
+        userId: json["userId"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -37,5 +40,14 @@ class Family {
         "phone": phone,
         "email": email,
         "relation": relation,
+        "userId": userId,
+      };
+  Map<String, dynamic> toJsonForCreateFamily() => {
+        "name": name,
+        "lastName": lastName,
+        "phone": phone,
+        "email": email,
+        "relation": relation,
+        "userId": userId,
       };
 }
