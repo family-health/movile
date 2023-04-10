@@ -24,10 +24,17 @@ class SingnUpPage extends StatelessWidget {
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(boxShadow: <BoxShadow>[
-        BoxShadow(
-            color: Colors.black54, blurRadius: 15, offset: Offset(0, 0.75))
-      ], color: Colors.white),
+      decoration: BoxDecoration(
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 15,
+            offset: Offset(0, 0.75),
+          ),
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+      ),
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.20, left: 35, right: 35),
       height: MediaQuery.of(context).size.height * 0.65,
@@ -40,7 +47,7 @@ class SingnUpPage extends StatelessWidget {
           _textFieldEmail(),
           _textFieldPassword(context),
           _textFieldRepeatPassword(context),
-          _buttonregister(context)
+          _buttonregister(context),
         ]),
       ),
     );
