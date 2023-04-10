@@ -50,18 +50,19 @@ class SingUpController extends GetxController {
           password: password,
           phone: phone);
 
-      progressDialog.show(max: 10, msg: "Registrando usuario ...");
       ResponseApi responseApi = await _userProvider.create(user);
       progressDialog.close();
       if (responseApi.success == true) {
         GetStorage().write(Environment.USER_STORAGE, responseApi.data);
+        progressDialog.close();
         goToHomePage();
       } else {
         Alertas.error(responseApi.message ?? "Hubo un error");
         progressDialog.close();
       }
+
+      progressDialog.close();
     }
-    progressDialog.close();
   }
 
   void goToHomePage() {

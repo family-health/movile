@@ -1,14 +1,14 @@
 import 'package:app/src/environment/environment.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:app/src/utils/toast_alert.dart';
 
 class SettingsMainController extends GetxController {
-  void singOut() {
-    GetStorage().remove(Environment.USER_STORAGE);
-    Get.offNamedUntil(Environment.ROUTE_SING_IN, (route) => false);
+  Future<void> singOut() async {
+    await alertDialogRemoveSesion(
+        'Confirmación', "¿Estás seguro de que deseas cerrar sesión?");
   }
 
-    void goToProfileInfo() {
+  void goToProfileInfo() {
     Get.toNamed(Environment.ROUTE_SETTINGS_PROFILE_INFO);
   }
 }

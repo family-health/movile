@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:app/src/environment/environment.dart';
 
 class Alertas {
   static void warning(String mensaje) {
@@ -37,4 +40,27 @@ class Alertas {
       fontSize: 16.0,
     );
   }
+}
+
+Future<bool> alertDialogRemoveSesion(String title, String mensaje) async {
+  bool confirmado = false;
+
+  await Get.defaultDialog(
+    title: title,
+    content: Text(
+      mensaje,
+      style: const TextStyle(fontWeight: FontWeight.bold),
+    ),
+    textCancel: "Cancelar",
+    textConfirm: "Aceptar",
+    cancelTextColor: Get.theme.primaryColor,
+    confirmTextColor: Colors.white,
+    onConfirm: () async {
+      GetStorage().remove(Environment.USER_STORAGE);
+      Get.offNamedUntil(Environment.ROUTE_SING_IN, (route) => false);
+      confirmado = true;
+    },
+  );
+
+  return confirmado;
 }
