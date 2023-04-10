@@ -9,6 +9,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
 class SingInController extends GetxController {
+  var obscureText = true.obs;
+
+  void toggleObscureText() {
+    obscureText.toggle();
+  }
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   UserProvider userProvider = UserProvider();

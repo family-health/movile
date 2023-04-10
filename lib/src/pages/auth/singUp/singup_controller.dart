@@ -10,6 +10,16 @@ import 'package:app/src/environment/environment.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
 class SingUpController extends GetxController {
+  var obscureTextPassword = true.obs;
+  var obscureTextRepeactPassword = true.obs;
+
+  void toggleObscurePaswword() {
+    obscureTextPassword.toggle();
+  }
+  void toggleObscureRepeactPaswword() {
+    obscureTextRepeactPassword.toggle();
+  }
+
   final UserProvider _userProvider = UserProvider();
 
   TextEditingController emailController = TextEditingController();

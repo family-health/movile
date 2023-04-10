@@ -29,7 +29,7 @@ class SingnUpPage extends StatelessWidget {
             color: Colors.black54, blurRadius: 15, offset: Offset(0, 0.75))
       ], color: Colors.white),
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.20, left: 50, right: 50),
+          top: MediaQuery.of(context).size.height * 0.20, left: 35, right: 35),
       height: MediaQuery.of(context).size.height * 0.65,
       child: SingleChildScrollView(
         child: Column(children: [
@@ -38,8 +38,8 @@ class SingnUpPage extends StatelessWidget {
           _textFieldLastName(),
           _textFieldPhone(),
           _textFieldEmail(),
-          _textFieldPassword(),
-          _textFieldRepeatPassword(),
+          _textFieldPassword(context),
+          _textFieldRepeatPassword(context),
           _buttonregister(context)
         ]),
       ),
@@ -144,31 +144,52 @@ class SingnUpPage extends StatelessWidget {
     );
   }
 
-  Widget _textFieldPassword() {
+  Widget _textFieldPassword(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-        controller: _con.passwordController,
-        keyboardType: TextInputType.text,
-        obscureText: true,
-        decoration: const InputDecoration(
-            hintText: "Contraseña", prefixIcon: Icon(Icons.lock)),
-      ),
-    );
+        margin: const EdgeInsets.symmetric(horizontal: 40),
+        child: Obx(
+          () => TextField(
+              controller: _con.passwordController,
+              keyboardType: TextInputType.text,
+              obscureText: _con.obscureTextPassword.value,
+              decoration: InputDecoration(
+                hintText: "Contraseña",
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _con.obscureTextPassword.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () => _con.toggleObscurePaswword(),
+                ),
+              )),
+        ));
   }
 
-  Widget _textFieldRepeatPassword() {
+  Widget _textFieldRepeatPassword(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-        controller: _con.repeactPasswordController,
-        keyboardType: TextInputType.text,
-        obscureText: true,
-        decoration: const InputDecoration(
-            hintText: "Confirmar Contraseña",
-            prefixIcon: Icon(Icons.lock_open_sharp)),
-      ),
-    );
+        margin: const EdgeInsets.symmetric(horizontal: 40),
+        child: Obx(
+          () => TextField(
+              controller: _con.repeactPasswordController,
+              keyboardType: TextInputType.text,
+              obscureText: _con.obscureTextRepeactPassword.value,
+              decoration: InputDecoration(
+                hintText: "Confirmar contraseña",
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _con.obscureTextRepeactPassword.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () => _con.toggleObscureRepeactPaswword(),
+                ),
+              )),
+        ));
   }
 
   Widget _textYourInfo() {

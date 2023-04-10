@@ -28,20 +28,29 @@ class SingnInPage extends StatelessWidget {
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(boxShadow: <BoxShadow>[
-        BoxShadow(
-            color: Colors.black54, blurRadius: 15, offset: Offset(0, 0.75))
-      ], color: Colors.white),
+      decoration: BoxDecoration(
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 15,
+            offset: Offset(0, 0.75),
+          )
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30), // Agregar bordes redondeados
+      ),
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.33, left: 50, right: 50),
+          top: MediaQuery.of(context).size.height * 0.33, left: 35, right: 35),
       height: MediaQuery.of(context).size.height * 0.45,
       child: SingleChildScrollView(
-        child: Column(children: [
-          _textYourInfo(),
-          _textFieldEmail(),
-          _textFieldPassword(),
-          _buttonLogin(context)
-        ]),
+        child: Column(
+          children: [
+            _textYourInfo(),
+            _textFieldEmail(),
+            _textFieldPassword(context),
+            _buttonLogin(context)
+          ],
+        ),
       ),
     );
   }
@@ -71,17 +80,28 @@ class SingnInPage extends StatelessWidget {
     );
   }
 
-  Widget _textFieldPassword() {
+  Widget _textFieldPassword(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-        controller: _con.passwordController,
-        keyboardType: TextInputType.text,
-        obscureText: true,
-        decoration: const InputDecoration(
-            hintText: "Contraseña", prefixIcon: Icon(Icons.lock)),
-      ),
-    );
+        margin: const EdgeInsets.symmetric(horizontal: 40),
+        child: Obx(
+          () => TextField(
+              controller: _con.passwordController,
+              keyboardType: TextInputType.text,
+              obscureText: _con.obscureText.value,
+              decoration: InputDecoration(
+                hintText: "Contraseña",
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _con.obscureText.value
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () => _con.toggleObscureText(),
+                ),
+              )),
+        ));
   }
 
   Widget _textYourInfo() {
