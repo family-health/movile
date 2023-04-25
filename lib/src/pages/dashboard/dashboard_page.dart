@@ -1,9 +1,12 @@
+import 'package:app/src/pages/dashboard/dashboard_controller.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/health_card.dart';
+import 'package:get/get.dart';
+
 import '../../widgets/people_card.dart';
 
 class DashboardPage extends StatelessWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  DashboardPage({Key? key}) : super(key: key);
+  final DashboardController _con = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,8 @@ class DashboardPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text("Hola,", style: textStyle),
-          Text("Joseph Garcia", style: textStyle),
+          Text("Hola", style: textStyle),
+          Text("${_con.user.name}", style: textStyle),
         ]),
         const Icon(Icons.search, size: 35.0, color: Colors.blue),
       ],

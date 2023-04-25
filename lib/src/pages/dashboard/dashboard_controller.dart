@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:app/src/models/user.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:app/src/environment/environment.dart';
 
 //Google Fit Packages
 import 'package:health/health.dart';
@@ -13,6 +16,8 @@ enum ControllerStates {
 }
 
 class DashboardController extends GetxController {
+  var user = User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+  
   ControllerStates controllerState = ControllerStates.loading;
 
 //getters and setters
