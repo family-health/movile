@@ -19,14 +19,24 @@ enum ControllerStates {
 
 class DashboardController extends GetxController {
   var user = User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+  final families = <Family>[].obs;
   FamilyProvider familyProvider = FamilyProvider();
 
-  Future<List<Family>> getAllFamilyByUserId() async {
+  @override
+  void onInit() {
+    super.onInit();
+    getAllFamilies();
+  }
+
+  Future<void> getAllFamilies() async {
     ResponseApi responseApi =
         await familyProvider.getAllFamilyByUserId(user.id!, user.token!);
-    List<Family> family = Family.fromJsonList(responseApi.data);
-    print(family);
-    return family;
+    List<Family> familyList = Family.fromJsonList(responseApi.data);
+    families.value = familyList;
+  }
+
+  List<Family> getFirstTwoFamilies() {
+    return families.length > 1 ? families.sublist(0, 2) : families;
   }
 
   ControllerStates controllerState = ControllerStates.loading;

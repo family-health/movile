@@ -1,8 +1,8 @@
 import 'package:app/src/pages/dashboard/dashboard_controller.dart';
+import 'package:app/src/widgets/people_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/people_card.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -12,18 +12,77 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(children: [
-            _header(),
-            const SizedBox(height: 20.0),
-            _statics(),
-            const SizedBox(height: 20.0),
-            _families(),
-          ]),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await _con.getAllFamilies();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(children: [
+              _header(),
+              const SizedBox(height: 20.0),
+              _statics(),
+              const SizedBox(height: 20.0),
+              // _families()
+              _lista(context)
+            ]),
+          ),
         ),
       ),
     );
+  }
+
+  Widget _lista(BuildContext context) {
+    return Obx(() {
+      if (_con.families.isEmpty) {
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text("Familiares",
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
+                Text("Ver todos", style: TextStyle(color: Colors.black45)),
+              ],
+            ),
+            const SizedBox(height: 40),
+            const Center(child: Text('Sin datos')),
+          ],
+        );
+      } else {
+        final firstTwoFamilies = _con.getFirstTwoFamilies();
+        return Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text("Familiares",
+                      style: TextStyle(
+                          fontSize: 16.0, fontWeight: FontWeight.w500)),
+                  Text("Ver todos", style: TextStyle(color: Colors.black45)),
+                ],
+              ),
+              const SizedBox(height: 10),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: firstTwoFamilies.length,
+                itemBuilder: (context, index) {
+                  final family = firstTwoFamilies[index];
+                  return PeopleCard(
+                    name: family.name ?? '',
+                    email: family.email ?? '',
+                    image: "assets/images/avatar/user_profile.png",
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      }
+    });
   }
 
   Widget _families() {

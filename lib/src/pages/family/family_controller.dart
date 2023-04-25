@@ -2,6 +2,7 @@ import 'package:app/src/models/family.dart';
 import 'package:app/src/models/responseApi.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/user.dart';
+import 'package:app/src/pages/dashboard/dashboard_controller.dart';
 import 'package:app/src/providers/family_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/utils/validate_inputs.dart';
@@ -12,6 +13,8 @@ import 'package:get/get.dart';
 
 class FamilyController extends GetxController {
   User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  final DashboardController _dashboardController =
+      Get.put(DashboardController());
 
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -43,6 +46,7 @@ class FamilyController extends GetxController {
           await familyProvider.create(family, user.token ?? '');
       progressDialog.close();
       if (responseApi.success == true) {
+        _dashboardController.getAllFamilies();
         clearForm();
         Alertas.success(responseApi.message ?? 'Todo correcto');
       } else {
