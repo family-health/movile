@@ -1,8 +1,10 @@
-import 'package:get/get.dart';
-import 'package:app/src/models/user.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:app/src/environment/environment.dart';
-
+import 'package:app/src/models/family.dart';
+import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/models/user.dart';
+import 'package:app/src/providers/family_provider.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 //Google Fit Packages
 import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -17,7 +19,16 @@ enum ControllerStates {
 
 class DashboardController extends GetxController {
   var user = User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
-  
+  FamilyProvider familyProvider = FamilyProvider();
+
+  Future<List<Family>> getAllFamilyByUserId() async {
+    ResponseApi responseApi =
+        await familyProvider.getAllFamilyByUserId(user.id!, user.token!);
+    List<Family> family = Family.fromJsonList(responseApi.data);
+    print(family);
+    return family;
+  }
+
   ControllerStates controllerState = ControllerStates.loading;
 
 //getters and setters

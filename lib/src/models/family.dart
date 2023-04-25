@@ -33,6 +33,17 @@ class Family {
         userId: json["userId"],
       );
 
+  static List<Family> fromJsonList(List<dynamic> jsonList) {
+    List<Family> toList = [];
+
+    jsonList.forEach((item) {
+      Family order = Family.fromJson(item);
+      toList.add(order);
+    });
+
+    return toList;
+  }
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
