@@ -1,11 +1,11 @@
-import 'package:app/src/pages/family/family_page.dart';
+import 'package:app/src/pages/dashboard/dashboard_page.dart';
+import 'package:app/src/pages/family/create/family_create_page.dart';
+import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/security/securityScreen.dart';
+import 'package:app/src/pages/settings/main/settings_main_page.dart';
+import 'package:app/src/widgets/custom_animated_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/pages/home/home_controller.dart';
-import 'package:app/src/widgets/custom_animated_bottom_bar.dart';
-import 'package:app/src/pages/dashboard/dashboard_page.dart';
-import 'package:app/src/pages/settings/main/settings_main_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);

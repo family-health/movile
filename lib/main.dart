@@ -9,9 +9,7 @@ import 'src/pages/auth/singUp/singup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
-//screens
-// import 'package:app/features/tabulator/screens/tabulator_screen.dart';
-// import 'package:app/features/auth/screens/singnin_screen.dart';
+import 'src/pages/family/list_families/family_list_families_page.dart';
 
 User userSession =
     User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
@@ -49,6 +47,9 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Environment.ROUTE_SETTINGS_PROFILE_UPDATE,
             page: () => SettingsProfileUpdatePage()),
+        GetPage(
+            name: Environment.ROUTE_FAMILY_LIST_FAMILIES,
+            page: () => FamilyCreateListFamiliesPage()),
       ],
     );
   }

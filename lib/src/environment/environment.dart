@@ -14,5 +14,8 @@ class Environment {
   static const String ROUTE_HOME = "/home";
 
   static const String ROUTE_SETTINGS_PROFILE_INFO = "/settings/profile/info";
-  static const String ROUTE_SETTINGS_PROFILE_UPDATE = "/settings/profile/update";
+  static const String ROUTE_SETTINGS_PROFILE_UPDATE =
+      "/settings/profile/update";
+
+  static const String ROUTE_FAMILY_LIST_FAMILIES = "/family/list_families";
 }

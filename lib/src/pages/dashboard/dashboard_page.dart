@@ -3,7 +3,6 @@ import 'package:app/src/widgets/people_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class DashboardPage extends StatelessWidget {
   DashboardPage({Key? key}) : super(key: key);
   final DashboardController _con = Get.put(DashboardController());
@@ -58,11 +57,14 @@ class DashboardPage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Familiares",
+                children: [
+                  const Text("Familiares",
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w500)),
-                  Text("Ver todos", style: TextStyle(color: Colors.black45)),
+                  GestureDetector(
+                      onTap: () => _con.goToFamilyListFamilies(),
+                      child: const Text("Ver todos",
+                          style: TextStyle(color: Colors.black45))),
                 ],
               ),
               const SizedBox(height: 10),
@@ -83,36 +85,6 @@ class DashboardPage extends StatelessWidget {
         );
       }
     });
-  }
-
-  Widget _families() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text("Familiares",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
-          Text("Ver todos", style: TextStyle(color: Colors.black45)),
-        ],
-      ),
-      const SizedBox(height: 15.0),
-      Column(
-        children: const [
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-        ],
-      ),
-    ]);
   }
 
   Widget _header() {

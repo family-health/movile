@@ -101,4 +101,8 @@ class DashboardController extends GetxController {
     controllerState = ControllerStates.loaded;
     update();
   }
+
+  void goToFamilyListFamilies() {
+    Get.toNamed(Environment.ROUTE_FAMILY_LIST_FAMILIES);
+  }
 }
