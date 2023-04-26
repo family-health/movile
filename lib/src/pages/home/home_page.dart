@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:app/src/pages/dashboard/dashboard_page.dart';
 import 'package:app/src/pages/family/create/family_create_page.dart';
 import 'package:app/src/pages/home/home_controller.dart';

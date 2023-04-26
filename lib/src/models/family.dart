@@ -36,10 +36,10 @@ class Family {
   static List<Family> fromJsonList(List<dynamic> jsonList) {
     List<Family> toList = [];
 
-    jsonList.forEach((item) {
+    for (var item in jsonList) {
       Family order = Family.fromJson(item);
       toList.add(order);
-    });
+    }
 
     return toList;
   }

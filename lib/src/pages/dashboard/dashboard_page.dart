@@ -74,6 +74,8 @@ class DashboardPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final family = firstTwoFamilies[index];
                   return PeopleCard(
+                    key: Key(family.id!),
+                    id: family.id!,
                     name: family.name ?? '',
                     email: family.email ?? '',
                     image: "assets/images/avatar/user_profile.png",

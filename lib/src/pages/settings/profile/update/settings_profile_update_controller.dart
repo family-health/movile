@@ -1,22 +1,19 @@
-import 'dart:convert';
 import 'dart:io';
+
+import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/responseApi.dart';
 import 'package:app/src/models/user.dart';
-import 'package:app/src/pages/settings/profile/info/settings_profile_info_controller.dart';
 import 'package:app/src/providers/user_provider.dart';
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/utils/toast_alert.dart';
 import 'package:app/src/utils/validate_inputs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
-import 'package:app/src/utils/toast_alert.dart';
 
 class ClientProfileUpdateController extends GetxController {
   final UserProvider _userProvider = UserProvider();
-  final SettingsProfileInfoController _settingsProfileInfoController =
-      Get.find();
   User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
 
   ImagePicker picker = ImagePicker();

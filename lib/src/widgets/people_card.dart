@@ -4,9 +4,14 @@ class PeopleCard extends StatelessWidget {
   final String image;
   final String name;
   final String email;
+  final String id;
 
   const PeopleCard(
-      {Key? key, required this.image, required this.name, required this.email})
+      {Key? key,
+      required this.image,
+      required this.id,
+      required this.name,
+      required this.email})
       : super(key: key);
 
   @override
