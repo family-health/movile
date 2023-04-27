@@ -29,6 +29,28 @@ class FamilyProvider extends GetConnect {
     return responseApi;
   }
 
+  Future<ResponseApi> updateById(Family family, String token, String id) async {
+    Response response = await put('$url/$id', family.toJsonForCreateFamily(),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer $token"
+        }); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
+
+    if (response.body == null) {
+      Alertas.error('No se pudo actualizar la informacion');
+      return ResponseApi();
+    }
+
+    if (response.statusCode == 401) {
+      Alertas.error('No estas autorizado para realizar esta peticion');
+      return ResponseApi();
+    }
+
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+
+    return responseApi;
+  }
+
   Future<ResponseApi> deleteById(String id, String token) async {
     Response response = await delete('$url/$id', headers: {
       'Content-Type': 'application/json',

@@ -50,7 +50,7 @@ class FamilyController extends GetxController {
         clearForm();
         Alertas.success(responseApi.message ?? 'Todo correcto');
       } else {
-        Alertas.error("Usuario no se pudo autenticar");
+        Alertas.error("No se pudo crear el familiar");
       }
     }
   }

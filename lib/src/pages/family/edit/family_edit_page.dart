@@ -1,34 +1,40 @@
+import 'package:app/src/pages/family/edit/family_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class FamilyEditPage extends StatelessWidget {
-  const FamilyEditPage({super.key});
+  FamilyEditPage({super.key});
+  final FamilyEditController _con = Get.put(FamilyEditController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: const Text('')),
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Container(
-              color: Colors.blue,
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: Colors.blue,
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 45.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: SvgPicture.asset("assets/images/family/fatherhood.svg",
+                      height: 130.0, width: 130.0),
+                ),
+                Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: _sumamary(context),
+                ),
+              ],
             ),
-            Positioned(
-              top: 45.0,
-              left: 0.0,
-              right: 0.0,
-              child: SvgPicture.asset("assets/images/family/fatherhood.svg",
-                  height: 150.0, width: 150.0),
-            ),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: _sumamary(context),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -36,7 +42,7 @@ class FamilyEditPage extends StatelessWidget {
 
   Widget _sumamary(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.73,
       padding: const EdgeInsets.only(top: 40.0, left: 25.0, right: 25.0),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -84,11 +90,12 @@ class FamilyEditPage extends StatelessWidget {
   }
 
   Widget _buttonCreate(BuildContext context) {
+    String id = Get.parameters['id'] ?? '';
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       width: double.infinity,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => _con.updateFamilyById(context, id),
           child: const Text(
             "Editar",
             style: TextStyle(color: Colors.white),
@@ -100,7 +107,7 @@ class FamilyEditPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        // controller: _con.nameController,
+        controller: _con.nameController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
             hintText: "Nombre", prefixIcon: Icon(Icons.person)),
@@ -112,7 +119,7 @@ class FamilyEditPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        // controller: _con.lastNameController,
+        controller: _con.lastNameController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
             hintText: "Apellido", prefixIcon: Icon(Icons.person_4_outlined)),
@@ -124,7 +131,7 @@ class FamilyEditPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        // controller: _con.phoneController,
+        controller: _con.phoneController,
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
             hintText: "Telefono", prefixIcon: Icon(Icons.phone)),
@@ -136,7 +143,7 @@ class FamilyEditPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        // controller: _con.emailController,
+        controller: _con.emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
             hintText: "Email", prefixIcon: Icon(Icons.email)),
@@ -148,7 +155,7 @@ class FamilyEditPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        // controller: _con.relationController,
+        controller: _con.relationController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
             hintText: "Relacion", prefixIcon: Icon(Icons.person_2)),
