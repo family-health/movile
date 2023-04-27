@@ -13,6 +13,14 @@ import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class FamilyEditController extends GetxController {
   User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  final family = Family().obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    getFamilyById(Get.parameters['id'] ?? '');
+  }
+
   final DashboardController _dashboardController =
       Get.put(DashboardController());
 
@@ -51,6 +59,24 @@ class FamilyEditController extends GetxController {
       } else {
         Alertas.error("No se pudo actualizar familiar");
       }
+    }
+  }
+
+  void getFamilyById(String id) async {
+    FamilyProvider familyProvider = FamilyProvider();
+    ResponseApi responseApi =
+        await familyProvider.getOneFamilyId(id, user.token ?? '');
+    if (responseApi.success == true) {
+      // Actualizar valor de la variable observable
+      family.value = Family.fromJson(responseApi.data);
+
+      nameController.text = family.value.name ?? '';
+      lastNameController.text = family.value.lastName ?? '';
+      phoneController.text = family.value.phone ?? '';
+      emailController.text = family.value.email ?? '';
+      relationController.text = family.value.relation ?? '';
+    } else {
+      Alertas.error("No se pudo actualizar familiar");
     }
   }
 }
