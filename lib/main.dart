@@ -3,6 +3,7 @@ import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/home/home_page.dart';
 import 'package:app/src/pages/settings/profile/info/settings_profile_info_page.dart';
 import 'package:app/src/pages/settings/profile/update/settings_profile_update_page.dart';
+import 'package:app/src/pages/family/edit/family_edit_page.dart';
 
 import 'src/pages/auth/singIn/singin_page.dart';
 import 'src/pages/auth/singUp/singup_page.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Environment.ROUTE_FAMILY_LIST_FAMILIES,
             page: () => FamilyCreateListFamiliesPage()),
+        GetPage(
+            name: Environment.ROUTE_FAMILY_EDIT, page: () => FamilyEditPage()),
       ],
     );
   }

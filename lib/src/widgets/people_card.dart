@@ -1,14 +1,21 @@
+import 'package:app/src/pages/family/list_families/family_list_families_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PeopleCard extends StatelessWidget {
+  final FamilyListFamiliesController _con =
+      Get.put(FamilyListFamiliesController());
+
   final String image;
   final String name;
   final String email;
+  final bool activeOptions;
   final String id;
 
-  const PeopleCard(
+  PeopleCard(
       {Key? key,
       required this.image,
+      required this.activeOptions,
       required this.id,
       required this.name,
       required this.email})
@@ -19,16 +26,49 @@ class PeopleCard extends StatelessWidget {
     return Card(
       child: ListTile(
         contentPadding: const EdgeInsets.all(15.0),
-        leading: CircleAvatar(
-          radius: 30.0,
-          backgroundColor: Colors.grey[100],
-          child: Image.asset(image),
-        ),
-        title: Text(name,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500)),
-        subtitle: Text(email),
+        leading: _avatar(),
+        title: _title(),
+        subtitle: _subtitle(),
+        trailing: activeOptions
+            ? _menu()
+            : null, // Si active_options es falso, no muestra el PopupMenuButton
       ),
     );
+  }
+
+  Widget _menu() {
+    return PopupMenuButton(
+      itemBuilder: (BuildContext context) {
+        return <PopupMenuEntry>[
+          const PopupMenuItem(
+            value: 'Editar',
+            child: Text('Editar'),
+          ),
+          const PopupMenuItem(
+            value: 'Eliminar',
+            child: Text('Eliminar'),
+          ),
+        ];
+      },
+      onSelected: (selection) => _con.menuAction(selection, id),
+    );
+  }
+
+  Widget _avatar() {
+    return CircleAvatar(
+      radius: 30.0,
+      backgroundColor: Colors.grey[100],
+      child: Image.asset(image),
+    );
+  }
+
+  Widget _title() {
+    return Text(name,
+        style:
+            const TextStyle(color: Colors.black, fontWeight: FontWeight.w500));
+  }
+
+  Widget _subtitle() {
+    return Text(email);
   }
 }

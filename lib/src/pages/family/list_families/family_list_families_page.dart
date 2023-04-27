@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FamilyCreateListFamiliesPage extends StatelessWidget {
-  FamilyCreateListFamiliesPage({super.key});
+   FamilyCreateListFamiliesPage({Key? key}) : super(key: key);
   final DashboardController _con = Get.put(DashboardController());
 
   @override
@@ -49,6 +49,7 @@ class FamilyCreateListFamiliesPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final family = _con.families[index];
                   return PeopleCard(
+                    activeOptions: true,
                     key: Key(family.id!),
                     id: family.id!,
                     name: family.name ?? '',
