@@ -97,15 +97,15 @@ bool isValidUpdateUserForm(String name, String lastName, String phone) {
 bool isValidCreateFamilyForm(
     String name, String lastName, String phone, String email, String relation) {
   if (name.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El nombre es requerido");
     return false;
   }
   if (lastName.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El apellido es requerido");
     return false;
   }
   if (phone.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El telefono es requerido");
     return false;
   }
 
