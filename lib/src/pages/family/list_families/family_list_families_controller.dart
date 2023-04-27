@@ -1,16 +1,31 @@
+import 'package:app/src/environment/environment.dart';
+import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/models/user.dart';
+import 'package:app/src/pages/dashboard/dashboard_controller.dart';
+import 'package:app/src/providers/family_provider.dart';
+import 'package:app/src/utils/toast_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class FamilyListFamiliesController extends GetxController {
-  void menuAction(dynamic selection, String id) {
+  User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  final DashboardController _dashboardController =
+      Get.put(DashboardController());
+  final FamilyProvider _familyProvider = FamilyProvider();
+
+  void menuAction(dynamic selection, String id, BuildContext context) {
     if (selection == 'Editar') {
       goToFamilyEditPage(id);
     } else if (selection == 'Eliminar') {
-      alertDialogEliminar('Elimiar', 'Estas seguro de eliminar este familiar?');
+      alertDialogEliminar(
+          'Elimiar', 'Estas seguro de eliminar este familiar?', id, context);
     }
   }
 
-  Future<bool> alertDialogEliminar(String title, String mensaje) async {
+  Future<bool> alertDialogEliminar(
+      String title, String mensaje, String id, BuildContext context) async {
     bool confirmado = false;
 
     await Get.defaultDialog(
@@ -28,6 +43,10 @@ class FamilyListFamiliesController extends GetxController {
       confirmTextColor: Colors.white,
       buttonColor: Colors.red,
       onConfirm: () async {
+        _deleteFamilyById(context, id);
+
+        Navigator.pop(context);
+        _dashboardController.getAllFamilies();
         confirmado = true;
       },
     );
@@ -37,5 +56,24 @@ class FamilyListFamiliesController extends GetxController {
 
   void goToFamilyEditPage(String id) {
     Get.toNamed('/family/edit/$id');
+  }
+
+  void _deleteFamilyById(BuildContext context, String id) async {
+    ProgressDialog progressDialog = ProgressDialog(context: context);
+
+    progressDialog.show(max: 10, msg: "Registrando usuario ...");
+
+    ResponseApi responseApi =
+        await _familyProvider.deleteById(id, user.token ?? '');
+    progressDialog.close();
+    if (responseApi.success == true) {
+      Alertas.success('Familiar eliminado correctamente!');
+      progressDialog.close();
+    } else {
+      Alertas.error(responseApi.message ?? "Hubo un error");
+      progressDialog.close();
+    }
+
+    progressDialog.close();
   }
 }

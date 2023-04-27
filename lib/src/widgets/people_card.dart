@@ -30,13 +30,13 @@ class PeopleCard extends StatelessWidget {
         title: _title(),
         subtitle: _subtitle(),
         trailing: activeOptions
-            ? _menu()
+            ? _menu(context)
             : null, // Si active_options es falso, no muestra el PopupMenuButton
       ),
     );
   }
 
-  Widget _menu() {
+  Widget _menu(BuildContext context) {
     return PopupMenuButton(
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry>[
@@ -50,7 +50,7 @@ class PeopleCard extends StatelessWidget {
           ),
         ];
       },
-      onSelected: (selection) => _con.menuAction(selection, id),
+      onSelected: (selection) => _con.menuAction(selection, id, context),
     );
   }
 
