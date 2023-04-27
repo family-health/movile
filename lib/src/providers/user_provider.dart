@@ -1,7 +1,7 @@
 import 'package:app/src/models/user.dart';
 import 'package:get/get.dart';
 import 'package:app/src/environment/environment.dart';
-import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/models/response_api.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
 class UserProvider extends GetConnect {

@@ -1,5 +1,5 @@
 import 'package:app/src/environment/environment.dart';
-import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/dashboard/dashboard_controller.dart';
 import 'package:app/src/providers/family_provider.dart';

@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:app/src/utils/validate_inputs.dart';
-import 'package:app/src/models/responseApi.dart';
+import 'package:app/src/models/response_api.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
