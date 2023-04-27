@@ -1,8 +1,15 @@
-import 'package:app/src/models/user.dart';
-import 'package:get/get.dart';
+// ignore_for_file: depend_on_referenced_packages, unused_import
+
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/response_api.dart';
+import 'package:app/src/models/user.dart';
 import 'package:app/src/utils/toast_alert.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
 
 class UserProvider extends GetConnect {
   String url = "${Environment.API_URL}/api/auth";
@@ -32,6 +39,17 @@ class UserProvider extends GetConnect {
     }
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
     return responseApi;
+  }
+
+  Future<Stream> createWithImage(User user, File image) async {
+    Uri uri = Uri.http(Environment.API_URL_OLD, '/api/auth/signup-with-image');
+    final request = http.MultipartRequest('POST', uri);
+    request.files.add(http.MultipartFile(
+        'image', http.ByteStream(image.openRead().cast()), await image.length(),
+        filename: basename(image.path)));
+    request.fields['user'] = json.encode(user.toJsonForCreate());
+    final response = await request.send();
+    return response.stream.transform(utf8.decoder);
   }
 
   // ⁡⁢⁢⁢actualizar usurio sin imagen⁡⁡⁡

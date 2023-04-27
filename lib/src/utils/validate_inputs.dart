@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
@@ -59,6 +61,15 @@ bool isValidRegisterForm(String email, String password, String repeatPassword,
 
   if (password.isEmpty) {
     Alertas.warning("La contraseña es requerido");
+    return false;
+  } else if (!password.contains(RegExp(r'[A-Z]'))) {
+    Alertas.warning("La contraseña debe tener al menos una letra mayúscula");
+    return false;
+  } else if (!password.contains(RegExp(r'[a-z]'))) {
+    Alertas.warning("La contraseña debe tener al menos una letra minúscula");
+    return false;
+  } else if (!password.contains(RegExp(r'[0-9]'))) {
+    Alertas.warning("La contraseña debe tener al menos un número");
     return false;
   }
 
