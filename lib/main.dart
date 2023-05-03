@@ -1,11 +1,11 @@
-import 'package:app/src/environment/environment.dart';
-import 'package:app/src/models/user.dart';
-import 'package:app/src/pages/home/home_page.dart';
-import 'package:app/src/pages/settings/profile/info/settings_profile_info_page.dart';
-import 'package:app/src/pages/settings/profile/update/settings_profile_update_page.dart';
+import 'package:app/src/common/enviroments/environment.dart';
+import 'package:app/src/features/auth/data/models/user_model.dart';
+import 'package:app/src/features/navigation/ui/screens/navigation_screen.dart';
+import 'package:app/src/features/profile/ui/screens/profile_screen.dart';
+import 'package:app/src/features/profile/ui/screens/profile_update_screen.dart';
 
-import 'src/pages/auth/singIn/singin_page.dart';
-import 'src/pages/auth/singUp/singup_page.dart';
+import 'src/features/auth/ui/screens/singin_screen.dart';
+import 'src/features/auth/ui/screens/singup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,8 +13,7 @@ import 'package:get_storage/get_storage.dart';
 // import 'package:app/features/tabulator/screens/tabulator_screen.dart';
 // import 'package:app/features/auth/screens/singnin_screen.dart';
 
-User userSession =
-    User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+User userSession = User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
 
 void main() async {
   // SystemChrome.setSystemUIOverlayStyle(
@@ -24,7 +23,6 @@ void main() async {
   //   ),
   // );
   // await dotenv.load(fileName: ".env");
-  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -40,9 +38,9 @@ class MyApp extends StatelessWidget {
           ? Environment.ROUTE_HOME
           : Environment.ROUTE_SING_IN,
       getPages: [
-        GetPage(name: Environment.ROUTE_HOME, page: () => HomePage()),
-        GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInPage()),
-        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpPage()),
+        GetPage(name: Environment.ROUTE_HOME, page: () => NavigationScreen()),
+        GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInScreen()),
+        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpScreen()),
         GetPage(
             name: Environment.ROUTE_SETTINGS_PROFILE_INFO,
             page: () => SettingsProfileInfoPage()),
