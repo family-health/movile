@@ -31,7 +31,13 @@ class DashboardController extends GetxController {
   Future<void> getAllFamilies() async {
     ResponseApi responseApi =
         await familyProvider.getAllFamilyByUserId(user.id!, user.token!);
-    List<Family> familyList = Family.fromJsonList(responseApi.data);
+    List<Family> familyList = [];
+
+    if (responseApi.data != null) {
+      familyList = Family.fromJsonList(responseApi.data);
+    } else {
+      familyList = [];
+    }
     families.value = familyList;
   }
 
