@@ -122,7 +122,7 @@ class FamilyEditPage extends StatelessWidget {
         controller: _con.lastNameController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
-            hintText: "Apellido", prefixIcon: Icon(Icons.person_4_outlined)),
+            hintText: "Apellido", prefixIcon: Icon(Icons.person)),
       ),
     );
   }
@@ -158,7 +158,7 @@ class FamilyEditPage extends StatelessWidget {
         controller: _con.relationController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
-            hintText: "Relacion", prefixIcon: Icon(Icons.person_2)),
+            hintText: "Relacion", prefixIcon: Icon(Icons.person)),
       ),
     );
   }
