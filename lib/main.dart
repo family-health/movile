@@ -1,6 +1,5 @@
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/user.dart';
-import 'package:app/src/pages/health/health_screen.dart';
 import 'package:app/src/pages/home/home_page.dart';
 import 'package:app/src/pages/settings/profile/info/settings_profile_info_page.dart';
 import 'package:app/src/pages/settings/profile/update/settings_profile_update_page.dart';
@@ -36,10 +35,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Family Health',
       debugShowCheckedModeBanner: false,
-      home: const HealthScreen(),
-      // initialRoute: userSession.id != null
-      //     ? Environment.ROUTE_HOME
-      //     : Environment.ROUTE_SING_IN,
+      initialRoute: userSession.id != null
+          ? Environment.ROUTE_HOME
+          : Environment.ROUTE_SING_IN,
       getPages: [
         GetPage(name: Environment.ROUTE_HOME, page: () => HomePage()),
         GetPage(name: Environment.ROUTE_SING_IN, page: () => SingnInPage()),
