@@ -1,3 +1,4 @@
+import 'package:app/src/config/themes/app_theme.dart';
 import 'package:app/src/environment/environment.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/home/home_page.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'src/pages/family/list_families/family_list_families_page.dart';
-
 
 User userSession =
     User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Family Health',
+      theme: AppTheme(selectedColor: 1).theme(),
       debugShowCheckedModeBanner: false,
       initialRoute: userSession.id != null
           ? Environment.ROUTE_HOME
