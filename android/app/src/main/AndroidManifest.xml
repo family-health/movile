@@ -18,6 +18,11 @@
     <uses-permission android:name="android.permission.health.WRITE_BLOOD_GLUCOSE"/>
     <uses-permission android:name="androidx.health.permission.BloodGlucose.READ"/>
     <uses-permission android:name="androidx.health.permission.BloodGlucose.WRITE"/>
+
+    <uses-permission android:name="android.permission.health.READ_STEPS"/>
+    <uses-permission android:name="android.permission.health.WRITE_STEPS"/>
+    <uses-permission android:name="androidx.health.permission.Steps.READ"/>
+    <uses-permission android:name="androidx.health.permission.Steps.WRITE"/>
     
     <!-- Permisionons to android 9 -->
     <!-- <uses-permission android:name="android.permission.health.READ_ACTIVE_CALORIES_BURNED"/>
@@ -109,11 +114,6 @@
     <uses-permission android:name="android.permission.health.READ_SPEED"/>
     <uses-permission android:name="android.permission.health.WRITE_SPEED"/> -->
 
-    <uses-permission android:name="android.permission.health.READ_STEPS"/>
-    <uses-permission android:name="android.permission.health.WRITE_STEPS"/>
-    <uses-permission android:name="androidx.health.permission.Steps.READ"/>
-    <uses-permission android:name="androidx.health.permission.Steps.WRITE"/>
-
     <!-- <uses-permission android:name="android.permission.health.READ_TOTAL_CALORIES_BURNED"/>
     <uses-permission android:name="android.permission.health.WRITE_TOTAL_CALORIES_BURNED"/>
 
@@ -150,6 +150,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
             </intent-filter>
         </activity>
 
