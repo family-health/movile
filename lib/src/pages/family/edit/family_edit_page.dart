@@ -98,7 +98,7 @@ class FamilyEditPage extends StatelessWidget {
           onPressed: () => _con.updateFamilyById(context, id),
           child: const Text(
             "Editar",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           )),
     );
   }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 import 'package:app/src/utils/validate_inputs.dart';
 import 'package:app/src/models/response_api.dart';
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
@@ -35,7 +35,7 @@ class SingInController extends GetxController {
       ResponseApi responseApi = await userProvider.login(email, password);
       progressDialog.close();
       if (responseApi.success == true) {
-        GetStorage().write(Environment.USER_STORAGE, responseApi.data);
+        GetStorage().write(STORAGE.USER_STORAGE, responseApi.data);
         goToHomePage();
       } else {
         Alertas.error(responseApi.message ?? "datos incorrectos");
@@ -44,10 +44,10 @@ class SingInController extends GetxController {
   }
 
   void goToRegisterPage() {
-    Get.toNamed(Environment.ROUTE_SING_UP);
+    Get.toNamed(ROUTES.ROUTE_SING_UP);
   }
 
   void goToHomePage() {
-    Get.offNamedUntil(Environment.ROUTE_HOME, (route) => false);
+    Get.offNamedUntil(ROUTES.ROUTE_HOME, (route) => false);
   }
 }

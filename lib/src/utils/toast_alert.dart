@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 
 class Alertas {
   static void warning(String mensaje) {
@@ -56,8 +56,8 @@ Future<bool> alertDialogRemoveSesion(String title, String mensaje) async {
     cancelTextColor: Get.theme.primaryColor,
     confirmTextColor: Colors.white,
     onConfirm: () async {
-      GetStorage().remove(Environment.USER_STORAGE);
-      Get.offNamedUntil(Environment.ROUTE_SING_IN, (route) => false);
+      GetStorage().remove(STORAGE.USER_STORAGE);
+      Get.offNamedUntil(ROUTES.ROUTE_SING_IN, (route) => false);
       confirmado = true;
     },
   );

@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/utils/toast_alert.dart';
@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 
 class UserProvider extends GetConnect {
-  String url = "${Environment.API_URL}/api/auth";
-  String urlUser = "${Environment.API_URL}/api/user";
+  String url = "${API.API_URL}/api/auth";
+  String urlUser = "${API.API_URL}/api/user";
 
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
@@ -42,7 +42,7 @@ class UserProvider extends GetConnect {
   }
 
   Future<Stream> createWithImage(User user, File image) async {
-    Uri uri = Uri.http(Environment.API_URL_OLD, '/api/auth/signup-with-image');
+    Uri uri = Uri.http(API.API_URL_OLD, '/api/auth/signup-with-image');
     final request = http.MultipartRequest('POST', uri);
     request.files.add(http.MultipartFile(
         'image', http.ByteStream(image.openRead().cast()), await image.length(),

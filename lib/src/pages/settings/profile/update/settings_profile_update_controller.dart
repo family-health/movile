@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/providers/user_provider.dart';
@@ -14,7 +14,7 @@ import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class ClientProfileUpdateController extends GetxController {
   final UserProvider _userProvider = UserProvider();
-  User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  User user = User.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
 
   ImagePicker picker = ImagePicker();
   File? imageFile;

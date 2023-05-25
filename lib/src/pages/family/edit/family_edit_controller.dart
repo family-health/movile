@@ -1,4 +1,4 @@
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/family.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
@@ -12,7 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class FamilyEditController extends GetxController {
-  User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  User user = User.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
   final family = Family().obs;
 
   @override
