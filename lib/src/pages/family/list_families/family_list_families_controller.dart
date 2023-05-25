@@ -47,6 +47,7 @@ class FamilyListFamiliesController extends GetxController {
 
         Navigator.pop(context);
         _dashboardController.getAllFamilies();
+        refresh();
         confirmado = true;
       },
     );
