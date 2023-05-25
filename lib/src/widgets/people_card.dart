@@ -25,7 +25,6 @@ class PeopleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(isVerified);
     return Card(
       child: ListTile(
         contentPadding: const EdgeInsets.all(15.0),
@@ -51,9 +50,14 @@ class PeopleCard extends StatelessWidget {
             value: 'Eliminar',
             child: Text('Eliminar'),
           ),
+          if (!isVerified) // Mostrar solo si isVerified es true
+            const PopupMenuItem(
+              value: 'Invitar',
+              child: Text('Enviar invitación'),
+            ),
         ];
       },
-      onSelected: (selection) => _con.menuAction(selection, id, context),
+      onSelected: (selection) => _con.menuAction(selection, id, context, email),
     );
   }
 
