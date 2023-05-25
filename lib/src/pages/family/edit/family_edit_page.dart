@@ -144,6 +144,7 @@ class FamilyEditPage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
         controller: _con.emailController,
+        enabled: false,
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
             hintText: "Email", prefixIcon: Icon(Icons.email)),

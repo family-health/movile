@@ -15,12 +15,15 @@ class FamilyListFamiliesController extends GetxController {
       Get.put(DashboardController());
   final FamilyProvider _familyProvider = FamilyProvider();
 
-  void menuAction(dynamic selection, String id, BuildContext context) {
+  void menuAction(
+      dynamic selection, String id, BuildContext context, String email) {
     if (selection == 'Editar') {
       goToFamilyEditPage(id);
     } else if (selection == 'Eliminar') {
       alertDialogEliminar(
           'Elimiar', 'Estas seguro de eliminar este familiar?', id, context);
+    } else if (selection == 'Invitar') {
+      _familyProvider.sendInvitation(email, user.token ?? "");
     }
   }
 
@@ -47,6 +50,7 @@ class FamilyListFamiliesController extends GetxController {
 
         Navigator.pop(context);
         _dashboardController.getAllFamilies();
+        refresh();
         confirmado = true;
       },
     );

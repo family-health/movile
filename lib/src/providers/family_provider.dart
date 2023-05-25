@@ -93,7 +93,7 @@ class FamilyProvider extends GetConnect {
     return responseApi;
   }
 
-    Future<ResponseApi> getOneFamilyId(String id, String token) async {
+  Future<ResponseApi> getOneFamilyId(String id, String token) async {
     Response response = await get('$url/$id', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -108,6 +108,29 @@ class FamilyProvider extends GetConnect {
       Alertas.error('No estas autorizado para realizar esta peticion');
       return ResponseApi();
     }
+
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+
+    return responseApi;
+  }
+
+  Future<ResponseApi> sendInvitation(String email, String token) async {
+    Response response = await get('$url/send-invitation/$email', headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer $token"
+    });
+
+    if (response.body == null) {
+      Alertas.error('No se pudo enviar la inivtacion');
+      return ResponseApi();
+    }
+
+    if (response.statusCode == 401) {
+      Alertas.error('No estas autorizado para realizar esta peticion');
+      return ResponseApi();
+    }
+
+    Alertas.success('Invitacion enviada correctamente!');
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
 
