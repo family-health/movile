@@ -1,6 +1,6 @@
 import 'package:app/src/models/family.dart';
 import 'package:app/src/models/response_api.dart';
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/dashboard/dashboard_controller.dart';
 import 'package:app/src/providers/family_provider.dart';
@@ -12,7 +12,7 @@ import 'package:app/src/utils/toast_alert.dart';
 import 'package:get/get.dart';
 
 class FamilyController extends GetxController {
-  User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  User user = User.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
   final DashboardController _dashboardController =
       Get.put(DashboardController());
 

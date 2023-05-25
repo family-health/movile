@@ -1,11 +1,11 @@
 import 'package:app/src/models/family.dart';
 import 'package:get/get.dart';
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/utils/toast_alert.dart';
 
 class FamilyProvider extends GetConnect {
-  String url = "${Environment.API_URL}/api/family";
+  String url = "${API.API_URL}/api/family";
 
   Future<ResponseApi> create(Family family, String token) async {
     Response response = await post(

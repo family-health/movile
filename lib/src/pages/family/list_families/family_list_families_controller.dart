@@ -1,4 +1,4 @@
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/dashboard/dashboard_controller.dart';
@@ -10,7 +10,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class FamilyListFamiliesController extends GetxController {
-  User user = User.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  User user = User.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
   final DashboardController _dashboardController =
       Get.put(DashboardController());
   final FamilyProvider _familyProvider = FamilyProvider();
@@ -59,7 +59,7 @@ class FamilyListFamiliesController extends GetxController {
   }
 
   void goToFamilyEditPage(String id) {
-    Get.toNamed('/family/edit/$id');
+    Get.toNamed(ROUTES().routeFamilyEdit(id));
   }
 
   void _deleteFamilyById(BuildContext context, String id) async {

@@ -1,4 +1,4 @@
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/family.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
@@ -18,7 +18,7 @@ enum ControllerStates {
 }
 
 class DashboardController extends GetxController {
-  var user = User.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+  var user = User.fromJson(GetStorage().read(STORAGE.USER_STORAGE) ?? {});
   final families = <Family>[].obs;
   FamilyProvider familyProvider = FamilyProvider();
 
@@ -109,6 +109,6 @@ class DashboardController extends GetxController {
   }
 
   void goToFamilyListFamilies() {
-    Get.toNamed(Environment.ROUTE_FAMILY_LIST_FAMILIES);
+    Get.toNamed(ROUTES.ROUTE_FAMILY_LIST_FAMILIES);
   }
 }

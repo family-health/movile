@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/providers/user_provider.dart';
@@ -77,7 +77,7 @@ class SingUpController extends GetxController {
           ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
 
           if (responseApi.success == true) {
-            GetStorage().write(Environment.USER_STORAGE,
+            GetStorage().write(ROUTES.USER_STORAGE,
                 responseApi.data); // DATOS DEL USUARIO EN SESION
             goToHomePage();
             progressDialog.close();
@@ -93,7 +93,7 @@ class SingUpController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil(Environment.ROUTE_HOME, (route) => false);
+    Get.offNamedUntil(ROUTES.ROUTE_HOME, (route) => false);
   }
 
   Future selectImage(ImageSource imageSource) async {
