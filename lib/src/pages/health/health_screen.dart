@@ -1,4 +1,5 @@
 import 'package:app/src/pages/health/health_controller.dart';
+import 'package:app/src/pages/health/health_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class HealthScreen extends StatelessWidget {
           children: [
             TextButton(onPressed: authorize, child: const Text("Authorize")),
             TextButton(onPressed: fetchData, child: const Text("Fetch data")),
-            TextButton(onPressed: viewData, child: const Text("View data")),
+            TextButton(onPressed: ()=> viewData(context), child: const Text("View data")),
           ],
         ),
       ),
@@ -33,8 +34,11 @@ class HealthScreen extends StatelessWidget {
     controller.fetchData();
   }
 
-  void viewData(){
+  void viewData(BuildContext context){
     // ignore: avoid_print
-    print("View data");
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const HealthViewScreen()),
+  );
   }
 }

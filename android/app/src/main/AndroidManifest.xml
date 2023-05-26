@@ -14,10 +14,20 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE"/>
+    <uses-permission android:name="android.permission.health.WRITE_HEART_RATE"/>
+    <uses-permission android:name="androidx.health.permission.HeartRate.READ"/>
+    <uses-permission android:name="androidx.health.permission.HeartRate.WRITE"/>
+
     <uses-permission android:name="android.permission.health.READ_BLOOD_GLUCOSE"/>
     <uses-permission android:name="android.permission.health.WRITE_BLOOD_GLUCOSE"/>
     <uses-permission android:name="androidx.health.permission.BloodGlucose.READ"/>
     <uses-permission android:name="androidx.health.permission.BloodGlucose.WRITE"/>
+
+    <uses-permission android:name="android.permission.health.READ_OXYGEN_SATURATION"/>
+    <uses-permission android:name="android.permission.health.WRITE_OXYGEN_SATURATION"/>
+    <uses-permission android:name="androidx.health.permission.OxygenSaturation.READ"/>
+    <uses-permission android:name="androidx.health.permission.OxygenSaturation.WRITE"/>
 
     <uses-permission android:name="android.permission.health.READ_STEPS"/>
     <uses-permission android:name="android.permission.health.WRITE_STEPS"/>
@@ -65,9 +75,6 @@
 
     <uses-permission android:name="android.permission.health.READ_FLOORS_CLIMBED"/>
     <uses-permission android:name="android.permission.health.WRITE_FLOORS_CLIMBED"/>
-
-    <uses-permission android:name="android.permission.health.READ_HEART_RATE"/>
-    <uses-permission android:name="android.permission.health.WRITE_HEART_RATE"/>
 
     <uses-permission android:name="android.permission.health.READ_HEIGHT"/>
     <uses-permission android:name="android.permission.health.WRITE_HEIGHT"/>

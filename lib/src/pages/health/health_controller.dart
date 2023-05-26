@@ -23,8 +23,10 @@ class HealthController extends GetxController {
   HealthFactory health = HealthFactory(useHealthConnectIfAvailable: true);
 
   static final types = [
-    // HealthDataType.STEPS,
+    HealthDataType.STEPS,
     HealthDataType.BLOOD_GLUCOSE,
+    HealthDataType.BLOOD_OXYGEN,
+    HealthDataType.HEART_RATE
     // Uncomment these lines on iOS - only available on iOS
     // HealthDataType.AUDIOGRAM
   ];
@@ -37,6 +39,8 @@ class HealthController extends GetxController {
   //     HealthDataAccess.READ_WRITE,
   //     HealthDataAccess.READ_WRITE
   // ];
+
+  List<HealthDataPoint> get getHealthData => _healthDataList;
 
   
 
