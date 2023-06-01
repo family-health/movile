@@ -42,7 +42,7 @@ class UserProvider extends GetConnect {
   }
 
   Future<Stream> createWithImage(User user, File image) async {
-    Uri uri = Uri.http(API.API_URL_OLD, '/api/auth/signup-with-image');
+    Uri uri = Uri.https(API.API_URL_OLD, '/api/auth/signup-with-image');
     final request = http.MultipartRequest('POST', uri);
     request.files.add(http.MultipartFile(
         'image', http.ByteStream(image.openRead().cast()), await image.length(),
