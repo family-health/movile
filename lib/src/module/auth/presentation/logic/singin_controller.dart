@@ -4,7 +4,7 @@ import 'package:app/src/shared/utilities/validate_inputs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:app/src/shared/utilities/toast_alert.dart';
 

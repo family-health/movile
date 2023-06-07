@@ -2,7 +2,7 @@ import 'package:app/src/module/circle/data/models/family.dart';
 import 'package:app/src/shared/models/response_api.dart';
 import 'package:app/src/shared/utilities/toast_alert.dart';
 import 'package:get/get.dart';
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 
 class FamilyProvider extends GetConnect {
   String url = "${API.API_URL}/api/family";

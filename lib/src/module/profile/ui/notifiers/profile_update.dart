@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/shared/models/response_api.dart';

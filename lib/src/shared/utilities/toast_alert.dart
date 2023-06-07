@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 
 class Alertas {
   static void warning(String mensaje) {

@@ -2,5 +2,5 @@
 
 class API {
   static const String API_URL = "https://familyhealth.ddns.net";
-  static const String API_URL_OLD = "familyhealth.ddns.net";
+  static const String API_URL_OLD = "https://familyhealth.ddns.net";
 }

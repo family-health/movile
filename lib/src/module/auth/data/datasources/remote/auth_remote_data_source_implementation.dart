@@ -1,5 +1,5 @@
 import 'package:app/src/@core/error/failures.dart';
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 import 'package:app/src/module/auth/domain/entities/register.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 import 'package:app/src/shared/models/response_api.dart';

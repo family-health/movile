@@ -1,4 +1,4 @@
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 

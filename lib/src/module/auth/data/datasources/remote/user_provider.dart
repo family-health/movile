@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/src/enum/enum.dart';
+import 'package:app/src/shared/enums/enum.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/shared/models/response_api.dart';
 import 'package:app/src/shared/utilities/toast_alert.dart';
@@ -14,6 +14,7 @@ import 'package:path/path.dart';
 class UserProvider extends GetConnect {
   String url = "${API.API_URL}/api/auth";
   String urlUser = "${API.API_URL}/api/user";
+  
 
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
