@@ -35,19 +35,19 @@ class DashboardScreen extends StatelessWidget {
   Widget _lista(BuildContext context) {
     return Obx(() {
       if (_con.families.isEmpty) {
-        return Column(
+        return const Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text("Familiares",
                     style:
                         TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
                 Text("Ver todos", style: TextStyle(color: Colors.black45)),
               ],
             ),
-            const SizedBox(height: 40),
-            const Center(child: Text('Sin datos')),
+            SizedBox(height: 40),
+            Center(child: Text('Sin datos')),
           ],
         );
       } else {
@@ -56,9 +56,9 @@ class DashboardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text("Familiares",
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w500)),
@@ -85,35 +85,35 @@ class DashboardScreen extends StatelessWidget {
     });
   }
 
-  Widget _families() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text("Familiares",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
-          Text("Ver todos", style: TextStyle(color: Colors.black45)),
-        ],
-      ),
-      const SizedBox(height: 15.0),
-      Column(
-        children: const [
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-          PeopleCard(
-              name: "Joseph Garcia",
-              email: "josephdgb1996@gmail.com",
-              image: "assets/images/avatar/user_profile.png"),
-        ],
-      ),
-    ]);
-  }
+  // Widget _families() {
+  //   return const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //     Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Text("Familiares",
+  //             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
+  //         Text("Ver todos", style: TextStyle(color: Colors.black45)),
+  //       ],
+  //     ),
+  //     SizedBox(height: 15.0),
+  //     Column(
+  //       children: [
+  //         PeopleCard(
+  //             name: "Joseph Garcia",
+  //             email: "josephdgb1996@gmail.com",
+  //             image: "assets/images/avatar/user_profile.png"),
+  //         PeopleCard(
+  //             name: "Joseph Garcia",
+  //             email: "josephdgb1996@gmail.com",
+  //             image: "assets/images/avatar/user_profile.png"),
+  //         PeopleCard(
+  //             name: "Joseph Garcia",
+  //             email: "josephdgb1996@gmail.com",
+  //             image: "assets/images/avatar/user_profile.png"),
+  //       ],
+  //     ),
+  //   ]);
+  // }
 
   Widget _header() {
     TextStyle textStyle = const TextStyle(
@@ -147,13 +147,13 @@ class DashboardScreen extends StatelessWidget {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(15.0),
           ),
-          child: Column(
+          child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text("80%",
                         style: TextStyle(
                             fontSize: 30.0,
@@ -166,7 +166,7 @@ class DashboardScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400)),
                   ],
                 ),
-                const Text("5% mejor que el anterior mes",
+                Text("5% mejor que el anterior mes",
                     style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white38,

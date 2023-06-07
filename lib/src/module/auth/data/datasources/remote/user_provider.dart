@@ -15,7 +15,7 @@ class UserProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error("Hubo un error en la petición");
-      return ResponseApi();
+      return const ResponseApi(data: [], message: "false", success: false);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -28,7 +28,7 @@ class UserProvider extends GetConnect {
         headers: {'Content-Type': 'application/json'});
     if (response.body == null) {
       Alertas.error("Hubo un error en la petición");
-      return ResponseApi();
+      return const ResponseApi(data: [], message: "false", success: false);
     }
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
     return responseApi;
@@ -46,12 +46,12 @@ class UserProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return ResponseApi();
+      return const ResponseApi(data: [], message: "false", success: false);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return ResponseApi();
+      return const ResponseApi(data: [], message: "false", success: false);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);

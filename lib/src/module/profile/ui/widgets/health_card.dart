@@ -8,9 +8,9 @@ class HealthCard extends StatelessWidget {
       height: 100,
       width: 100,
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Icon(Icons.monitor_heart_outlined, color: Colors.blue),
           SizedBox(height: 5.0),
           Text("Corazon", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600)),

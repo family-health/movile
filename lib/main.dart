@@ -10,6 +10,7 @@ import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/app.dart';
 
 void main() async {
+  
   //todo: Implement dotenv
   if (kReleaseMode) {
     await dotenv.load(fileName: ".env.production");

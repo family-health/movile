@@ -1,10 +1,9 @@
-import 'package:app/src/module/menu/ui/notifiers/menu_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class MenuScreen extends StatelessWidget {
-  MenuScreen({Key? key}) : super(key: key);
-  final MenuController _con = Get.put(MenuController());
+  const MenuScreen({Key? key}) : super(key: key);
+  // final MenuController _con = Get.put(MenuController());
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +11,12 @@ class MenuScreen extends StatelessWidget {
       appBar: AppBar(title: const Text("Configuraciones")),
       body: ListView(children: [
         GestureDetector(
-          onTap: () => _con.goToProfileInfo(),
+          // onTap: () => _con.goToProfileInfo(),
           child: _optionCard("Perfil", Icons.person),
         ),
         _optionCard("Dispositivos", Icons.devices),
         GestureDetector(
-          onTap: () => _con.singOut(),
+          // onTap: () => _con.singOut(),
           child: _optionCard("Cerrar Sesion", Icons.power_settings_new),
         ),
       ]),

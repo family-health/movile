@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:app/src/shared/models/response_api.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/module/profile/ui/notifiers/profile_controller.dart';
-import 'package:app/src/module/auth/data/datasources/user_provider.dart';
+import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
 import 'package:app/src/shared/utilities/environment.dart';
 import 'package:app/src/shared/utilities/validate_inputs.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +13,7 @@ import 'package:app/src/shared/utilities/toast_alert.dart';
 
 class ProfileUpdateController extends GetxController {
   final UserProvider _userProvider = UserProvider();
-  final ProfileController _settingsProfileInfoController =
-      Get.find();
+
   UserModel user = UserModel.fromJson(GetStorage().read(Environment.USER_STORAGE));
 
   ImagePicker picker = ImagePicker();

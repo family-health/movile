@@ -18,8 +18,8 @@ class NavigationScreen extends StatelessWidget {
             children: [
               DashboardScreen(),
               FamilyScreen(),
-              SecurityScreen(),
-              MenuScreen()
+              const SecurityScreen(),
+              const MenuScreen()
             ],
           ))),
       bottomNavigationBar: _bottomBar(),

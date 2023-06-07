@@ -1,4 +1,4 @@
-import 'package:app/src/module/auth/data/datasources/user_provider.dart';
+import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';

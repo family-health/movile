@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/module/auth/data/datasources/user_provider.dart';
+import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
