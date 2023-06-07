@@ -1,7 +1,7 @@
+import 'package:app/src/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:app/src/shared/utilities/environment.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -18,11 +18,11 @@ void main() async {
     await dotenv.load(fileName: ".env.development");
   }
 
-  String initialRoute = Environment.ROUTE_SING_IN;
-  UserModel userSession = UserModel.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+  String initialRoute = ROUTES.ROUTE_SING_IN;
+  UserModel userSession = UserModel.fromJson(GetStorage().read(ROUTES.USER_STORAGE) ?? {});
 
   if (userSession.id != null) {
-    initialRoute = Environment.ROUTE_HOME;
+    initialRoute = ROUTES.ROUTE_HOME;
   }
 
   runApp(App(initialRoute: initialRoute));

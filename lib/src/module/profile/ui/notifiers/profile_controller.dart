@@ -1,12 +1,12 @@
 import 'package:app/src/module/auth/data/models/user_model.dart';
+import 'package:app/src/shared/utilities/toast_alert.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:app/src/shared/utilities/environment.dart';
-import 'package:app/src/shared/utilities/toast_alert.dart';
+import 'package:app/src/enum/enum.dart';
 
 class ProfileController extends GetxController {
   var user =
-      UserModel.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {}).obs;
+      UserModel.fromJson(GetStorage().read(STORAGE.USER_STORAGE) ?? {}).obs;
 
   Future<void> singOut() async {
     await alertDialogRemoveSesion(
@@ -14,6 +14,6 @@ class ProfileController extends GetxController {
   }
 
   void goToProfileUpdate() {
-    Get.toNamed(Environment.ROUTE_SETTINGS_PROFILE_UPDATE);
+    Get.toNamed(ROUTES.ROUTE_SETTINGS_PROFILE_UPDATE);
   }
 }

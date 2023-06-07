@@ -60,6 +60,15 @@ bool isValidRegisterForm(String email, String password, String repeatPassword,
   if (password.isEmpty) {
     Alertas.warning("La contraseña es requerido");
     return false;
+  } else if (!password.contains(RegExp(r'[A-Z]'))) {
+    Alertas.warning("La contraseña debe tener al menos una letra mayúscula");
+    return false;
+  } else if (!password.contains(RegExp(r'[a-z]'))) {
+    Alertas.warning("La contraseña debe tener al menos una letra minúscula");
+    return false;
+  } else if (!password.contains(RegExp(r'[0-9]'))) {
+    Alertas.warning("La contraseña debe tener al menos un número");
+    return false;
   }
 
   if (password != repeatPassword) {
@@ -97,15 +106,15 @@ bool isValidUpdateUserForm(String name, String lastName, String phone) {
 bool isValidCreateFamilyForm(
     String name, String lastName, String phone, String email, String relation) {
   if (name.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El nombre es requerido");
     return false;
   }
   if (lastName.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El apellido es requerido");
     return false;
   }
   if (phone.isEmpty) {
-    Alertas.warning("La relacion es requerido");
+    Alertas.warning("El telefono es requerido");
     return false;
   }
 

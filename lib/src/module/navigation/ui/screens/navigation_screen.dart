@@ -1,11 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:app/src/module/circle/ui/screens/circle_screen.dart';
+import 'package:app/src/module/dashboard/ui/screens/dashboard_screen.dart';
+import 'package:app/src/module/menu/ui/screens/menu_screen.dart';
+import 'package:app/src/module/navigation/ui/notifiers/navigation_controller.dart';
+import 'package:app/src/module/navigation/ui/widgets/animated_bottom_bar.dart';
 import 'package:app/src/module/security/ui/screens/security_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/module/navigation/ui/notifiers/navigation_controller.dart';
-import 'package:app/src/module/navigation/ui/widgets/animated_bottom_bar.dart';
-import 'package:app/src/module/dashboard/ui/screens/dashboard_screen.dart';
-import 'package:app/src/module/menu/ui/screens/menu_screen.dart';
 
 class NavigationScreen extends StatelessWidget {
   NavigationScreen({Key? key}) : super(key: key);

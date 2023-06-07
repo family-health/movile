@@ -1,8 +1,8 @@
 
+import 'package:app/src/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:app/src/shared/utilities/environment.dart';
 
 import 'package:app/src/module/auth/presentation/ui/screens/signin_screen.dart';
 import 'package:app/src/module/auth/presentation/ui/screens/singup_screen.dart';
@@ -22,11 +22,11 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,
       getPages: [
-        GetPage(name: Environment.ROUTE_HOME, page: () => NavigationScreen()),
-        GetPage(name: Environment.ROUTE_SING_IN, page: () => const SignInScreen()),
-        GetPage(name: Environment.ROUTE_SING_UP, page: () => SingnUpScreen()),
-        GetPage(name: Environment.ROUTE_SETTINGS_PROFILE_INFO, page: () => SettingsProfileInfoPage()),
-        GetPage(name: Environment.ROUTE_SETTINGS_PROFILE_UPDATE, page: () => SettingsProfileUpdatePage())
+        GetPage(name: ROUTES.ROUTE_HOME, page: () => NavigationScreen()),
+        GetPage(name: ROUTES.ROUTE_SING_IN, page: () => const SignInScreen()),
+        GetPage(name: ROUTES.ROUTE_SING_UP, page: () => SingnUpScreen()),
+        GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_INFO, page: () => SettingsProfileInfoPage()),
+        GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_UPDATE, page: () => SettingsProfileUpdatePage())
       ],
       theme: ThemeData(
         primaryColor: Colors.black,

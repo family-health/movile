@@ -1,6 +1,6 @@
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/module/circle/data/models/family.dart';
 import 'package:app/src/shared/models/response_api.dart';
-import 'package:app/src/shared/utilities/environment.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/module/dashboard/ui/notifiers/dashboard_controller.dart';
 import 'package:app/src/module/circle/data/sources/family_provider.dart';
@@ -12,7 +12,7 @@ import 'package:app/src/shared/utilities/toast_alert.dart';
 import 'package:get/get.dart';
 
 class FamilyController extends GetxController {
-  UserModel user = UserModel.fromJson(GetStorage().read(Environment.USER_STORAGE));
+  UserModel user = UserModel.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
   final DashboardController _dashboardController =
       Get.put(DashboardController());
 
@@ -43,7 +43,7 @@ class FamilyController extends GetxController {
           relation: relation,
           userId: user.id);
       ResponseApi responseApi =
-          await familyProvider.create(family, user.token ?? '');
+          (await familyProvider.create(family, user.token ?? '')) as ResponseApi;
       progressDialog.close();
       if (responseApi.success == true) {
         _dashboardController.getAllFamilies();

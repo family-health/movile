@@ -1,3 +1,4 @@
+
 import 'package:app/src/module/circle/ui/notfiiers/circle_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,7 +79,7 @@ class FamilyScreen extends StatelessWidget {
           onPressed: () => _con.createFamily(context),
           child: const Text(
             "Crear",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           )),
     );
   }

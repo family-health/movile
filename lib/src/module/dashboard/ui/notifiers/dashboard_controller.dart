@@ -1,8 +1,8 @@
-import 'package:app/src/shared/utilities/environment.dart';
-import 'package:app/src/module/circle/data/models/family.dart';
-import 'package:app/src/shared/models/response_api.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
+import 'package:app/src/module/circle/data/models/family.dart';
 import 'package:app/src/module/circle/data/sources/family_provider.dart';
+import 'package:app/src/shared/models/response_api.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 //Google Fit Packages
@@ -18,7 +18,7 @@ enum ControllerStates {
 }
 
 class DashboardController extends GetxController {
-  var user = UserModel.fromJson(GetStorage().read(Environment.USER_STORAGE) ?? {});
+  var user = UserModel.fromJson(GetStorage().read(STORAGE.USER_STORAGE) ?? {});
   final families = <Family>[].obs;
   FamilyProvider familyProvider = FamilyProvider();
 
@@ -31,7 +31,13 @@ class DashboardController extends GetxController {
   Future<void> getAllFamilies() async {
     ResponseApi responseApi =
         await familyProvider.getAllFamilyByUserId(user.id!, user.token!);
-    List<Family> familyList = Family.fromJsonList(responseApi.data);
+    List<Family> familyList = [];
+
+    if (responseApi.data != null) {
+      familyList = Family.fromJsonList(responseApi.data);
+    } else {
+      familyList = [];
+    }
     families.value = familyList;
   }
 
@@ -100,5 +106,9 @@ class DashboardController extends GetxController {
 
     controllerState = ControllerStates.loaded;
     update();
+  }
+
+  void goToFamilyListFamilies() {
+    Get.toNamed(ROUTES.ROUTE_FAMILY_LIST_FAMILIES);
   }
 }

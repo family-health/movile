@@ -1,4 +1,4 @@
-import 'package:app/src/shared/utilities/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:get/get.dart';
 import 'package:app/src/shared/utilities/toast_alert.dart';
 
@@ -9,6 +9,6 @@ class MenuController extends GetxController {
   }
 
   void goToProfileInfo() {
-    Get.toNamed(Environment.ROUTE_SETTINGS_PROFILE_INFO);
+    Get.toNamed(ROUTES.ROUTE_SETTINGS_PROFILE_INFO);
   }
 }

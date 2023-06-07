@@ -1,21 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:app/src/module/auth/data/models/user_model.dart';
+import 'dart:io';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:get/get.dart';
-import 'package:sn_progress_dialog/sn_progress_dialog.dart';
-import 'package:app/src/shared/utilities/validate_inputs.dart';
+import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/shared/models/response_api.dart';
-import 'package:app/src/shared/utilities/environment.dart';
 import 'package:app/src/shared/utilities/toast_alert.dart';
+import 'package:app/src/shared/utilities/validate_inputs.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 
 class SingUpController extends GetxController {
   var obscureTextPassword = true.obs;
   var obscureTextRepeactPassword = true.obs;
 
+  ImagePicker picker = ImagePicker();
+  File? imageFile;
+
   void toggleObscurePaswword() {
     obscureTextPassword.toggle();
   }
+
   void toggleObscureRepeactPaswword() {
     obscureTextRepeactPassword.toggle();
   }
@@ -63,7 +69,7 @@ class SingUpController extends GetxController {
       ResponseApi responseApi = await _userProvider.create(user);
       progressDialog.close();
       if (responseApi.success == true) {
-        GetStorage().write(Environment.USER_STORAGE, responseApi.data);
+        GetStorage().write(STORAGE.USER_STORAGE, responseApi.data);
         progressDialog.close();
         goToHomePage();
       } else {
@@ -76,6 +82,46 @@ class SingUpController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil(Environment.ROUTE_HOME, (route) => false);
+    Get.offNamedUntil(ROUTES.ROUTE_HOME, (route) => false);
+  }
+
+  Future selectImage(ImageSource imageSource) async {
+    XFile? image = await picker.pickImage(source: imageSource);
+    if (image != null) {
+      imageFile = File(image.path);
+      update();
+    }
+  }
+
+  void showAlertDialog(BuildContext context) {
+    Widget galleryButton = ElevatedButton(
+        onPressed: () {
+          Get.back();
+          selectImage(ImageSource.gallery);
+        },
+        child: const Text(
+          'GALERIA',
+          style: TextStyle(color: Colors.black),
+        ));
+    Widget cameraButton = ElevatedButton(
+        onPressed: () {
+          Get.back();
+          selectImage(ImageSource.camera);
+        },
+        child: const Text(
+          'CAMARA',
+          style: TextStyle(color: Colors.black),
+        ));
+
+    AlertDialog alertDialog = AlertDialog(
+      title: const Text('Selecciona una opcion'),
+      actions: [galleryButton, cameraButton],
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 }

@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/src/module/auth/presentation/logic/singup_controller.dart';
@@ -36,8 +34,8 @@ class SingnUpScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.20, left: 35, right: 35),
-      height: MediaQuery.of(context).size.height * 0.65,
+          top: MediaQuery.of(context).size.height * 0.2, left: 35, right: 35),
+      height: MediaQuery.of(context).size.height * 0.7,
       child: SingleChildScrollView(
         child: Column(children: [
           _textYourInfo(),
@@ -76,11 +74,12 @@ class SingnUpScreen extends StatelessWidget {
   //           onTap: () {},
   //           child: GestureDetector(
   //               onTap: () => _con.showAlertDialog(context),
-  //               child: GetBuilder<RegisterController>(
+  //               child: GetBuilder<SingUpController>(
   //                 builder: (value) => CircleAvatar(
   //                   backgroundImage: _con.imageFile != null
   //                       ? FileImage(_con.imageFile!)
-  //                       : const AssetImage("assets/img/user_profile.png")
+  //                       : const AssetImage(
+  //                               "assets/images/avatar/user_profile.png")
   //                           as ImageProvider,
   //                   radius: 60,
   //                   backgroundColor: Colors.white,

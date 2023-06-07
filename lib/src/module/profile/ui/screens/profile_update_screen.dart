@@ -90,7 +90,7 @@ class SettingsProfileUpdatePage extends StatelessWidget {
           onPressed: () => _con.updateUser(context),
           child: const Text(
             "Actualizar",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           )),
     );
   }
