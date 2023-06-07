@@ -16,12 +16,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -38,12 +38,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -51,7 +51,7 @@ class FamilyProvider extends GetConnect {
     return responseApi;
   }
 
-  Future<ResponseApi> deleteById(String id, String token) async {
+  Future<ResponseApi<dynamic>> deleteById(String id, String token) async {
     Response response = await delete('$url/$id', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -59,12 +59,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -80,12 +80,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo obtener la informacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -101,12 +101,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo obtener la informacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
@@ -122,12 +122,12 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo enviar la inivtacion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi();
+      return const ResponseApi(data: null);
     }
 
     Alertas.success('Invitacion enviada correctamente!');

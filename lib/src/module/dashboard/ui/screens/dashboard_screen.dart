@@ -34,19 +34,19 @@ class DashboardScreen extends StatelessWidget {
   Widget _lista(BuildContext context) {
     return Obx(() {
       if (_con.families.isEmpty) {
-        return Column(
+        return const Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text("Familiares",
                     style:
                         TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
                 Text("Ver todos", style: TextStyle(color: Colors.black45)),
               ],
             ),
-            const SizedBox(height: 40),
-            const Center(child: Text('Sin datos')),
+            SizedBox(height: 40),
+            Center(child: Text('Sin datos')),
           ],
         );
       } else {
@@ -123,13 +123,13 @@ class DashboardScreen extends StatelessWidget {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(15.0),
           ),
-          child: Column(
+          child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text("80%",
                         style: TextStyle(
                             fontSize: 30.0,
@@ -142,7 +142,7 @@ class DashboardScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400)),
                   ],
                 ),
-                const Text("5% mejor que el anterior mes",
+                Text("5% mejor que el anterior mes",
                     style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white38,

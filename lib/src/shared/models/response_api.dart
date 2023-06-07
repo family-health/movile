@@ -7,12 +7,12 @@ String responseApiToJson(ResponseApi data) => json.encode(data.toJson());
 class ResponseApi<T> {
   final bool? success;
   final String? message;
-  final T? data;
+  final T data;
 
   const ResponseApi({
     this.success,
     this.message,
-    this.data,
+    required this.data,
   });
 
   factory ResponseApi.fromJson(Map<String, dynamic> json) => ResponseApi(

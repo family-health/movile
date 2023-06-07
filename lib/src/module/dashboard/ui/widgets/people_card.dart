@@ -1,10 +1,10 @@
-import 'package:app/src/module/dashboard/ui/notifiers/dashboard_controller.dart';
+import 'package:app/src/module/dashboard/ui/notifiers/family_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PeopleCard extends StatelessWidget {
-  final DashboardController _con =
-      Get.put(DashboardController());
+  final FamilyListController _con =
+      Get.put(FamilyListController());
 
   final String image;
   final String name;
