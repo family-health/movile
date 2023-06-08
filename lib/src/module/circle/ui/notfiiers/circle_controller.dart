@@ -42,8 +42,7 @@ class FamilyController extends GetxController {
           phone: phone,
           relation: relation,
           userId: user.id);
-      ResponseApi responseApi =
-          (await familyProvider.create(family, user.token ?? '')) as ResponseApi;
+      ResponseApi responseApi = await familyProvider.create(family, user.token ?? '');
       progressDialog.close();
       if (responseApi.success == true) {
         _dashboardController.getAllFamilies();

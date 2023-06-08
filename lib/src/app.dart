@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-// import 'package:app/src/module/auth/presentation/ui/screens/signin_screen.dart';
-import 'package:app/src/module/auth/presentation/ui/screens/singin_screen_old.dart';
+import 'package:app/src/module/auth/presentation/ui/screens/signin_screen.dart';
+// import 'package:app/src/module/auth/presentation/ui/screens/singin_screen_old.dart';
 
 import 'package:app/src/module/auth/presentation/ui/screens/singup_screen.dart';
 import 'package:app/src/module/navigation/ui/screens/navigation_screen.dart';
@@ -25,8 +25,8 @@ class App extends StatelessWidget {
       initialRoute: initialRoute,
       getPages: [
         GetPage(name: ROUTES.ROUTE_HOME, page: () => NavigationScreen()),
-        // GetPage(name: ROUTES.ROUTE_SING_IN, page: () => const SignInScreen()),
-        GetPage(name: ROUTES.ROUTE_SING_IN, page: () => SingnInScreen()),
+        GetPage(name: ROUTES.ROUTE_SING_IN, page: () => const SignInScreen()),
+        // GetPage(name: ROUTES.ROUTE_SING_IN, page: () => SingnInScreen()),
         GetPage(name: ROUTES.ROUTE_SING_UP, page: () => SingnUpScreen()),
         GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_INFO, page: () => SettingsProfileInfoPage()),
         GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_UPDATE, page: () => SettingsProfileUpdatePage())
@@ -34,7 +34,12 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.white,
-        inputDecorationTheme: const InputDecorationTheme(),
+        inputDecorationTheme: const InputDecorationTheme(
+          activeIndicatorBorder: BorderSide.none,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          border: InputBorder.none,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.black),

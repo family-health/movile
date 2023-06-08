@@ -14,11 +14,12 @@ class AuthInput extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.all(20.0),
           border: const OutlineInputBorder(),
           hintText: hintText,
           filled: true,
           fillColor: const Color(0xffEFF0F2),
-          icon: const Icon(Icons.remove_red_eye),
+          // icon: const Icon(Icons.remove_red_eye),
         ),
       ),
     );

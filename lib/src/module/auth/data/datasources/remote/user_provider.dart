@@ -13,12 +13,12 @@ import 'package:path/path.dart';
 
 class UserProvider extends GetConnect {
   String url = "${API.API_URL}/api/auth";
-  String urlUser = "${API.API_URL}/api/user";
+  String urlUser = " ${API.API_URL}/api/user";
   
 
   Future<ResponseApi> login(String email, String password) async {
     Response response = await post(
-        "$url/signin", {'email': email, 'password': password},
+        "https://familyhealth.ddns.net/api/auth/signin", {'email': email, 'password': password},
         headers: {'Content-Type': 'application/json'});
 
     if (response.body == null) {
@@ -29,6 +29,14 @@ class UserProvider extends GetConnect {
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
     return responseApi;
   }
+
+
+  // Future<ResponseApi> login(String email, String password) async {
+  //   Response<dynamic> response = await get("https://pokeapi.co/api/v2/pokemon/ditto");
+  //   print(response);
+  //   ResponseApi responseApi = const ResponseApi(data: null);
+  //   return responseApi;
+  // }
 
   // ⁡⁣⁣⁡⁢⁢⁢crear usuario sin imagen⁡⁡
   Future<ResponseApi> create(UserModel user) async {

@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:app/src/module/auth/domain/entities/login.dart';
 
+export 'package:get/get.dart';
+
 class SignInController extends GetxController with StateMixin<Login> {
 
   @override
