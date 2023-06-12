@@ -1,4 +1,4 @@
-export './auth_submit_widget.dart';
+export 'submit_widget.dart';
 export './create_new_account_widget.dart';
 export './forgot_password.dart';
 export './input_widget.dart';

@@ -1,35 +1,60 @@
+import 'package:flutter/material.dart';
+import 'package:app/src/module/auth/presentation/logic/signin_form_controller.dart';
 import 'package:app/src/module/auth/presentation/ui/widgets/input_widget.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/auth_submit_widget.dart';
+import 'package:app/src/module/auth/presentation/ui/widgets/submit_widget.dart';
 import 'package:app/src/module/auth/presentation/ui/widgets/forgot_password.dart';
 import 'package:app/src/module/auth/presentation/ui/widgets/login_with_google_widget.dart';
-import 'package:flutter/material.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends GetView<SignInFormController> {
   const SignInForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+    Get.put(SignInFormController());
+
+    return const Padding(
+      padding: EdgeInsets.only(left: 15.0, right: 15.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const AuthInput(controller: null, hintText: "example@domain.com", obscureText: false),
-          const AuthInput(controller: null, hintText: "************", obscureText: true),
-          const Align(alignment: Alignment.centerRight,child: ForgotPassword()),
-          const SizedBox(height: 20.0),
-          AuthSubmit(onPressed: login, label: "Login"),
-          const Padding(
-            padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Center(child: Text("Or Singn in with")),
-          ),
-          LoginWithGoogle(onPressed: login),
-      ],),
+          _SignInFormInputs(),
+          SizedBox(height: 20.0),
+          _SignInFormButtons(),
+        ],
+      ),
+    );
+  }
+}
+
+class _SignInFormInputs extends GetView<SignInFormController> {
+  const _SignInFormInputs();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+          Input(controller: controller.emailTextEditingController, hintText: "example@domain.com", obscureText: false),
+          Input(controller: controller.passwordTextEditingController, hintText: "************", obscureText: true),
+          const Align(alignment: Alignment.centerRight, child: ForgotPassword()),
+    ],);
+  }
+
+  void navigateToRecoverPasswordScreen(){}
+}
+
+class _SignInFormButtons extends GetView<SignInFormController> {
+  const _SignInFormButtons();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Submit(onPressed: loginWithEmail, label: "Login"),
+        const Padding(padding: EdgeInsets.only(top: 15.0, bottom: 15.0), child: Text("Or Singn in with")),
+        LoginWithGoogle(onPressed: loginWithEmail),
+      ],
     );
   }
 
-  void login(){
-    // ignore: avoid_print
-    print("Login!");
-  }
-}
+  void loginWithEmail(){}
+  void loginWithGoogle(){}
+} 
