@@ -1,1 +1,0 @@
-const noInternetConection = "Por favor revisa tu conexion a internet";

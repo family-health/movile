@@ -1,13 +1,13 @@
 
-import 'package:app/src/shared/enums/enum.dart';
+import 'package:app/src/@core/theme/custom_theme.dart';
+import 'package:app/src/@core/enums/enum.dart';
+import 'package:app/src/module/auth/auth_routes.dart';
+import 'package:app/src/shared/shared_bindings.dart';
+// import 'package:app/src/shared/presentation/ui/stepper_example.dart';
+// import 'package:app/src/shared/presentation/ui/stepper_example.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-import 'package:app/src/module/auth/presentation/ui/screens/signin_screen.dart';
-// import 'package:app/src/module/auth/presentation/ui/screens/singin_screen_old.dart';
-
-import 'package:app/src/module/auth/presentation/ui/screens/singup_screen.dart';
 import 'package:app/src/module/navigation/ui/screens/navigation_screen.dart';
 import 'package:app/src/module/profile/ui/screens/profile_screen.dart';
 import 'package:app/src/module/profile/ui/screens/profile_update_screen.dart';
@@ -23,36 +23,17 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,
+      // initialRoute: "/auth",
+      // home: const StepperExample(),
+      defaultTransition: Transition.noTransition,
+      theme: CustomTheme().theme(),
+      initialBinding: SharedBindings(),
       getPages: [
+        ...authRoutes,
         GetPage(name: ROUTES.ROUTE_HOME, page: () => NavigationScreen()),
-        GetPage(name: ROUTES.ROUTE_SING_IN, page: () => const SignInScreen()),
-        // GetPage(name: ROUTES.ROUTE_SING_IN, page: () => SingnInScreen()),
-        GetPage(name: ROUTES.ROUTE_SING_UP, page: () => SingnUpScreen()),
         GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_INFO, page: () => SettingsProfileInfoPage()),
         GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_UPDATE, page: () => SettingsProfileUpdatePage())
       ],
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        scaffoldBackgroundColor: Colors.white,
-        inputDecorationTheme: const InputDecorationTheme(
-          activeIndicatorBorder: BorderSide.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          border: InputBorder.none,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-            textStyle: MaterialStateProperty.all<TextStyle?>(const TextStyle(color: Colors.white)),
-          ),
-        ),
-        iconButtonTheme: IconButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-            textStyle: MaterialStateProperty.all<TextStyle?>(const TextStyle(color: Colors.white),),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -63,3 +44,5 @@ class App extends StatelessWidget {
 // https://www.youtube.com/watch?v=Ger3Oh9qE-w&ab_channel=DevTeam504
 
 // https://ui8.net/fancom/products/smart-home-ui-kit2?rel=timer
+
+// https://www.youtube.com/watch?v=ZNMz2hOrddo&list=PLCAZyR6zw2pznlDPLCMUGUVr7uFRlMpTs&ab_channel=MaxonFlutter

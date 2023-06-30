@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:app/src/shared/enums/enum.dart';
-import 'package:app/src/module/auth/data/datasources/remote/user_provider.dart';
-import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/shared/models/response_api.dart';
-import 'package:app/src/shared/utilities/toast_alert.dart';
-import 'package:app/src/shared/utilities/validate_inputs.dart';
+import 'package:app/src/@core/enums/enum.dart';
+import 'package:app/src/module/auth/data/datasources/remote/user_provider_old.dart';
+import 'package:app/src/module/auth/data/models/user_model_old.dart';
+import 'package:app/src/@core/api/response_api_model.dart';
+import 'package:app/src/@core/utilities/toast_alert.dart';
+import 'package:app/src/@core/utilities/validate_inputs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -63,12 +63,12 @@ class ProfileUpdateController extends GetxController {
 
         UserModel myUser = UserModel(name: name, lastname: lastName, phone: phone);
 
-        ResponseApi responseApi = await _userProvider.updateWithOutImage(
+        ResponseApiModel responseApi = await _userProvider.updateWithOutImage(
             myUser, user.id!, user.token!);
-        if (responseApi.success ?? false) {
+        if (responseApi.success) {
           Alertas.success("Vuelva a Iniciar Session para ver los cambios!");
         } else {
-          Alertas.error(responseApi.message ?? 'Error');
+          Alertas.error(responseApi.message);
         }
       }
 

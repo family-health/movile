@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-RegisterResponse registerResponseFromJson(String str) => RegisterResponse.fromJson(json.decode(str));
+RegisterResponseModel registerResponseFromJson(String str) => RegisterResponseModel.fromJson(json.decode(str));
 
-String registerResponseToJson(RegisterResponse data) => json.encode(data.toJson());
+String registerResponseToJson(RegisterResponseModel data) => json.encode(data.toJson());
 
-class RegisterResponse {
+class RegisterResponseModel {
     final String id;
     final String name;
     final String lastname;
@@ -17,7 +17,7 @@ class RegisterResponse {
     final List<dynamic> historyLogin;
     final String token;
 
-    RegisterResponse({
+    RegisterResponseModel({
         required this.id,
         required this.name,
         required this.lastname,
@@ -31,7 +31,7 @@ class RegisterResponse {
         required this.token,
     });
 
-    factory RegisterResponse.fromJson(Map<String, dynamic> json) => RegisterResponse(
+    factory RegisterResponseModel.fromJson(Map<String, dynamic> json) => RegisterResponseModel(
         id: json["id"],
         name: json["name"],
         lastname: json["lastname"],

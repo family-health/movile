@@ -1,13 +1,13 @@
 import 'package:app/src/module/circle/data/models/family.dart';
-import 'package:app/src/shared/models/response_api.dart';
-import 'package:app/src/shared/utilities/toast_alert.dart';
+import 'package:app/src/@core/api/response_api_model.dart';
+import 'package:app/src/@core/utilities/toast_alert.dart';
 import 'package:get/get.dart';
-import 'package:app/src/shared/enums/enum.dart';
+import 'package:app/src/@core/enums/enum.dart';
 
 class FamilyProvider extends GetConnect {
   String url = "${API.API_URL}/api/family";
 
-  Future<ResponseApi> create(Family family, String token) async {
+  Future<ResponseApiModel> create(Family family, String token) async {
     Response response = await post(
         '$url/create', family.toJsonForCreateFamily(), headers: {
       'Content-Type': 'application/json',
@@ -16,20 +16,20 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success: false, message:"message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success: false, message:"message", data: null);
     }
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }
 
-  Future<ResponseApi> updateById(Family family, String token, String id) async {
+  Future<ResponseApiModel> updateById(Family family, String token, String id) async {
     Response response = await put('$url/$id', family.toJsonForCreateFamily(),
         headers: {
           'Content-Type': 'application/json',
@@ -38,20 +38,20 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message:"message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success: false, message:"message", data: null);
     }
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }
 
-  Future<ResponseApi<dynamic>> deleteById(String id, String token) async {
+  Future<ResponseApiModel<dynamic>> deleteById(String id, String token) async {
     Response response = await delete('$url/$id', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -59,20 +59,20 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }
 
-  Future<ResponseApi> getAllFamilyByUserId(String userId, String token) async {
+  Future<ResponseApiModel> getAllFamilyByUserId(String userId, String token) async {
     Response response = await get('$url/byuserId/$userId', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -80,20 +80,20 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo obtener la informacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }
 
-  Future<ResponseApi> getOneFamilyId(String id, String token) async {
+  Future<ResponseApiModel> getOneFamilyId(String id, String token) async {
     Response response = await get('$url/$id', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -101,20 +101,20 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo obtener la informacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }
 
-  Future<ResponseApi> sendInvitation(String email, String token) async {
+  Future<ResponseApiModel> sendInvitation(String email, String token) async {
     Response response = await get('$url/send-invitation/$email', headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer $token"
@@ -122,17 +122,17 @@ class FamilyProvider extends GetConnect {
 
     if (response.body == null) {
       Alertas.error('No se pudo enviar la inivtacion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
     if (response.statusCode == 401) {
       Alertas.error('No estas autorizado para realizar esta peticion');
-      return const ResponseApi(data: null);
+      return ResponseApiModel(success:false, message: "message", data: null);
     }
 
     Alertas.success('Invitacion enviada correctamente!');
 
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    ResponseApiModel responseApi = ResponseApiModel.fromJson(response.body);
 
     return responseApi;
   }

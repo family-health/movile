@@ -38,6 +38,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   get: ^4.6.5
   get_storage: ^2.0.3
+  formz: ^0.6.0
   permission_handler: ^10.2.0
   jwt_decode: ^0.3.1
   image_picker: ^0.8.6
@@ -49,6 +50,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.4.0
+  json_serializable: ^6.7.0
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

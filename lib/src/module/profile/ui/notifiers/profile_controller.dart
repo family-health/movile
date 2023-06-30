@@ -1,8 +1,8 @@
-import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/shared/utilities/toast_alert.dart';
+import 'package:app/src/module/auth/data/models/user_model_old.dart';
+import 'package:app/src/@core/utilities/toast_alert.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:app/src/shared/enums/enum.dart';
+import 'package:app/src/@core/enums/enum.dart';
 
 class ProfileController extends GetxController {
   var user =

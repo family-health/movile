@@ -1,3 +1,4 @@
-abstract class AuthLocalDataSource {
-  Future<dynamic> loginCached();
+abstract class IAuthLocalDataSource {
+  Future<dynamic> setLoginCached();
+  Future<dynamic> getLoginCached();
 }
