@@ -13,7 +13,7 @@ class SingnUpPage extends StatelessWidget {
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          _imagenUser(context),
+          // _imagenUser(context),
           _buttonBack()
         ],
       ),
@@ -34,8 +34,8 @@ class SingnUpPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.29, left: 35, right: 35),
-      height: MediaQuery.of(context).size.height * 0.65,
+          top: MediaQuery.of(context).size.height * 0.2, left: 35, right: 35),
+      height: MediaQuery.of(context).size.height * 0.7,
       child: SingleChildScrollView(
         child: Column(children: [
           _textYourInfo(),
@@ -65,29 +65,29 @@ class SingnUpPage extends StatelessWidget {
     ));
   }
 
-  Widget _imagenUser(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        margin: const EdgeInsets.only(top: 40),
-        alignment: Alignment.topCenter,
-        child: GestureDetector(
-            onTap: () {},
-            child: GestureDetector(
-                onTap: () => _con.showAlertDialog(context),
-                child: GetBuilder<SingUpController>(
-                  builder: (value) => CircleAvatar(
-                    backgroundImage: _con.imageFile != null
-                        ? FileImage(_con.imageFile!)
-                        : const AssetImage(
-                                "assets/images/avatar/user_profile.png")
-                            as ImageProvider,
-                    radius: 60,
-                    backgroundColor: Colors.white,
-                  ),
-                ))),
-      ),
-    );
-  }
+  // Widget _imagenUser(BuildContext context) {
+  //   return SafeArea(
+  //     child: Container(
+  //       margin: const EdgeInsets.only(top: 40),
+  //       alignment: Alignment.topCenter,
+  //       child: GestureDetector(
+  //           onTap: () {},
+  //           child: GestureDetector(
+  //               onTap: () => _con.showAlertDialog(context),
+  //               child: GetBuilder<SingUpController>(
+  //                 builder: (value) => CircleAvatar(
+  //                   backgroundImage: _con.imageFile != null
+  //                       ? FileImage(_con.imageFile!)
+  //                       : const AssetImage(
+  //                               "assets/images/avatar/user_profile.png")
+  //                           as ImageProvider,
+  //                   radius: 60,
+  //                   backgroundColor: Colors.white,
+  //                 ),
+  //               ))),
+  //     ),
+  //   );
+  // }
 
   Widget _buttonregister(BuildContext context) {
     return Container(

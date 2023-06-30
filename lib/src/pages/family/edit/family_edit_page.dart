@@ -98,7 +98,7 @@ class FamilyEditPage extends StatelessWidget {
           onPressed: () => _con.updateFamilyById(context, id),
           child: const Text(
             "Editar",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           )),
     );
   }
@@ -144,6 +144,7 @@ class FamilyEditPage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
         controller: _con.emailController,
+        enabled: false,
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
             hintText: "Email", prefixIcon: Icon(Icons.email)),

@@ -91,7 +91,7 @@ class FamilyPage extends StatelessWidget {
           onPressed: () => _con.createFamily(context),
           child: const Text(
             "Crear",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           )),
     );
   }

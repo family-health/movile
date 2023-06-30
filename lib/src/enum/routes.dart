@@ -1,10 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-class Environment {
-  // base_url api
-  static const String API_URL = "http://192.168.100.106:3000";
-  static const String API_URL_OLD = "192.168.100.106:3000";
-
+class ROUTES {
   // storage
   static const String USER_STORAGE = "user";
 
@@ -18,5 +14,11 @@ class Environment {
       "/settings/profile/update";
 
   static const String ROUTE_FAMILY_LIST_FAMILIES = "/family/list_families";
+
   static const String ROUTE_FAMILY_EDIT = "/family/edit/:id";
+
+  String routeFamilyEdit(String id) {
+    var route = ROUTE_FAMILY_EDIT;
+    return route.replaceFirst(":id", id);
+  }
 }

@@ -11,6 +11,7 @@ class PeopleCard extends StatelessWidget {
   final String email;
   final bool activeOptions;
   final String id;
+  final bool isVerified;
 
   PeopleCard(
       {Key? key,
@@ -18,6 +19,7 @@ class PeopleCard extends StatelessWidget {
       required this.activeOptions,
       required this.id,
       required this.name,
+      required this.isVerified,
       required this.email})
       : super(key: key);
 
@@ -26,7 +28,7 @@ class PeopleCard extends StatelessWidget {
     return Card(
       child: ListTile(
         contentPadding: const EdgeInsets.all(15.0),
-        leading: _avatar(),
+        leading: isVerified ? _verified() : _noVerified(),
         title: _title(),
         subtitle: _subtitle(),
         trailing: activeOptions
@@ -48,17 +50,62 @@ class PeopleCard extends StatelessWidget {
             value: 'Eliminar',
             child: Text('Eliminar'),
           ),
+          if (!isVerified) // Mostrar solo si isVerified es true
+            const PopupMenuItem(
+              value: 'Invitar',
+              child: Text('Enviar invitación'),
+            ),
         ];
       },
-      onSelected: (selection) => _con.menuAction(selection, id, context),
+      onSelected: (selection) => _con.menuAction(selection, id, context, email),
     );
   }
 
-  Widget _avatar() {
-    return CircleAvatar(
-      radius: 30.0,
-      backgroundColor: Colors.grey[100],
-      child: Image.asset(image),
+  Widget _noVerified() {
+    return Tooltip(
+      message: 'Este familar no ha sido verificado!',
+      decoration: BoxDecoration(
+        color: Colors.orange, // Establecer el color de fondo
+        borderRadius:
+            BorderRadius.circular(8), // Opcional: Agregar bordes redondeados
+      ),
+      preferBelow: false,
+      child: SizedBox(
+        width: 40,
+        height: 40,
+        child: IconButton(
+          icon: const Icon(
+            Icons.info,
+            size: 33,
+            color: Colors.orange,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget _verified() {
+    return Tooltip(
+      message: 'Familar verificado correctamente!',
+      decoration: BoxDecoration(
+        color: Colors.green, // Establecer el color de fondo
+        borderRadius:
+            BorderRadius.circular(8), // Opcional: Agregar bordes redondeados
+      ),
+      preferBelow: false,
+      child: SizedBox(
+        width: 40,
+        height: 40,
+        child: IconButton(
+          icon: const Icon(
+            Icons.check_circle,
+            size: 33,
+            color: Colors.green,
+          ),
+          onPressed: () {},
+        ),
+      ),
     );
   }
 

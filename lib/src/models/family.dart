@@ -12,6 +12,7 @@ class Family {
   String? email;
   String? relation;
   String? userId;
+  bool? isVerified;
 
   Family({
     this.id,
@@ -20,7 +21,8 @@ class Family {
     this.phone,
     this.email,
     this.relation,
-    this.userId,
+    this.isVerified,
+    this.userId
   });
 
   factory Family.fromJson(Map<String, dynamic> json) => Family(
@@ -30,6 +32,7 @@ class Family {
         phone: json["phone"],
         email: json["email"],
         relation: json["relation"],
+        isVerified: json["isVerified"],
         userId: json["userId"],
       );
 
@@ -51,6 +54,7 @@ class Family {
         "phone": phone,
         "email": email,
         "relation": relation,
+        "isVerified": isVerified,
         "userId": userId,
       };
   Map<String, dynamic> toJsonForCreateFamily() => {

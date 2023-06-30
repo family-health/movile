@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/src/environment/environment.dart';
+import 'package:app/src/enum/enum.dart';
 import 'package:app/src/models/response_api.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/providers/user_provider.dart';
@@ -58,42 +58,33 @@ class SingUpController extends GetxController {
     String lastName = lastNameController.text.trim();
     String phone = phoneController.text.trim();
 
-    if (imageFile == null) {
-      Alertas.warning("La foto es requerida");
-    } else {
-      if (isValidRegisterForm(
-          email, password, repeactPassword, name, lastName, phone)) {
-        progressDialog.show(max: 10, msg: "Registrando usuario ...");
-        User user = User(
-            email: email,
-            lastname: lastName,
-            name: name,
-            password: password,
-            phone: phone);
+    if (isValidRegisterForm(
+        email, password, repeactPassword, name, lastName, phone)) {
+      progressDialog.show(max: 10, msg: "Registrando usuario ...");
+      User user = User(
+          email: email,
+          lastname: lastName,
+          name: name,
+          password: password,
+          phone: phone);
 
-        Stream stream = await _userProvider.createWithImage(user, imageFile!);
-        stream.listen((res) {
-          progressDialog.close();
-          ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-
-          if (responseApi.success == true) {
-            GetStorage().write(Environment.USER_STORAGE,
-                responseApi.data); // DATOS DEL USUARIO EN SESION
-            goToHomePage();
-            progressDialog.close();
-          } else {
-            Alertas.error(responseApi.message ?? "Hubo un error");
-            progressDialog.close();
-          }
-        });
-
+      ResponseApi responseApi = await _userProvider.create(user);
+      progressDialog.close();
+      if (responseApi.success == true) {
+        GetStorage().write(STORAGE.USER_STORAGE, responseApi.data);
+        progressDialog.close();
+        goToHomePage();
+      } else {
+        Alertas.error(responseApi.message ?? "Hubo un error");
         progressDialog.close();
       }
+
+      progressDialog.close();
     }
   }
 
   void goToHomePage() {
-    Get.offNamedUntil(Environment.ROUTE_HOME, (route) => false);
+    Get.offNamedUntil(ROUTES.ROUTE_HOME, (route) => false);
   }
 
   Future selectImage(ImageSource imageSource) async {

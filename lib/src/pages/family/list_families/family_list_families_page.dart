@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FamilyCreateListFamiliesPage extends StatelessWidget {
-   FamilyCreateListFamiliesPage({Key? key}) : super(key: key);
+  FamilyCreateListFamiliesPage({Key? key}) : super(key: key);
   final DashboardController _con = Get.put(DashboardController());
 
   @override
@@ -54,6 +54,7 @@ class FamilyCreateListFamiliesPage extends StatelessWidget {
                     id: family.id!,
                     name: family.name ?? '',
                     email: family.email ?? '',
+                    isVerified: family.isVerified ?? false,
                     image: "assets/images/avatar/user_profile.png",
                   );
                 },

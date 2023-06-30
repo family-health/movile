@@ -74,6 +74,7 @@ class DashboardPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final family = firstTwoFamilies[index];
                   return PeopleCard(
+                    isVerified: family.isVerified ?? false,
                     activeOptions: false,
                     key: Key(family.id!),
                     id: family.id!,
