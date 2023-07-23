@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class GoogleButton extends StatelessWidget {
   final String text;
   final void Function()? onPressed;
-  const GoogleButton({super.key, required this.text, required this.onPressed});
+  
+  const GoogleButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,8 @@ class GoogleButton extends StatelessWidget {
         backgroundColor: Colors.black,
         minimumSize: const Size.fromHeight(50),
       ),
-      label: Text(text),
+      label: Text(text, style: const TextStyle(color: Colors.white)),
     );
   }
+  
 }

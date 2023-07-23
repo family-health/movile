@@ -1,4 +1,4 @@
-import 'package:app/src/module/auth/presentation/ui/widgets/register_steps.dart';
+import 'package:app/src/module/auth/presentation/ui/register_email_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +11,6 @@ class RegisterFormController extends GetxController {
   TextEditingController genereTextEditingController = TextEditingController();
 
   void navigateToRegisterSteps() {
-    Get.to(const RegisterSteps());
+    Get.to(const RegisterEmailScreen());
   }
 }

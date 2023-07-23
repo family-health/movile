@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app/src/module/circle/ui/screens/circle_screen.dart';
+import 'package:app/src/module/family/ui/screens/circle_screen.dart';
 import 'package:app/src/module/dashboard/ui/ui/screens/dashboard_screen.dart';
 import 'package:app/src/module/menu/ui/screens/menu_screen.dart';
 import 'package:app/src/module/navigation/ui/notifiers/navigation_controller.dart';

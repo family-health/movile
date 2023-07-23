@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/src/module/circle/data/models/family.dart';
+import 'package:app/src/module/family/data/models/family.dart';
 
 UserModel userFromJson(String str) => UserModel.fromJson(json.decode(str));
 

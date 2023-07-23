@@ -1,7 +1,7 @@
-import 'package:app/src/@core/enums/enum.dart';
-import 'package:app/src/@core/api/response_api_model.dart';
+import 'package:app/src/@core/values/enum.dart';
+import 'package:app/src/@core/models/response_api_model.dart';
 import 'package:app/src/module/auth/data/models/user_model_old.dart';
-import 'package:app/src/module/circle/data/sources/family_provider.dart';
+import 'package:app/src/module/family/data/sources/family_provider.dart';
 import 'package:app/src/module/dashboard/ui/logic/dashboard_controller.dart';
 import 'package:app/src/@core/utilities/toast_alert.dart';
 import 'package:flutter/material.dart';

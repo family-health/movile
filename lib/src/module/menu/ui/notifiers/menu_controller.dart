@@ -1,4 +1,4 @@
-import 'package:app/src/@core/enums/enum.dart';
+import 'package:app/src/@core/values/enum.dart';
 import 'package:get/get.dart';
 import 'package:app/src/@core/utilities/toast_alert.dart';
 

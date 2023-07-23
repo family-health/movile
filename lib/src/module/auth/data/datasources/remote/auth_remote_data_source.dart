@@ -1,8 +1,7 @@
-import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dart';
-import 'package:app/src/module/auth/domain/usecases/register_with_email_usecase.dart';
-import 'package:app/src/shared/domain/entities/user.dart';
+import 'package:app/src/module/auth/auth_module.dart';
+import 'package:app/src/module/auth/data/models/user_model.dart';
 
 abstract class IAuthRemoteDataSource {
-  Future<User> login(LoginParams params);
-  Future<User> register(RegisterParams params);
+  Future<UserModel> loginWithEmailAndPassword(LoginParams params);
+  Future<UserModel> registerWithEmailAndPassword(RegisterParams params);
 }

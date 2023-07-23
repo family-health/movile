@@ -1,4 +1,5 @@
 import 'package:app/src/module/auth/presentation/ui/widgets/index.dart';
+import 'package:app/src/module/auth/presentation/ui/widgets/form_header.dart';
 import 'package:flutter/material.dart';
 
 class AccountForm extends StatelessWidget {
@@ -7,14 +8,10 @@ class AccountForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-          Text("Account"),
-          Text("Tell us more about you"),
-        ],),
+        FormHeader(title: "About", subtitle: "Tell more about you"),
+        SizedBox(height: 15.0),
         Input(controller: null, hintText: "Name", obscureText: false),
         Input(controller: null, hintText: "Surname", obscureText: false),
         Row(
@@ -24,8 +21,7 @@ class AccountForm extends StatelessWidget {
             _TestContainer(active: true, text: "Female", icon: Icons.female),
           ],
         ),
-        Input(controller: null, hintText: "example@domain.com", obscureText: false),
-        Input(controller: null, hintText: "**********", obscureText: true),
+        Input(controller: null, hintText: "Address", obscureText: false),
       ],
     );
   }
