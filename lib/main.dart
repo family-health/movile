@@ -13,7 +13,7 @@ void main() {
   // SystemChrome.setSystemUIOverlayStyle(
   //   const SystemUiOverlayStyle(
   //     systemNavigationBarIconBrightness: Brightness.light,
-  //     systemNavigationBarColor: Color(0xff000000),
+  //     systemNavigationBarColor: Color(0xpff000000),
   //   ),
   // );
   
