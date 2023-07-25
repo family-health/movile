@@ -1,31 +1,49 @@
+import 'package:app/src/module/auth/auth_module.dart';
+import 'package:app/src/module/auth/domain/usecases/get_stored_user_usecase.dart';
+import 'package:app/src/shared/app/logic/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:app/src/shared/theme/custom_theme.dart';
-import 'package:app/src/module/common/shared_bindings.dart';
 
-import 'package:app/src/module/auth/auth_routes.dart';
 import 'package:app/src/module/home/home_routes.dart';
 
 class App extends StatelessWidget {
-  final String initialRoute;
+  final IAuthRepository authRepository;
 
-  const App({super.key, required this.initialRoute});
+  const App({super.key, required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    final AppController controller = Get.put(
+      AppController(
+        getAuthUserUsecase: GetStoredUserUsecase(authRepository),
+        logoutUsecase: LogoutUsecase(authRepository),
+      ),
+    );
+
+    bool authenticated = (controller.status == AppStatus.authenticated);
+    return AppScreen(initialRoute: (authenticated) ? "/auth" : "/home");
+  }
+}
+
+class AppScreen extends StatelessWidget {
+  final String initialRoute;
+  const AppScreen({super.key, required this.initialRoute});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.noTransition,
+      // defaultTransition: Transition.noTransition,
       theme: CustomTheme().theme(),
       navigatorObservers: const [],
-      initialBinding: SharedBindings(),
-      initialRoute: initialRoute,
-      // initialRoute: "/auth",
-      getPages: [
-        ...authRoutes,
-        ...homeRoutes
-      ],
+      
+      // initialBinding: SharedBindings(),
+      // initialRoute: initialRoute,
+      // getPages: [...authRoutes, ...homeRoutes],
+      // home: ,
+      home: const HomeScreen(),
     );
   }
 }

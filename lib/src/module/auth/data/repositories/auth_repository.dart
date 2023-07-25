@@ -13,8 +13,9 @@ class AuthRepository implements IAuthRepository {
   AuthRepository(this.remoteDataSource, this.localDataSource);
 
   @override
-  User? get user {
-    return localDataSource.readUser()?.toEntity();
+  User? get storedUser {
+    UserModel? storedUser = localDataSource.readUser();
+    return (storedUser == null) ? null : storedUser.toEntity();
   }
 
   @override

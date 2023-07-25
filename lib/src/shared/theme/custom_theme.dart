@@ -12,6 +12,7 @@ class CustomTheme {
       inputDecorationTheme: getInputDecorationTheme(),
       elevatedButtonTheme: getElevatedButtonThemeData(),
       iconButtonTheme: getIconButtonThemeData(),
+      useMaterial3: true,
     );
   }
 

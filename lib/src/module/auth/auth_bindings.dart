@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 //Datasources
-import 'package:app/src/module/auth/data/datasources/local/auth_storage_data_source_impl.dart';
+import 'package:app/src/module/auth/data/datasources/local/auth_local_data_source_impl.dart';
 import 'package:app/src/module/auth/data/datasources/remote/auth_get_data_source_impl.dart';
 
 //UseCases

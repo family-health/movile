@@ -1,39 +1,37 @@
+import 'dart:async';
+
 import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
-import 'package:app/src/module/auth/domain/usecases/get_user_usecase.dart';
+import 'package:app/src/module/auth/domain/usecases/get_stored_user_usecase.dart';
 import 'package:app/src/module/common/domain/usecases/usecases.dart';
 import 'package:get/get.dart';
 
 enum AppStatus { unknown, authenticated, unauthenticated }
 
 class AppController extends GetxController {
-  final GetUserUsecase getAuthUserUsecase;
+  final GetStoredUserUsecase getAuthUserUsecase;
   final LogoutUsecase logoutUsecase;
 
   AppController({required this.getAuthUserUsecase, required this.logoutUsecase});
 
   AppStatus status = AppStatus.unknown;
+  User? user = User.empty;
 
   @override
   void onInit() {
     super.onInit();
-    _getCurrentUser();
-  }
 
+    User? storedUser = getAuthUserUsecase.call(NoParams());
 
-  User? _getCurrentUser(){
-    User? user = getAuthUserUsecase.call(NoParams());
-
-    if(user == null){
-      status = AppStatus.unauthenticated;
-    }else {
+    if (storedUser == null || storedUser == User.empty) {
+      status = AppStatus.authenticated;
+    } else {
+      user = storedUser;
       status = AppStatus.authenticated;
     }
-
-    return null;
   }
 
-  void _logout() async {
-    await logoutUsecase.call(NoParams());
+  void logout() async {
+    unawaited(logoutUsecase(NoParams()));
   }
 }

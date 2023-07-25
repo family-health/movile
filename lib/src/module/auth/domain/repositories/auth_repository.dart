@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:app/src/@core/errors/failures.dart';
 
 abstract class IAuthRepository {
-  User? get user;
+  User? get storedUser;
 
   Future<Either<Failure, User>> login(LoginParams params);
   Future<Either<Failure, User>> register(RegisterParams params);

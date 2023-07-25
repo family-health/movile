@@ -8,10 +8,10 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
   final _storage = GetStorage();
 
   @override
-  UserModel readUser() {
+  UserModel? readUser() {
     try {
-      Map<String,dynamic> json = _storage.read(Storage.user);
-      return UserModel.fromJson(json);
+      Map<String,dynamic>? json = _storage.read(Storage.user);
+      return (json == null) ? null : UserModel.fromJson(json);
     } catch (e) {
       throw CacheException();
     }
