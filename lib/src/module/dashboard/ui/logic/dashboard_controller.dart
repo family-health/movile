@@ -1,4 +1,4 @@
-import 'package:app/src/@core/values/enum.dart';
+import 'package:app/src/@core/enums/enum.dart';
 import 'package:app/src/module/auth/data/models/user_model_old.dart';
 import 'package:app/src/module/family/data/models/family.dart';
 import 'package:app/src/module/family/data/sources/family_provider.dart';

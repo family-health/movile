@@ -3,20 +3,16 @@ import 'package:get/get.dart';
 
 import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dart';
 
+enum Gender { male, female }
 
 class LoginEmailController extends GetxController {
   GlobalKey formKey = GlobalKey<FormState>();
-  TextEditingController emailTextEditingController = TextEditingController(); 
+  TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
-  LoginWithEmailUsecase loginWithEmailUsecase = Get.find();
-
-  @override
-  void onInit() {
-    super.onInit();
-    // ignore: avoid_print
-    print("Init SignIn Controller");
-  }
+  
+  final Rx<Gender> _genderObs = Gender.male.obs; 
+  Gender get gender => _genderObs.value;
+  set gender(Gender gender) => _genderObs.value = gender;
 
   @override
   void onClose() {
@@ -25,13 +21,22 @@ class LoginEmailController extends GetxController {
     passwordTextEditingController.dispose();
   }
 
-  void validate(){
+  void validateForm() {
+    // ignore: avoid_print
     print("validate");
   }
-  
-  void submit(){
+
+  Future<void> submit() async {
+    LoginWithEmailUsecase loginWithEmailUsecase = Get.find();
+
     String email = emailTextEditingController.text;
     String password = passwordTextEditingController.text;
-    loginWithEmailUsecase(LoginParams(email: email, password: password));
+    try {
+      await loginWithEmailUsecase(LoginParams(email: email, password: password));
+      Get.toNamed("/home");
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }

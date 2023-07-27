@@ -9,10 +9,12 @@ import 'package:get/get.dart';
 enum AppStatus { unknown, authenticated, unauthenticated }
 
 class AppController extends GetxController {
-  final GetStoredUserUsecase getAuthUserUsecase;
-  final LogoutUsecase logoutUsecase;
+  final IAuthRepository authRepository;
 
-  AppController({required this.getAuthUserUsecase, required this.logoutUsecase});
+  AppController(this.authRepository);
+
+  late GetStoredUserUsecase _getStoredUserUsecase;
+  late LogoutUsecase _logoutUsecase;
 
   AppStatus status = AppStatus.unknown;
   User? user = User.empty;
@@ -21,10 +23,13 @@ class AppController extends GetxController {
   void onInit() {
     super.onInit();
 
-    User? storedUser = getAuthUserUsecase.call(NoParams());
+    _getStoredUserUsecase = GetStoredUserUsecase(authRepository);
+    _logoutUsecase = LogoutUsecase(authRepository);
+
+    User? storedUser = _getStoredUserUsecase.call(NoParams());
 
     if (storedUser == null || storedUser == User.empty) {
-      status = AppStatus.authenticated;
+      status = AppStatus.unauthenticated;
     } else {
       user = storedUser;
       status = AppStatus.authenticated;
@@ -32,6 +37,7 @@ class AppController extends GetxController {
   }
 
   void logout() async {
-    unawaited(logoutUsecase(NoParams()));
+    unawaited(_logoutUsecase(NoParams()));
+    Get.toNamed("/auth");
   }
 }

@@ -5,6 +5,7 @@ class CustomTheme {
   ThemeData theme() {
     return ThemeData(
       // fontFamily: "ArchivoBlack",
+      
       primaryColor: Colors.black,
       colorScheme: lightColorScheme,
       scaffoldBackgroundColor: Colors.white,

@@ -28,8 +28,8 @@ class LayoutHeader extends StatelessWidget {
     if (options != null) {
       if (options!.dimension == HeaderDimension.big) {
         layoutHeight = height * 0.60;
-        imageHeight = height * 0.50;
-        titleHeight = height * 0.10;
+        imageHeight = height * 0.45;
+        titleHeight = height * 0.15;
       }
     }
 
@@ -81,7 +81,7 @@ class _HeaderText extends StatelessWidget {
         buildTilte(),
         const SizedBox(height: 5.0),
         SizedBox(
-          width: 300.0,
+          width: MediaQuery.of(context).size.height * 0.40,
           child: buildSubtitle()),
       ],
     );

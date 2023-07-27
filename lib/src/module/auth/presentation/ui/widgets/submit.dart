@@ -13,7 +13,7 @@ class Submit extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         minimumSize: const Size.fromHeight(50),
       ),
-      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
+      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
     );
   }
 }

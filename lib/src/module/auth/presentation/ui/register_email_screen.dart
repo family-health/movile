@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:app/src/module/common/presentation/ui/widgets/custom_stepper.dart';
 
-import 'package:app/src/module/auth/presentation/ui/widgets/account_form.dart';
+import 'package:app/src/module/auth/presentation/ui/widgets/about_form.dart';
 
 class RegisterEmailScreen extends StatelessWidget {
   const RegisterEmailScreen({super.key});

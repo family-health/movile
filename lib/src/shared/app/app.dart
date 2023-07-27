@@ -1,7 +1,8 @@
-import 'package:app/src/module/auth/auth_module.dart';
-import 'package:app/src/module/auth/domain/usecases/get_stored_user_usecase.dart';
-import 'package:app/src/shared/app/logic/app_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:app/src/module/auth/auth_module.dart';
+import 'package:app/src/module/auth/auth_routes.dart';
+import 'package:app/src/module/common/shared_bindings.dart';
+import 'package:app/src/shared/app/logic/app_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:app/src/shared/theme/custom_theme.dart';
@@ -15,15 +16,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppController controller = Get.put(
-      AppController(
-        getAuthUserUsecase: GetStoredUserUsecase(authRepository),
-        logoutUsecase: LogoutUsecase(authRepository),
-      ),
+    AppController controller = Get.put(
+      AppController(authRepository),
     );
 
     bool authenticated = (controller.status == AppStatus.authenticated);
-    return AppScreen(initialRoute: (authenticated) ? "/auth" : "/home");
+    return AppScreen(initialRoute: (authenticated == false) ? "/auth" : "/home");
   }
 }
 
@@ -33,17 +31,13 @@ class AppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // defaultTransition: Transition.noTransition,
-      theme: CustomTheme().theme(),
-      navigatorObservers: const [],
-      
-      // initialBinding: SharedBindings(),
-      // initialRoute: initialRoute,
-      // getPages: [...authRoutes, ...homeRoutes],
-      // home: ,
-      home: const HomeScreen(),
+      defaultTransition: Transition.noTransition,
+      theme: CustomTheme().theme(),   
+      initialBinding: SharedBindings(),
+      initialRoute: initialRoute,
+      getPages: [...authRoutes, ...homeRoutes],
     );
   }
 }

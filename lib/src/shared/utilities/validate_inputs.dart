@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:app/src/@core/utilities/toast_alert.dart';
+import 'package:app/src/shared/utilities/toast_alert.dart';
 
 bool isValidLoginForm(String email, String password) {
   if (email.isEmpty) {

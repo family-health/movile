@@ -6,6 +6,6 @@ export 'google_button.dart';
 export 'email_button.dart';
 export 'layout_header.dart';
 export 'register_form.dart';
-export 'account_form.dart';
+export 'about_form.dart';
 export 'avatar_form.dart';
 export 'phone_button.dart';
