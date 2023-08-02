@@ -1,8 +1,8 @@
-import 'package:app/src/@core/errors/exceptions.dart';
+import 'package:app/src/@core/exception/exceptions.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:app/src/module/auth/data/datasources/local/auth_local_data_source.dart';
-import 'package:app/src/shared/storage/storage.dart';
+import 'package:app/src/shared/config/storage_config.dart';
 
 class AuthLocalDataSource implements IAuthLocalDataSource {
   final _storage = GetStorage();

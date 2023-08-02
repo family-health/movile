@@ -1,9 +1,11 @@
 import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
+import 'package:app/src/module/auth/domain/errors/auth_exception.dart';
+import 'package:app/src/module/auth/domain/errors/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 
-import 'package:app/src/@core/errors/failures.dart';
-import 'package:app/src/@core/errors/exceptions.dart';
+import 'package:app/src/@core/exception/failures.dart';
+import 'package:app/src/@core/exception/exceptions.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 
 class AuthRepository implements IAuthRepository {
@@ -24,6 +26,8 @@ class AuthRepository implements IAuthRepository {
       UserModel user = await remoteDataSource.loginWithEmailAndPassword(params);
       localDataSource.updateUser(user.toJson());
       return Right(user.toEntity());
+    } on AuthException {
+      return Left(AuthFailure());
     } on ServerException {
       return Left(ServerFailure());
     }

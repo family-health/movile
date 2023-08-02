@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:app/src/module/auth/domain/entities/header_options.dart';
+import 'package:app/src/module/auth/domain/enums/header_options.dart';
 
-export 'package:app/src/module/auth/domain/entities/header_options.dart';
+export 'package:app/src/module/auth/domain/enums/header_options.dart';
 
 class LayoutHeader extends StatelessWidget {
   final String image;
@@ -80,9 +80,7 @@ class _HeaderText extends StatelessWidget {
       children: [
         buildTilte(),
         const SizedBox(height: 5.0),
-        SizedBox(
-          width: MediaQuery.of(context).size.height * 0.40,
-          child: buildSubtitle()),
+        SizedBox(width: MediaQuery.of(context).size.height * 0.40, child: buildSubtitle()),
       ],
     );
   }
@@ -92,8 +90,12 @@ class _HeaderText extends StatelessWidget {
     return Text(title, style: style);
   }
 
-  Widget buildSubtitle(){
-    TextStyle style = const TextStyle(fontSize:16.0, color: Colors.black54);
-    return Text(subtitle, style: style, textAlign: TextAlign.center,);
+  Widget buildSubtitle() {
+    TextStyle style = const TextStyle(fontSize: 16.0, color: Colors.black54);
+    return Text(
+      subtitle,
+      style: style,
+      textAlign: TextAlign.center,
+    );
   }
 }

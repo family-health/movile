@@ -2,7 +2,7 @@
 import 'package:app/src/module/auth/domain/usecases/usecases.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 import 'package:dartz/dartz.dart';
-import 'package:app/src/@core/errors/failures.dart';
+import 'package:app/src/@core/exception/failures.dart';
 
 abstract class IAuthRepository {
   User? get storedUser;

@@ -2,7 +2,7 @@ import 'package:built_value/built_value.dart';
 
 part 'email.g.dart';
 
-abstract class Email implements Built<Email,EmailBuilder>{
+abstract class Email implements Built<Email, EmailBuilder> {
   String get value;
 
   Email._() {

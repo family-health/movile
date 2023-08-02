@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/auth_routes.dart';
-import 'package:app/src/module/common/shared_bindings.dart';
+import 'package:app/src/module/common/common_bindings.dart';
 import 'package:app/src/shared/app/logic/app_controller.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +35,7 @@ class AppScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.noTransition,
       theme: CustomTheme().theme(),   
-      initialBinding: SharedBindings(),
+      initialBinding: CommonBindings(),
       initialRoute: initialRoute,
       getPages: [...authRoutes, ...homeRoutes],
     );

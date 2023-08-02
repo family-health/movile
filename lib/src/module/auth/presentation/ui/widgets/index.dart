@@ -1,11 +1,7 @@
 export 'submit.dart';
 export 'layout_bottom.dart';
 export 'forgot_password.dart';
-export 'input.dart';
-export 'google_button.dart';
-export 'email_button.dart';
+export 'auth_text_form_field.dart';
 export 'layout_header.dart';
-export 'register_form.dart';
-export 'about_form.dart';
-export 'avatar_form.dart';
+export 'about_step.dart';
 export 'phone_button.dart';

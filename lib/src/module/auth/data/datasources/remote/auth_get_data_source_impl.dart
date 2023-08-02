@@ -1,17 +1,19 @@
-import 'package:app/src/@core/errors/failures.dart';
+import 'dart:async';
+
+import 'package:app/src/@core/exception/exceptions.dart';
+import 'package:app/src/@core/exception/failures.dart';
 import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/@core/models/response_api_model.dart';
+import 'package:app/src/module/common/data/models/response_api_model.dart';
+import 'package:app/src/module/auth/domain/errors/auth_exception.dart';
+import 'package:app/src/shared/utilities/environment.dart';
 import 'package:get/get.dart';
 
 class AuthGetDataSource extends GetConnect implements IAuthRemoteDataSource {
   @override
   void onInit() {
     super.onInit();
-    // httpClient.defaultDecoder = CasesModel.fromJson;
-    // httpClient.baseUrl = "${API.API_URL}/api/auth";
-    httpClient.baseUrl = "http://192.168.0.159:3000/api/auth";
-
+    httpClient.baseUrl = Environment.apiBaseUrl;
     httpClient.addRequestModifier<Map<String, dynamic>?>((request) {
       request.headers['Content-Type'] = 'application/json';
       return request;
@@ -21,16 +23,24 @@ class AuthGetDataSource extends GetConnect implements IAuthRemoteDataSource {
   @override
   Future<UserModel> loginWithEmailAndPassword(LoginParams params) async {
     try {
-      Response response = await post("http://192.168.100.15:3000/api/auth/signin", {"email": params.email, "password": params.password});
-      ResponseApiModel<LoginResponseModel> body = ResponseApiModel(
-        success: response.body["success"],
-        message: response.body["message"],
-        data: (response.body["data"] == null) ? null : LoginResponseModel.fromJson(response.body["data"]),
-      );
-      return UserModel.fromLoginRespondeModel(body.data!);
-      // return UserModel.fromJson(body.data!.toJson());
-    } catch (e) {
-      throw ServerFailure();
+      Response response = await post("${Environment.apiBaseUrl}/api/auth/signin", {"email": params.email, "password": params.password});
+      
+      if (response.statusCode == 201) {
+        ResponseApiModel<LoginResponseModel> body = ResponseApiModel<LoginResponseModel>(
+          success: response.body["success"],
+          message: response.body["message"],
+          data: (response.body["data"] == null) ? null : LoginResponseModel.fromJson(response.body["data"]),
+        );
+        return UserModel.fromLoginRespondeModel(body.data!);
+      } else if (response.statusCode == 400) {
+        throw AuthException();
+      } else if (response.statusCode == 401) {
+        throw AuthException();
+      } else {
+        throw ServerException();
+      }
+    } on Exception catch (_) {
+      rethrow;
     }
   }
 

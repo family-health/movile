@@ -1,6 +1,6 @@
 import 'package:app/src/module/auth/domain/entities/user.dart';
 import 'package:app/src/module/auth/domain/repositories/auth_repository.dart';
-import 'package:app/src/module/common/domain/usecases/usecases.dart';
+import 'package:app/src/@core/usecases/usecases.dart';
 
 class GetStoredUserUsecase implements UseCase<User, NoParams> {
   final IAuthRepository repository;

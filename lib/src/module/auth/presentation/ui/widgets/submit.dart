@@ -12,8 +12,12 @@ class Submit extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(20.0),
         minimumSize: const Size.fromHeight(50),
+        disabledBackgroundColor: Colors.black45,
       ),
-      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+      child: Text(
+        label,
+        style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+      ),
     );
   }
 }

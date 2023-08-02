@@ -1,0 +1,1 @@
+enum FormStatus { initial, valid, invalid, loading, success, failure }

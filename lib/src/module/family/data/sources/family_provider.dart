@@ -1,8 +1,8 @@
+import 'package:app/src/shared/config/api_deprecated.dart';
 import 'package:app/src/module/family/data/models/family.dart';
-import 'package:app/src/@core/models/response_api_model.dart';
-import 'package:app/src/shared/utilities/toast_alert.dart';
+import 'package:app/src/module/common/data/models/response_api_model.dart';
+import 'package:app/src/shared/utilities/toaster_alert.dart';
 import 'package:get/get.dart';
-import 'package:app/src/@core/enums/enum.dart';
 
 class FamilyProvider extends GetConnect {
   String url = "${API.API_URL}/api/family";

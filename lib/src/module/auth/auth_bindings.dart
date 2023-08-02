@@ -1,3 +1,4 @@
+import 'package:app/src/module/auth/presentation/logic/auth_router_controller.dart';
 import 'package:get/get.dart';
 
 //Datasources
@@ -9,31 +10,42 @@ import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dar
 import 'package:app/src/module/auth/domain/usecases/register_with_email_usecase.dart';
 
 //Controllers
-import 'package:app/src/module/auth/presentation/logic/login_controller.dart';
-import 'package:app/src/module/auth/presentation/logic/register_screen_controller.dart';
-import 'package:app/src/module/auth/presentation/logic/register_form_controller.dart';
+import 'package:app/src/module/auth/presentation/logic/register_router_controller.dart';
 
 //Repositories
 import 'package:app/src/module/auth/data/repositories/auth_repository.dart';
 
-class AuthBinding extends Bindings {
+import 'presentation/logic/login_apple_controller.dart';
+import 'presentation/logic/login_email_controller.dart';
+import 'presentation/logic/login_facebook_controller.dart';
+import 'presentation/logic/login_google_controller.dart';
+import 'presentation/logic/login_router_controller.dart';
 
-  AuthRepository repository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
+AuthRepository repository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
 
+class AuthBindings extends Bindings {
   @override
   void dependencies() {
-    //Controllers
-    Get.lazyPut(() => LoginController());
-    Get.lazyPut(() => LoginNavigationController());
+    Get.lazyPut(() => AuthRouterController());
+  }
+}
+
+class LoginBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => LoginRouterController());
     Get.lazyPut(() => LoginEmailController());
     Get.lazyPut(() => LoginFacebookController());
     Get.lazyPut(() => LoginGoogleController());
     Get.lazyPut(() => LoginAppleController());
-    Get.lazyPut(() => RegisterScreenController());
-    Get.lazyPut(() => RegisterFormController());
-
-    //Usecases
     Get.lazyPut(() => LoginWithEmailUsecase(repository));
+  }
+}
+
+class RegisterBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => RegisterRouterController());
     Get.lazyPut(() => RegisterWithEmailUsecase(repository));
   }
 }

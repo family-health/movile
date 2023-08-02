@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 import 'package:app/src/module/auth/domain/usecases/get_stored_user_usecase.dart';
-import 'package:app/src/module/common/domain/usecases/usecases.dart';
+import 'package:app/src/@core/usecases/usecases.dart';
 import 'package:get/get.dart';
 
 enum AppStatus { unknown, authenticated, unauthenticated }

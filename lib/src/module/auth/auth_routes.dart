@@ -11,16 +11,21 @@ List<GetPage<dynamic>> authRoutes = [
   GetPage(
     name: Routes.auth,
     page: () => const AuthScreen(),
-    binding: AuthBinding(),
+    binding: AuthBindings(),
   ),
   GetPage(
     name: Routes.login,
     page: () => const LoginScreen(),
-    binding: AuthBinding(),
+    binding: LoginBindings(),
   ),
   GetPage(
     name: Routes.register,
     page: () => const RegisterScreen(),
-    binding: AuthBinding(),
+    binding: RegisterBindings(),
+  ),
+  GetPage(
+    name: Routes.register,
+    page: () => const RegisterScreen(),
+    binding: RegisterBindings(),
   ),
 ];

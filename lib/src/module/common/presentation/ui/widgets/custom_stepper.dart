@@ -1,51 +1,63 @@
-import 'package:app/src/module/common/presentation/logic/custom_stepper_controller.dart';
+import 'package:app/src/module/common/presentation/logic/stepper_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-export 'package:app/src/module/common/presentation/logic/custom_stepper_controller.dart';
+export 'package:app/src/module/common/presentation/logic/stepper_controller.dart';
 
-class CustomStepper extends StatelessWidget {
-  final StepperController controller;
-  CustomStepper({super.key, required this.controller}){
-    Get.put(controller);
-  }
+class CustomStepper extends GetView<StepperController>{
+  final List<Step> steps;
+  const CustomStepper(this.steps, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Material(
-      child: SafeArea(
-        child: _StepperBuilder(),
-      ),
+    Get.put(StepperController());
+    controller.steps = steps;
+
+    return GetBuilder<StepperController>(builder: (controller){
+      return Stepper(
+      elevation: 0.0,
+      type: StepperType.horizontal,
+      onStepContinue: controller.onStepContinue,
+      onStepCancel: controller.onStepCancel,
+      stepIconBuilder: stepIconBuilder,
+      controlsBuilder: controlsBuilder,
+      currentStep: controller.currentStep,
+      steps: controller.steps.asMap().entries.map((e) {
+        int index = e.key;
+        Step step = e.value;
+        bool isActive = (index == controller.currentStep);
+
+        return Step(
+          state: step.state,
+          title: Visibility(
+            visible: isActive,
+            child: step.title,
+          ),
+          content: Container(
+            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - 250,
+            child: step.content,
+          ),
+          isActive: isActive,
+        );
+      }).toList(),
     );
+    });
   }
+
+  Widget stepIconBuilder(int currentStep, StepState state) => _StepIconBuilder(currentStep: currentStep, state: state);
+
+  Widget controlsBuilder(BuildContext context, ControlsDetails details) => _ControlsBuilders(context: context, details: details);
 }
 
-class _StepperBuilder extends StatelessWidget {
-  const _StepperBuilder();
+class _StepIconBuilder extends StatelessWidget {
+  final int currentStep;
+  final StepState state;
+  const _StepIconBuilder({required this.currentStep, required this.state});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<StepperController>(
-      builder: (controller) {
-        return Stepper(
-          elevation: 0.0,
-          type: StepperType.horizontal,
-          controlsBuilder: controlsBuilder,
-          stepIconBuilder: stepIconBuilder,
-          onStepContinue: controller.onStepContinue,
-          onStepCancel: controller.onStepCancel,
-          currentStep: controller.currentStep,
-          steps: controller.mapSteps(context),
-        );
-      },
-    );
-  }
-
-  Widget controlsBuilder(BuildContext context, ControlsDetails details) {
-    return _StepperControls(context: context, details: details);
-  }
-
-  Widget stepIconBuilder(int currentStep, StepState state){
     return const Icon(
       Icons.check,
       color: Colors.white,
@@ -54,43 +66,63 @@ class _StepperBuilder extends StatelessWidget {
   }
 }
 
-class _StepperControls extends StatelessWidget {
+class _ControlsBuilders extends GetView<StepperController> {
   final BuildContext context;
   final ControlsDetails details;
-  const _StepperControls({required this.context, required this.details});
+  const _ControlsBuilders({required this.context, required this.details});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        OutlinedButton(
-          onPressed: details.onStepCancel,
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical:10.0),
-            side: const BorderSide(color: Colors.black, width: 1.0)
-          ),
-          child: const Row(children: [
-            Icon(Icons.arrow_back, color: Colors.black),
-            SizedBox(width: 3.0),
-            Text("Back", style: TextStyle(color: Colors.black))
-          ]),
-        ),
-        TextButton(
-          onPressed: details.onStepContinue,
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical:10.0),
-            backgroundColor: Colors.black
-          ),
-          child: const Row(
-            children: [
-            Text("Next", style: TextStyle(color: Colors.white)),
-            SizedBox(width: 3.0),
-            Icon(Icons.arrow_forward, color: Colors.white)
-          ]),
-        ),
-      ],
+      return Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          buildBackButton(),
+          buildContinueButton(),
+        ],
+      );
+  }
+
+  Widget buildBackButton() {
+    ButtonStyle buttonStyle = TextButton.styleFrom(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+      side: const BorderSide(color: Colors.black, width: 1.0),
     );
+
+    return OutlinedButton(
+      onPressed: details.onStepCancel,
+      style: buttonStyle,
+      child: const Row(children: [
+        Icon(Icons.arrow_back, color: Colors.black),
+        SizedBox(width: 3.0),
+        Text("Back", style: TextStyle(color: Colors.black)),
+      ]),
+    );
+  }
+
+  Widget buildContinueButton() {
+    ButtonStyle buttonStyle = TextButton.styleFrom(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+      backgroundColor: Colors.black,
+      disabledBackgroundColor: Colors.black54,
+    );
+    return Obx(() {
+      Step currentStep = controller.steps[details.currentStep];
+      bool actionCheck = (currentStep.state == StepState.complete);
+
+      return TextButton(
+        onPressed: (actionCheck) ? details.onStepContinue : null,
+        style: buttonStyle,
+        child: const Row(children: [
+          Text("Next", style: TextStyle(color: Colors.white)),
+          SizedBox(width: 3.0),
+          Icon(Icons.arrow_forward, color: Colors.white),
+        ]),
+      );
+    });
+  }
+
+  Widget buildCompleteButton(){
+    return Container();
   }
 }

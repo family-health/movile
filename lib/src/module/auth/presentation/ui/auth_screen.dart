@@ -1,9 +1,9 @@
-import 'package:app/src/module/auth/presentation/ui/login_screen.dart';
+import 'package:app/src/module/auth/presentation/logic/auth_router_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'register_screen.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends GetView<AuthRouterController> {
   const AuthScreen({super.key});
 
   @override
@@ -48,13 +48,13 @@ class AuthScreen extends StatelessWidget {
               ]),
               Column(children: [
                 OutlinedButton(
-                  onPressed: ()=> loginScreen(context),
+                  onPressed: controller.navigateToLoginScreen,
                   style: blackButtonStyle,
                   child: const Text("Sign In", style: TextStyle(color: Colors.white),),
                 ),
                 const SizedBox(height: 10.0),
                 OutlinedButton(
-                  onPressed: ()=> registerScreen(context),
+                  onPressed: controller.navigateToRegisterScreen,
                   style: whiteButtonStyle,
                   child: const Text("Create account"),
                 ),
@@ -65,22 +65,4 @@ class AuthScreen extends StatelessWidget {
       ),
     );
   } 
-
-  void loginScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
-  }
-
-  void registerScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const RegisterScreen(),
-      ),
-    );
-  }
 }

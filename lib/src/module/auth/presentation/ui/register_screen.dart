@@ -1,11 +1,11 @@
-import 'package:app/src/module/auth/domain/entities/header_options.dart';
-import 'package:app/src/module/auth/presentation/logic/register_screen_controller.dart';
+import 'package:app/src/module/auth/domain/enums/header_options.dart';
+import 'package:app/src/module/auth/presentation/logic/register_router_controller.dart';
 import 'package:app/src/module/common/presentation/ui/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/module/auth/presentation/ui/widgets/index.dart' as widgets;
 import 'package:get/get.dart';
 
-class RegisterScreen extends GetView<RegisterScreenController> {
+class RegisterScreen extends GetView<RegisterRouterController> {
   const RegisterScreen({super.key});
 
   @override
@@ -46,17 +46,17 @@ class _RegisterContent extends RegisterScreen {
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         CustomOutlinedButton.icon(
-          onPressed: controller.navigateToRegisterEmailScreen,
+          onPressed: controller.navigateToCreateAccountScreen,
           label: "Continue with Email",
           icon: Image.asset("assets/images/auth/email-outlined.png", height: 35.0),
         ),
         CustomOutlinedButton.icon(
-          onPressed: controller.test,
+          onPressed: () => null,
           label: "Continue with Google",
           icon: Image.asset("assets/images/auth/google-outlined.png", height: 35.0),
         ),
         CustomOutlinedButton.icon(
-          onPressed: controller.test,
+          onPressed: () => null,
           label: "Continue with Apple",
           icon: Image.asset("assets/images/auth/apple-outlined.png", height: 35.0),
         ),
