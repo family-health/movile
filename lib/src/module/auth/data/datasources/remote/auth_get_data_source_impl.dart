@@ -1,43 +1,41 @@
-import 'dart:async';
+import 'package:get/get.dart';
+import 'package:app/src/@core/error/exceptions.dart';
+import 'package:app/src/shared/utilities/environment.dart';
 
-import 'package:app/src/@core/exception/exceptions.dart';
-import 'package:app/src/@core/exception/failures.dart';
-import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/data/models/user_model.dart';
 import 'package:app/src/module/common/data/models/response_api_model.dart';
-import 'package:app/src/module/auth/domain/errors/auth_exception.dart';
-import 'package:app/src/shared/utilities/environment.dart';
-import 'package:get/get.dart';
+import 'package:app/src/module/auth/data/models/login_response_model.dart';
+import 'package:app/src/module/auth/data/models/register_response_model.dart';
+import 'package:app/src/module/auth/data/datasources/remote/auth_remote_data_source.dart';
 
-class AuthGetDataSource extends GetConnect implements IAuthRemoteDataSource {
-  @override
-  void onInit() {
-    super.onInit();
-    httpClient.baseUrl = Environment.apiBaseUrl;
-    httpClient.addRequestModifier<Map<String, dynamic>?>((request) {
-      request.headers['Content-Type'] = 'application/json';
-      return request;
-    });
+import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dart';
+import 'package:app/src/module/auth/domain/usecases/register_with_email_usecase.dart';
+
+class AuthGetDataSource implements IAuthRemoteDataSource {
+  final GetConnect connect = GetConnect();
+
+  AuthGetDataSource() {
+    connect.baseUrl = Environment.apiBaseUrl;
   }
 
   @override
   Future<UserModel> loginWithEmailAndPassword(LoginParams params) async {
     try {
-      Response response = await post("${Environment.apiBaseUrl}/api/auth/signin", {"email": params.email, "password": params.password});
-      
+      Response response = await connect.post("/api/auth/signin", {"email": params.email, "password": params.password});
+      ResponseApiModel<LoginResponseModel> loginResponseModel = ResponseApiModel<LoginResponseModel>(
+        success: response.body["success"],
+        message: response.body["message"],
+        data: (response.body["data"] == null) ? null : LoginResponseModel.fromJson(response.body["data"]),
+      );
+
       if (response.statusCode == 201) {
-        ResponseApiModel<LoginResponseModel> body = ResponseApiModel<LoginResponseModel>(
-          success: response.body["success"],
-          message: response.body["message"],
-          data: (response.body["data"] == null) ? null : LoginResponseModel.fromJson(response.body["data"]),
-        );
-        return UserModel.fromLoginRespondeModel(body.data!);
+        return UserModel.fromLoginRespondeModel(loginResponseModel.data!);
       } else if (response.statusCode == 400) {
-        throw AuthException();
+        throw ServerException("Wrong email or password format");
       } else if (response.statusCode == 401) {
-        throw AuthException();
+        throw ServerException("Wrong credentials, please check again");
       } else {
-        throw ServerException();
+        throw SocketException("Server lost conection");
       }
     } on Exception catch (_) {
       rethrow;
@@ -46,13 +44,30 @@ class AuthGetDataSource extends GetConnect implements IAuthRemoteDataSource {
 
   @override
   Future<UserModel> registerWithEmailAndPassword(RegisterParams params) async {
-    // Register data = const Register(username: "josephdgb1996@gmail.com", password: "123456789");
     try {
-      // Response<ResponseApiModel<User>> response = await post("${httpClient.baseUrl}/sigin", params);
-      return const UserModel(id: 'id', name: 'name', lastname: 'lastname', email: 'email', phone: 'phone');
-      // return response.body.data;
+      Response response = await connect.post("/api/auth/signup", {
+        "email": params.email,
+        "password": params.password,
+        "name": params.name,
+        "lastname": params.lastname,
+        "phone": params.phone,
+        "avatar": params.avatar,
+      });
+      ResponseApiModel<RegisterResponseModel> registerResponseModel = ResponseApiModel<RegisterResponseModel>(
+        success: response.body["success"],
+        message: response.body["message"],
+        data: (response.body["data"] == null) ? null : RegisterResponseModel.fromJson(response.body["data"]),
+      );
+
+      if (response.statusCode == 201) {
+        return UserModel.fromRegisterRespondeModel(registerResponseModel.data!);
+      } else if (response.statusCode == 400) {
+        throw ServerException(registerResponseModel.message);
+      } else {
+        throw SocketException("Server lost conection");
+      }
     } catch (e) {
-      throw ServerFailure();
+      rethrow;
     }
   }
 }

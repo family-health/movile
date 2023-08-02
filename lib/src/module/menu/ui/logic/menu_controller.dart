@@ -1,4 +1,4 @@
-import 'package:app/src/shared/routes/routes_deprecated.dart';
+import 'package:app/src/shared/config/routes_deprecated.dart';
 import 'package:get/get.dart';
 import 'package:app/src/shared/utilities/toaster_alert.dart';
 

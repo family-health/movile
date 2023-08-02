@@ -1,5 +1,5 @@
+import 'package:app/src/module/auth/domain/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/module/auth/auth_module.dart';
 import 'package:app/src/module/auth/auth_routes.dart';
 import 'package:app/src/module/common/common_bindings.dart';
 import 'package:app/src/shared/app/logic/app_controller.dart';

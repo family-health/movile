@@ -1,48 +1,48 @@
-import 'package:app/src/module/common/presentation/logic/stepper_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:app/src/module/common/presentation/logic/stepper_controller.dart';
 export 'package:app/src/module/common/presentation/logic/stepper_controller.dart';
 
 class CustomStepper extends GetView<StepperController>{
+  final void Function()? onStepComplete;
   final List<Step> steps;
-  const CustomStepper(this.steps, {super.key});
+
+  const CustomStepper({super.key, required this.steps, required this.onStepComplete});
 
   @override
   Widget build(BuildContext context) {
     Get.put(StepperController());
     controller.steps = steps;
+    controller.onStepComplete = onStepComplete;
 
-    return GetBuilder<StepperController>(builder: (controller){
+    return GetBuilder<StepperController>(builder: (controller) {
       return Stepper(
-      elevation: 0.0,
-      type: StepperType.horizontal,
-      onStepContinue: controller.onStepContinue,
-      onStepCancel: controller.onStepCancel,
-      stepIconBuilder: stepIconBuilder,
-      controlsBuilder: controlsBuilder,
-      currentStep: controller.currentStep,
-      steps: controller.steps.asMap().entries.map((e) {
-        int index = e.key;
-        Step step = e.value;
-        bool isActive = (index == controller.currentStep);
+        elevation: 0.0,
+        type: StepperType.horizontal,
+        onStepContinue: controller.onStepContinue,
+        onStepCancel: controller.onStepCancel,
+        stepIconBuilder: stepIconBuilder,
+        controlsBuilder: controlsBuilder,
+        currentStep: controller.currentStep,
+        steps: controller.steps.asMap().entries.map((e) {
+          int index = e.key;
+          Step step = e.value;
+          bool isActive = (index == controller.currentStep);
 
-        return Step(
-          state: step.state,
-          title: Visibility(
-            visible: isActive,
-            child: step.title,
-          ),
-          content: Container(
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 250,
-            child: step.content,
-          ),
-          isActive: isActive,
-        );
-      }).toList(),
-    );
+          return Step(
+            state: step.state,
+            title: Visibility(visible: isActive, child: step.title),
+            content: Container(
+              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height - 250,
+              child: step.content,
+            ),
+            isActive: isActive,
+          );
+        }).toList(),
+      );
     });
   }
 
@@ -120,9 +120,5 @@ class _ControlsBuilders extends GetView<StepperController> {
         ]),
       );
     });
-  }
-
-  Widget buildCompleteButton(){
-    return Container();
   }
 }

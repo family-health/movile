@@ -4,10 +4,6 @@ import 'package:get/get.dart';
 class CommonBindings extends Bindings {
   @override
   void dependencies() {
-    //Stepper
-    // Get.lazyPut(() => StepperController());
-
-    //
+    //dependencies
   }
-
 }

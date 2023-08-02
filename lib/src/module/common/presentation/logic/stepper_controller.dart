@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class StepperController extends GetxController {
+  late void Function()? onStepComplete;
+  
   late RxList<Step> _steps;
   List<Step> get steps => _steps;
   set steps(List<Step> value) => _steps = value.obs;
-
+  
   int currentStep = 0;
 
   void onStepCancel() {
@@ -17,8 +19,11 @@ class StepperController extends GetxController {
   }
 
   void onStepContinue() {
-    // int equal = currentStep + 1;
-    if (currentStep + 1 == steps.length) return;
+    if (currentStep + 1 == steps.length) {
+      onStepComplete?.call();
+      return;
+    }
+
     currentStep++;
     update();
   }

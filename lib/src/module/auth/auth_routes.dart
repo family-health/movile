@@ -1,4 +1,4 @@
-import 'package:app/src/shared/routes/routes.dart';
+import 'package:app/src/shared/config/routes_config.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:app/src/module/auth/auth_bindings.dart';
 
@@ -17,11 +17,6 @@ List<GetPage<dynamic>> authRoutes = [
     name: Routes.login,
     page: () => const LoginScreen(),
     binding: LoginBindings(),
-  ),
-  GetPage(
-    name: Routes.register,
-    page: () => const RegisterScreen(),
-    binding: RegisterBindings(),
   ),
   GetPage(
     name: Routes.register,

@@ -1,4 +1,5 @@
-import 'package:app/src/module/auth/auth_module.dart';
+import 'package:app/src/module/auth/data/models/login_response_model.dart';
+import 'package:app/src/module/auth/data/models/register_response_model.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 
 class UserModel {
@@ -43,6 +44,16 @@ class UserModel {
       );
 
   factory UserModel.fromLoginRespondeModel(LoginResponseModel model) => UserModel(
+        id: model.id,
+        name: model.name,
+        lastname: model.lastname,
+        email: model.email,
+        phone: model.phone,
+        avatar: model.avatar,
+        family: model.family,
+      );
+
+  factory UserModel.fromRegisterRespondeModel(RegisterResponseModel model) => UserModel(
         id: model.id,
         name: model.name,
         lastname: model.lastname,

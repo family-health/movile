@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:app/src/@core/usecases/usecase.dart';
-import 'package:app/src/@core/exception/failures.dart';
+import 'package:app/src/@core/error/failures.dart';
 import 'package:app/src/module/auth/domain/repositories/auth_repository.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 

@@ -12,5 +12,5 @@ class Environment {
   static String get authRoute => dotenv.env["AUTH_ROUTE"] ?? "/auth";
   static String get loginRoute => dotenv.env["LOGIN_ROUTE"] ?? "/auth/login";
   static String get registerRoute => dotenv.env["REGISTER_ROUTE"] ?? "/auth/register";
-  static String get homeRoute => dotenv.env["REGISTER_ROUTE"] ?? "/home";
+  static String get homeRoute => dotenv.env["HOME_ROUTE"] ?? "/home";
 }

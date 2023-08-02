@@ -26,13 +26,17 @@ class CreateAccountScreen extends GetView<CreateAccountController> {
         StepState weightState = (controller.weightStatus) ? StepState.complete : StepState.editing;
         StepState completeState = (controller.completeStatus) ? StepState.complete : StepState.editing;
 
-        return CustomStepper([
-          Step(title: const Text("About"), content: const AboutStep(), state: aboutState),
-          Step(title: const Text("Phone"), content: const PhoneStep(), state: phoneState),
-          Step(title: const Text("Height"), content: const HeightStep(), state: heightState),
-          Step(title: const Text("Weight"), content: const WeightStep(), state: weightState),
-          Step(title: const Text("Complete"), content: const CompleteStep(), state: completeState),
-        ]);
+        return CustomStepper(
+          steps: [
+            Step(title: const Text("About"), content: const AboutStep(), state: aboutState),
+            Step(title: const Text("Phone"), content: const PhoneStep(), state: phoneState),
+            Step(title: const Text("Height"), content: const HeightStep(), state: heightState),
+            Step(title: const Text("Weight"), content: const WeightStep(), state: weightState),
+            Step(title: const Text("Complete"), content: const CompleteStep(), state: completeState),
+          ],
+          // ignore: avoid_print
+          onStepComplete: controller.submit,
+        );
       }),
     );
   }

@@ -1,4 +1,6 @@
-import 'package:app/src/module/auth/auth_module.dart';
+import 'package:app/src/module/auth/data/datasources/local/auth_local_data_source_impl.dart';
+import 'package:app/src/module/auth/data/datasources/remote/auth_get_data_source_impl.dart';
+import 'package:app/src/module/auth/data/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/src/shared/app/app.dart';

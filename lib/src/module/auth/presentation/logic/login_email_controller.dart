@@ -1,15 +1,16 @@
 // ignore_for_file: avoid_print
 
-import 'package:app/src/@core/exception/failures.dart';
+import 'package:app/src/@core/error/failures.dart';
+import 'package:app/src/module/auth/domain/entities/user.dart';
 import 'package:app/src/module/auth/domain/enums/email_status.dart';
 import 'package:app/src/module/auth/domain/enums/form_status.dart';
 import 'package:app/src/module/auth/domain/enums/password_status.dart';
-import 'package:app/src/module/auth/domain/errors/auth_failure.dart';
 import 'package:app/src/module/auth/domain/objects/email.dart';
 import 'package:app/src/module/auth/domain/objects/password.dart';
 import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dart';
-import 'package:app/src/shared/utilities/environment.dart';
+import 'package:app/src/shared/config/routes_config.dart';
 import 'package:app/src/shared/utilities/snackbar.dart';
+import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 
 class LoginEmailController extends GetxController {
@@ -25,7 +26,7 @@ class LoginEmailController extends GetxController {
       email = Email((emailBuilder) => emailBuilder..value = value);
       emailStatus = EmailStatus.valid;
       update();
-    } catch (e) {
+    } on ArgumentError {
       emailStatus = EmailStatus.invalid;
       update();
     }
@@ -36,14 +37,17 @@ class LoginEmailController extends GetxController {
       password = Password((passwordBuilder) => passwordBuilder..value = value);
       passwordStatus = PasswordStatus.valid;
       update();
-    } catch (e) {
+    } on ArgumentError {
       passwordStatus = PasswordStatus.invalid;
       update();
     }
   }
 
   void submit() async {
-    if (!(emailStatus == EmailStatus.valid) || !(passwordStatus == PasswordStatus.valid)) {
+    bool emailCheck = !(emailStatus == EmailStatus.valid);
+    bool passwordCheck = !(passwordStatus == PasswordStatus.valid);
+
+    if (emailCheck || passwordCheck) {
       formStatus = FormStatus.initial;
       return;
     }
@@ -52,20 +56,23 @@ class LoginEmailController extends GetxController {
     update();
 
     LoginWithEmailUsecase loginWithEmailUsecase = Get.find();
-    final result = await loginWithEmailUsecase(LoginParams(email: email!.value, password: password!.value));
-    result.fold((failure) async {
-      if (failure is AuthFailure) {
-        Snackbar().error("Authentication", "Wrong credentials, please check and try again");
+    Either<Failure, User> usecaseResponse = await loginWithEmailUsecase(LoginParams(email: email!.value, password: password!.value));
+    
+    usecaseResponse.fold((failure) async {
+      if (failure is ServerFailure) {
+        Snackbar().error(failure.title, failure.message);
         formStatus = FormStatus.failure;
         update();
-      } else if (failure is ServerFailure) {
+      } else if (failure is SocketFailure) {
         await Future.delayed(const Duration(seconds: 3));
-        Snackbar().error("Server", "We are having problems, please try again later");
+        Snackbar().error(failure.title, failure.message);
         formStatus = FormStatus.failure;
         update();
       }
     }, (success) {
-        Get.toNamed(Environment.homeRoute);
+        Get.offAllNamed(Routes.home);
+        formStatus = FormStatus.success;
+        update();
     });
   }
 }

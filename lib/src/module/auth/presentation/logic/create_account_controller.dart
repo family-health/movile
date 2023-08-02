@@ -1,3 +1,9 @@
+import 'package:app/src/@core/error/failures.dart';
+import 'package:app/src/module/auth/domain/entities/user.dart';
+import 'package:app/src/module/auth/domain/usecases/register_with_email_usecase.dart';
+import 'package:app/src/shared/config/routes_config.dart';
+import 'package:app/src/shared/utilities/snackbar.dart';
+import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:app/src/module/auth/domain/enums/gender.dart';
 
@@ -148,5 +154,33 @@ class CreateAccountController extends GetxController {
       completeStatus = false;
       update();
     }
+  }
+
+  void submit() async {
+    RegisterWithEmailUsecase registerWithEmailUsecase = Get.find<RegisterWithEmailUsecase>();
+    Either<Failure, User> usecaseResponse = await registerWithEmailUsecase(
+      RegisterParams(
+        email: email,
+        password: password,
+        name: name,
+        lastname: surname,
+        phone: phone,
+      ),
+    );
+
+    completeStatus = false;
+    update();
+
+    usecaseResponse.fold((Failure failure) async {
+      await Future.delayed(const Duration(seconds: 2));
+      Snackbar().error(failure.title, failure.message);
+      completeStatus = true;
+      update();
+    }, (User sucess) async {
+      completeStatus = true;
+      update();
+      await Future.delayed(const Duration(seconds: 2));
+      Get.offAllNamed(Routes.home);
+    });
   }
 }

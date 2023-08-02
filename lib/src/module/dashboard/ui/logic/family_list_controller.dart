@@ -3,7 +3,7 @@ import 'package:app/src/module/profile/data/models/user_model_old.dart';
 import 'package:app/src/module/family/data/sources/family_provider.dart';
 import 'package:app/src/module/dashboard/ui/logic/dashboard_controller.dart';
 import 'package:app/src/shared/utilities/toaster_alert.dart';
-import 'package:app/src/shared/routes/routes_deprecated.dart';
+import 'package:app/src/shared/config/routes_deprecated.dart';
 import 'package:app/src/shared/config/storage_deprecated.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
