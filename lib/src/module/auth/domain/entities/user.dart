@@ -8,8 +8,8 @@ class User extends Equatable {
   final String lastname;
   final String email;
   final String phone;
-  final int height;
-  final int weight;
+  final double height;
+  final double weight;
   final String birth;
   final String? avatar;
 
