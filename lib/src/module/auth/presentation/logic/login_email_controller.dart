@@ -1,15 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:app/src/@core/error/failures.dart';
-import 'package:app/src/module/auth/domain/entities/user.dart';
-import 'package:app/src/module/auth/domain/enums/email_status.dart';
-import 'package:app/src/module/auth/domain/enums/form_status.dart';
-import 'package:app/src/module/auth/domain/enums/password_status.dart';
-import 'package:app/src/module/auth/domain/objects/email.dart';
-import 'package:app/src/module/auth/domain/objects/password.dart';
-import 'package:app/src/module/auth/domain/usecases/login_with_email_usecase.dart';
-import 'package:app/src/shared/config/routes_config.dart';
-import 'package:app/src/shared/utilities/snackbar.dart';
+import 'package:app/src/@core/resources/router/routes_config.dart';
+import 'package:app/src/@core/utilities/snackbar.dart';
+import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 
@@ -69,8 +63,11 @@ class LoginEmailController extends GetxController {
         formStatus = FormStatus.failure;
         update();
       }
-    }, (success) {
-        Get.offAllNamed(Routes.home);
+    }, (user) {
+        AppController appController = Get.find<AppController>();
+        appController.reload();
+
+        Get.offAllNamed(Routes.main);
         formStatus = FormStatus.success;
         update();
     });

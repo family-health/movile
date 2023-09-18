@@ -1,17 +1,17 @@
 import 'package:app/src/@core/error/failures.dart';
-import 'package:app/src/module/auth/domain/entities/user.dart';
-import 'package:app/src/module/auth/domain/usecases/register_with_email_usecase.dart';
-import 'package:app/src/shared/config/routes_config.dart';
-import 'package:app/src/shared/utilities/snackbar.dart';
+import 'package:app/src/@core/resources/router/routes_config.dart';
+import 'package:app/src/@core/utilities/snackbar.dart';
+import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/src/module/auth/domain/enums/gender.dart';
 
 class CreateAccountController extends GetxController {
   //About step variables
   String name = "";
   String surname = "";
-  Gender gender = Gender.male;
+  Gender gender = Gender.M;
+  Rx<DateTime> birthday = DateTime.now().obs;
   String address = "";
 
   //Check about step status is complete
@@ -58,13 +58,29 @@ class CreateAccountController extends GetxController {
     checkAboutStep();
   }
 
+  void updateBirthday(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      fieldLabelText: "SELECT YOUR BIRTHDAY DATE",
+      helpText: "SELECT YOUR BIRTHDAY DATE",
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900), //DateTime.now() - not to allow to choose before today.
+      lastDate: DateTime(2030),
+    );
+
+    if (pickedDate == null) return;
+    birthday.value = pickedDate;
+
+    update();
+  }
+
   void updateAddress(String value) {
     address = value;
     checkAboutStep();
   }
 
   void checkAboutStep() {
-    if (name.isNotEmpty && surname.isNotEmpty && address.isNotEmpty) {
+    if (name.isNotEmpty && surname.isNotEmpty) {
       aboutStatus = true;
       update();
     } else {
@@ -165,6 +181,10 @@ class CreateAccountController extends GetxController {
         name: name,
         lastname: surname,
         phone: phone,
+        gender: gender.name,
+        weight: weight,
+        height: height,
+        birth: birthday.value,
       ),
     );
 
@@ -178,9 +198,11 @@ class CreateAccountController extends GetxController {
       update();
     }, (User sucess) async {
       completeStatus = true;
+      AppController appController = Get.find<AppController>();
+      appController.reload();
       update();
       await Future.delayed(const Duration(seconds: 2));
-      Get.offAllNamed(Routes.home);
+      Get.offAllNamed(Routes.main);
     });
   }
 }

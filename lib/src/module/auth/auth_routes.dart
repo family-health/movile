@@ -1,5 +1,5 @@
-import 'package:app/src/shared/config/routes_config.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:app/src/@core/resources/router/routes_config.dart';
 import 'package:app/src/module/auth/auth_bindings.dart';
 
 //screens

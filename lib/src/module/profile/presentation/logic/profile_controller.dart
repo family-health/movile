@@ -1,7 +1,7 @@
 import 'package:app/src/module/profile/data/models/user_model_old.dart';
-import 'package:app/src/shared/utilities/toaster_alert.dart';
-import 'package:app/src/shared/config/routes_deprecated.dart';
-import 'package:app/src/shared/config/storage_deprecated.dart';
+import 'package:app/src/@core/utilities/toaster_alert.dart';
+import 'package:app/src/@core/resources/router/routes_deprecated.dart';
+import 'package:app/src/@core/resources/storage/storage_deprecated.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

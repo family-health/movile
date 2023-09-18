@@ -28,3 +28,10 @@ class SocketFailure extends Failure {
   @override
   List<Object?> get props => [title, message];
 }
+
+class DependencyFailure extends Failure {
+  const DependencyFailure(super.title, super.message);
+
+  @override
+  List<Object?> get props => [title, message];
+}

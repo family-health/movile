@@ -1,13 +1,13 @@
 import 'package:app/src/module/auth/presentation/logic/create_account_controller.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/complete_step.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/height_step.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/phone_step.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/weight_step.dart';
+import 'package:app/src/module/auth/presentation/ui/complete_step.dart';
+import 'package:app/src/module/auth/presentation/ui/height_step.dart';
+import 'package:app/src/module/auth/presentation/ui/phone_step.dart';
+import 'package:app/src/module/auth/presentation/ui/weight_step.dart';
 import 'package:flutter/material.dart';
 
-import 'package:app/src/module/common/presentation/ui/widgets/custom_stepper.dart';
+import 'package:app/src/shared/presentation/ui/widgets/custom_stepper.dart';
 
-import 'package:app/src/module/auth/presentation/ui/widgets/about_step.dart';
+import 'package:app/src/module/auth/presentation/ui/about_step.dart';
 import 'package:get/get.dart';
 
 class CreateAccountScreen extends GetView<CreateAccountController> {

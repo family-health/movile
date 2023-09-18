@@ -1,10 +1,11 @@
+import 'package:app/src/module/auth/data/models/auth_response_model.dart';
+import 'package:app/src/module/auth/data/models/token_model.dart';
 import 'package:get/get.dart';
 import 'package:app/src/@core/error/exceptions.dart';
-import 'package:app/src/shared/utilities/environment.dart';
+import 'package:app/src/@core/utilities/environment.dart';
 
 import 'package:app/src/module/auth/data/models/user_model.dart';
-import 'package:app/src/module/common/data/models/response_api_model.dart';
-import 'package:app/src/module/auth/data/models/login_response_model.dart';
+import 'package:app/src/shared/data/models/api/response_api_model.dart';
 import 'package:app/src/module/auth/data/models/register_response_model.dart';
 import 'package:app/src/module/auth/data/datasources/remote/auth_remote_data_source.dart';
 
@@ -19,17 +20,15 @@ class AuthGetDataSource implements IAuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> loginWithEmailAndPassword(LoginParams params) async {
+  Future<AuthResponseModel<UserModel, TokenModel>> login(LoginParams params) async {
     try {
       Response response = await connect.post("/api/auth/signin", {"email": params.email, "password": params.password});
-      ResponseApiModel<LoginResponseModel> loginResponseModel = ResponseApiModel<LoginResponseModel>(
-        success: response.body["success"],
-        message: response.body["message"],
-        data: (response.body["data"] == null) ? null : LoginResponseModel.fromJson(response.body["data"]),
-      );
 
+      
       if (response.statusCode == 201) {
-        return UserModel.fromLoginRespondeModel(loginResponseModel.data!);
+        TokenModel tokenModel = TokenModel(response.body["data"]["token"]);
+        UserModel userModel = UserModel.fromJson(response.body["data"]);
+        return AuthResponseModel(token: tokenModel, user: userModel);
       } else if (response.statusCode == 400) {
         throw ServerException("Wrong email or password format");
       } else if (response.statusCode == 401) {
@@ -43,7 +42,7 @@ class AuthGetDataSource implements IAuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> registerWithEmailAndPassword(RegisterParams params) async {
+  Future<AuthResponseModel<UserModel, TokenModel>> register(RegisterParams params) async {
     try {
       Response response = await connect.post("/api/auth/signup", {
         "email": params.email,
@@ -51,8 +50,13 @@ class AuthGetDataSource implements IAuthRemoteDataSource {
         "name": params.name,
         "lastname": params.lastname,
         "phone": params.phone,
+        "gender": params.gender,
         "avatar": params.avatar,
+        "height": params.height,
+        "weight": params.weight,
+        "birth": params.birth.toString(),
       });
+
       ResponseApiModel<RegisterResponseModel> registerResponseModel = ResponseApiModel<RegisterResponseModel>(
         success: response.body["success"],
         message: response.body["message"],
@@ -60,7 +64,10 @@ class AuthGetDataSource implements IAuthRemoteDataSource {
       );
 
       if (response.statusCode == 201) {
-        return UserModel.fromRegisterRespondeModel(registerResponseModel.data!);
+        TokenModel tokenModel = TokenModel(response.body["data"]["token"]);
+        UserModel userModel = UserModel.fromJson(response.body["data"]);
+        return AuthResponseModel(token: tokenModel, user: userModel);
+        // return UserModel.fromRegisterRespondeModel(registerResponseModel.data!);
       } else if (response.statusCode == 400) {
         throw ServerException(registerResponseModel.message);
       } else {

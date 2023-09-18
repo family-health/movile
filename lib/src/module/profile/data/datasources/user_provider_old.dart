@@ -3,9 +3,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/src/shared/config/api_deprecated.dart';
-import 'package:app/src/module/common/data/models/response_api_model.dart';
-import 'package:app/src/shared/utilities/toaster_alert.dart';
+import 'package:app/src/@core/resources/api/api_deprecated.dart';
+import 'package:app/src/shared/data/models/api/response_api_model.dart';
+import 'package:app/src/@core/utilities/toaster_alert.dart';
 import 'package:app/src/module/profile/data/models/user_model_old.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

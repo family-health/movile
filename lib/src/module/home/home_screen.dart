@@ -1,4 +1,4 @@
-import 'package:app/src/shared/app/logic/app_controller.dart';
+import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

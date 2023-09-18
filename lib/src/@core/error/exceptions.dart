@@ -15,3 +15,9 @@ class SocketException implements Exception {
 
   SocketException(this.message);
 }
+
+class DependencyException implements Exception {
+  final String message;
+
+  DependencyException(this.message);
+}

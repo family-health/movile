@@ -16,7 +16,7 @@ import 'package:app/src/module/auth/presentation/logic/login_email_controller.da
 import 'package:app/src/module/auth/presentation/logic/login_google_controller.dart';
 import 'package:app/src/module/auth/presentation/ui/widgets/forgot_password.dart';
 
-import 'package:app/src/module/auth/presentation/ui/widgets/index.dart' as widgets;
+import 'package:app/src/module/auth/presentation/ui/ui_widgets.dart' as widgets;
 
 
 class LoginScreen extends StatelessWidget {

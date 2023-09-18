@@ -7,12 +7,25 @@ import 'package:flutter/material.dart';
 /// ? if the input is password or text field, later we use the late [obscureText] to change the sufixIcon and obscureText inside [TextField] .
 
 class AuthTextFormField extends StatefulWidget {
+  final String? initialValue;
   final String hintText;
   final bool obscureText;
+  final bool? readOnly;
   final void Function(String)? onChanged;
+  final void Function()? ontap;
   final TextInputType? keyboardType;
   final int? maxLenght;
-  const AuthTextFormField({super.key, required this.hintText, required this.obscureText, this.onChanged, this.keyboardType, this.maxLenght});
+  const AuthTextFormField({
+    super.key,
+    this.initialValue,
+    required this.hintText,
+    required this.obscureText,
+    this.readOnly,
+    this.onChanged,
+    this.keyboardType,
+    this.maxLenght,
+    this.ontap,
+  });
 
   @override
   State<AuthTextFormField> createState() => _AuthTextFormFieldState();
@@ -32,11 +45,14 @@ class _AuthTextFormFieldState extends State<AuthTextFormField> {
      return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: TextFormField(
+        initialValue: widget.initialValue,
         keyboardType: widget.keyboardType,
+        readOnly: (widget.readOnly == null) ? false : widget.readOnly!,
         obscureText: obscureText,
         decoration: getInputDecoration(),
         onChanged: widget.onChanged,
         maxLength: widget.maxLenght,
+        onTap: widget.ontap,
       ),
     );
   }

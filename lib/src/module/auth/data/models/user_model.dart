@@ -1,4 +1,3 @@
-import 'package:app/src/module/auth/data/models/login_response_model.dart';
 import 'package:app/src/module/auth/data/models/register_response_model.dart';
 import 'package:app/src/module/auth/domain/entities/user.dart';
 
@@ -9,8 +8,9 @@ class UserModel {
   final String email;
   final String phone;
   final String? avatar;
-  final List<String>? roles;
-  final List<dynamic>? family;
+  final int height;
+  final int weight;
+  final String birth;
 
   const UserModel({
     required this.id,
@@ -19,18 +19,21 @@ class UserModel {
     required this.email,
     required this.phone,
     this.avatar,
-    this.roles = const [],
-    this.family = const [],
+    required this.height,
+    required this.weight,
+    required this.birth
   });
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "lastname": lastname,
+        "height": height,
+        "weight": weight,
+        "birth": birth,
         "email": email,
         "phone": phone,
-        "roles": List<dynamic>.from(roles!.map((x) => x)),
-        "family": List<String>.from(family!.map((x) => x)),
+        "avatar": avatar,
       };
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -39,19 +42,13 @@ class UserModel {
         lastname: json["lastname"],
         email: json["email"],
         phone: json["phone"],
-        family: List<String>.from(json["family"].map((x) => x)),
-        roles: List<String>.from(json["roles"].map((x) => x)),
+        avatar: json["avatar"],
+        height: json["height"] ?? 0,
+        weight: json["weight"] ?? 0,
+        birth: json["birth"] ?? "-",
       );
 
-  factory UserModel.fromLoginRespondeModel(LoginResponseModel model) => UserModel(
-        id: model.id,
-        name: model.name,
-        lastname: model.lastname,
-        email: model.email,
-        phone: model.phone,
-        avatar: model.avatar,
-        family: model.family,
-      );
+
 
   factory UserModel.fromRegisterRespondeModel(RegisterResponseModel model) => UserModel(
         id: model.id,
@@ -60,7 +57,9 @@ class UserModel {
         email: model.email,
         phone: model.phone,
         avatar: model.avatar,
-        family: model.family,
+        height: model.height,
+        weight: model.weight,
+        birth: model.birth,
       );
 
   User toEntity() => User(
@@ -69,6 +68,9 @@ class UserModel {
         lastname: lastname,
         email: email,
         phone: phone,
+        height: height,
+        weight: weight,
+        birth: birth,
         avatar: avatar,
       );
 }

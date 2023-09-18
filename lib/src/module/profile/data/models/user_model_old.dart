@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/src/module/family/data/models/family.dart';
+import 'package:app/src/module/family/data/models/family_member_model.dart';
 
 UserModel userFromJson(String str) => UserModel.fromJson(json.decode(str));
 
@@ -15,7 +15,7 @@ class UserModel {
   String? password;
   String? avatar;
   bool? isActive;
-  List<Family>? family;
+  List<FamilyMemberModel>? family;
   String? token;
 
   UserModel({
@@ -40,7 +40,7 @@ class UserModel {
         phone: json["phone"],
         avatar: json["avatar"],
         isActive: json["isActive"],
-        family: json["family"] == null || json["family"] == [] ? [] : List<Family>.from(json["family"].map((model) => Family.fromJson(model))),
+        family: json["family"] == null || json["family"] == [] ? [] : List<FamilyMemberModel>.from(json["family"].map((model) => FamilyMemberModel.fromJson(model))),
         token: json["token"],
       );
 

@@ -1,8 +1,8 @@
 import 'package:app/src/module/auth/domain/enums/header_options.dart';
 import 'package:app/src/module/auth/presentation/logic/register_router_controller.dart';
-import 'package:app/src/module/common/presentation/ui/widgets/custom_outlined_button.dart';
+import 'package:app/src/shared/presentation/ui/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/module/auth/presentation/ui/widgets/index.dart' as widgets;
+import 'package:app/src/module/auth/presentation/ui/ui_widgets.dart' as widgets;
 import 'package:get/get.dart';
 
 class RegisterScreen extends GetView<RegisterRouterController> {
