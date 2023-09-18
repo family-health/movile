@@ -1,29 +1,37 @@
-import 'package:app/src/@core/enums/enum.dart';
+// ignore_for_file: avoid_print
+import 'dart:async';
+
+import 'package:app/src/@core/utilities/tasks.dart';
+import 'package:app/src/shared/presentation/logic/app_controller.dart';
+import 'package:app/src/shared/presentation/logic/workmanager_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-
-
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:app/src/module/auth/data/models/user_model_old.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:app/src/app.dart';
+import 'package:workmanager/workmanager.dart';
+
+Completer uploadCompleter = Completer();
+
+void callbackDispatcher() {
+  Workmanager().executeTask((taskName, inputData) async {
+    if (taskName == Tasks.uploadHealthDataPointsTask) await UploadHealthDataTask.call(inputData);
+    return Future.value(true);
+  });
+}
 
 void main() async {
-  
-  //todo: Implement dotenv
-  if (kReleaseMode) {
-    await dotenv.load(fileName: ".env.production");
-  } else {
-    await dotenv.load(fileName: ".env.development");
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(systemNavigationBarIconBrightness: Brightness.light, systemNavigationBarColor: Color(0xff000000)),
+  );
 
-  String initialRoute = ROUTES.ROUTE_SING_IN;
-  UserModel userSession = UserModel.fromJson(GetStorage().read(STORAGE().toString()) ?? {});
+  await Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+  await GetStorage.init();
+  await dotenv.load();
 
-  if (userSession.id != null) {
-    initialRoute = ROUTES.ROUTE_HOME;
-  }
+  AuthRepository authRepository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
 
-  runApp(App(initialRoute: initialRoute));
+  runApp(App(authRepository: authRepository));
 }

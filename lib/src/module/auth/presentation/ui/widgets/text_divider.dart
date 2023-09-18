@@ -9,7 +9,7 @@ class TextDivider extends StatelessWidget {
     return Row(children: [
         const Expanded(
           child: Divider(
-            height: 45.0,
+            height: 20.0,
             color: Colors.grey,
             thickness: 1,
             indent: 20.0,
@@ -19,7 +19,7 @@ class TextDivider extends StatelessWidget {
         Text(text),
         const Expanded(
           child: Divider(
-            height: 45.0,
+            height: 20.0,
             color: Colors.grey,
             thickness: 1,
             indent: 20.0,

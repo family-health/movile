@@ -1,48 +1,57 @@
-
-import 'package:app/src/@core/theme/custom_theme.dart';
-import 'package:app/src/@core/enums/enum.dart';
-import 'package:app/src/module/auth/auth_routes.dart';
-import 'package:app/src/shared/shared_bindings.dart';
-// import 'package:app/src/shared/presentation/ui/stepper_example.dart';
-// import 'package:app/src/shared/presentation/ui/stepper_example.dart';
+import 'package:app/src/module/health/data/datasources/local/health_local_data_source_impl.dart';
+import 'package:app/src/shared/presentation/logic/workmanager_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:app/src/module/navigation/ui/screens/navigation_screen.dart';
-import 'package:app/src/module/profile/ui/screens/profile_screen.dart';
-import 'package:app/src/module/profile/ui/screens/profile_update_screen.dart';
+import 'package:app/src/module/health/data/datasources/health/health_data_source_impl.dart';
+import 'package:app/src/module/health/data/datasources/remote/health_remote_data_source_impl.dart';
+import 'package:app/src/module/health/data/repositories/heart_rate_repository_impl.dart';
+import 'package:app/src/module/health/domain/usecases/get_heart_rate_data_usecase.dart';
+import 'package:app/src/module/home/home_routes.dart';
+import 'package:app/src/module/main/main_routes.dart';
+import 'package:app/src/shared/presentation/logic/network_controller.dart';
 
+import 'package:app/src/@core/resources/theme/custom_theme.dart';
+import 'package:app/src/shared/shared_bindings.dart';
+
+import 'shared/presentation/logic/app_controller.dart';
 
 class App extends StatelessWidget {
-  final String initialRoute;
+  final IAuthRepository authRepository;
 
-  const App({super.key, required this.initialRoute});
+  const App({super.key, required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
+    AppController controller = Get.put(AppController(authRepository));
+
+    bool authenticated = (controller.status == AppStatus.authenticated);
+    String? initialRoute = (authenticated == false) ? "/auth" : "/main";
+
+    Get.put(AppController(authRepository));
+    Get.put(NetworkController());
+    Get.put(WorkmanagerController());
+
+    //Usecases
+    Get.put(GetHeartRateDataUsecase(
+      HeartRateRepository(
+        health: HealthDataSource(),
+        local: HealthLocalDataSource(),
+        remote: HealthRemoteDataSource(),
+      ),
+    ));
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: initialRoute,
-      // initialRoute: "/auth",
-      // home: const StepperExample(),
       defaultTransition: Transition.noTransition,
       theme: CustomTheme().theme(),
       initialBinding: SharedBindings(),
+      initialRoute: initialRoute,
       getPages: [
+        ...mainRoutes,
         ...authRoutes,
-        GetPage(name: ROUTES.ROUTE_HOME, page: () => NavigationScreen()),
-        GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_INFO, page: () => SettingsProfileInfoPage()),
-        GetPage(name: ROUTES.ROUTE_SETTINGS_PROFILE_UPDATE, page: () => SettingsProfileUpdatePage())
+        ...homeRoutes,
       ],
     );
   }
 }
-
-
-// https://www.youtube.com/watch?v=0rZhdAutwMc&ab_channel=weincode
-// https://www.youtube.com/watch?v=Ba4m4tzzbfU&ab_ckhannel=FlutterEspa%C3%B1a
-// https://www.youtube.com/watch?v=Ger3Oh9qE-w&ab_channel=DevTeam504
-
-// https://ui8.net/fancom/products/smart-home-ui-kit2?rel=timer
-
-// https://www.youtube.com/watch?v=ZNMz2hOrddo&list=PLCAZyR6zw2pznlDPLCMUGUVr7uFRlMpTs&ab_channel=MaxonFlutter

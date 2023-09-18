@@ -1,5 +1,23 @@
-class NetworkException implements Exception {}
+class CacheException implements Exception {
+  final String message;
 
-class ServerException implements Exception {}
+  CacheException(this.message);
+}
 
-class CacheException implements Exception {}
+class ServerException implements Exception {
+  final String message;
+
+  ServerException(this.message);
+}
+
+class SocketException implements Exception {
+  final String message;
+
+  SocketException(this.message);
+}
+
+class DependencyException implements Exception {
+  final String message;
+
+  DependencyException(this.message);
+}

@@ -1,44 +1,40 @@
-import 'package:app/src/@core/enums/enum.dart';
-import 'package:app/src/@core/api/response_api_model.dart';
-import 'package:app/src/module/auth/data/models/user_model_old.dart';
-import 'package:app/src/module/circle/data/sources/family_provider.dart';
+import 'package:app/src/shared/data/models/api/response_api_model.dart';
+import 'package:app/src/module/profile/data/models/user_model_old.dart';
+import 'package:app/src/module/family/data/datasources/family_provider.dart';
 import 'package:app/src/module/dashboard/ui/logic/dashboard_controller.dart';
-import 'package:app/src/@core/utilities/toast_alert.dart';
+import 'package:app/src/@core/utilities/toaster_alert.dart';
+import 'package:app/src/@core/resources/router/routes_deprecated.dart';
+import 'package:app/src/@core/resources/storage/storage_deprecated.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class FamilyListController extends GetxController {
+  final DashboardController _dashboardController = Get.put(DashboardController());
+
   UserModel user = UserModel.fromJson(GetStorage().read(STORAGE.USER_STORAGE));
-  final DashboardController _dashboardController =
-      Get.put(DashboardController());
+
   final FamilyProvider _familyProvider = FamilyProvider();
 
-  void menuAction(
-      dynamic selection, String id, BuildContext context, String email) {
+  void menuAction(dynamic selection, String id, BuildContext context, String email) {
     if (selection == 'Editar') {
       goToFamilyEditPage(id);
     } else if (selection == 'Eliminar') {
-      alertDialogEliminar(
-          'Elimiar', 'Estas seguro de eliminar este familiar?', id, context);
+      alertDialogEliminar('Elimiar', 'Estas seguro de eliminar este familiar?', id, context);
     } else if (selection == 'Invitar') {
       _familyProvider.sendInvitation(email, user.token ?? "");
     }
   }
 
-  Future<bool> alertDialogEliminar(
-      String title, String mensaje, String id, BuildContext context) async {
+  Future<bool> alertDialogEliminar(String title, String mensaje, String id, BuildContext context) async {
     bool confirmado = false;
 
     await Get.defaultDialog(
       title: title,
       content: Text(
         mensaje,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.grey,
-        ),
+        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
       ),
       textCancel: "Cancelar",
       textConfirm: "Aceptar",
@@ -47,7 +43,6 @@ class FamilyListController extends GetxController {
       buttonColor: Colors.red,
       onConfirm: () async {
         _deleteFamilyById(context, id);
-
         Navigator.pop(context);
         _dashboardController.getAllFamilies();
         refresh();

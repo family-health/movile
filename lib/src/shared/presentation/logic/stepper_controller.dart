@@ -1,37 +1,32 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class StepperController extends GetxController {
-
-  List<Step> steps;
+  late void Function()? onStepComplete;
+  
+  late RxList<Step> _steps;
+  List<Step> get steps => _steps;
+  set steps(List<Step> value) => _steps = value.obs;
+  
   int currentStep = 0;
 
-  StepperController({required this.steps});
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-  
-  void onStepCancel(){
+  void onStepCancel() {
     if (currentStep == 0) return;
     currentStep--;
     update();
   }
 
-  void onStepContinue(){
-    // int equal = currentStep + 1;
-    if (currentStep + 1 == steps.length) return;
+  void onStepContinue() {
+    if (currentStep + 1 == steps.length) {
+      onStepComplete?.call();
+      return;
+    }
+
     currentStep++;
     update();
   }
 
-  void onStepTapped(){
-
-  }
+  void onStepTapped() {}
 }

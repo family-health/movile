@@ -41,7 +41,7 @@ class LoginResponseModel {
         avatar: json["avatar"],
         roles: List<String>.from(json["roles"].map((x) => x)),
         family: List<dynamic>.from(json["family"].map((x) => x)),
-        historyLogin: List<dynamic>.from(json["history_login"].map((x) => x)),
+        // historyLogin: List<dynamic>.from(json["history_login"].map((x) => x)),
         token: json["token"],
     );
 

@@ -11,10 +11,14 @@ class RegisterResponseModel {
     final String email;
     final String phone;
     final String password;
-    final String avatar;
-    final List<String> roles;
-    final List<dynamic> family;
-    final List<dynamic> historyLogin;
+    final String gender;
+    final String? avatar;
+    final int height;
+    final int weight;
+    final String birth;
+    final List<String>? roles;
+    final List<dynamic>? family;
+    final List<dynamic>? historyLogin;
     final String token;
 
     RegisterResponseModel({
@@ -24,7 +28,11 @@ class RegisterResponseModel {
         required this.email,
         required this.phone,
         required this.password,
-        required this.avatar,
+        required this.gender,
+        this.avatar,
+        required this.height,
+        required this.weight,
+        required this.birth,
         required this.roles,
         required this.family,
         required this.historyLogin,
@@ -38,10 +46,14 @@ class RegisterResponseModel {
         email: json["email"],
         phone: json["phone"],
         password: json["password"],
+        gender: json["gender"] ?? "-",
         avatar: json["avatar"],
-        roles: List<String>.from(json["roles"].map((x) => x)),
-        family: List<dynamic>.from(json["family"].map((x) => x)),
-        historyLogin: List<dynamic>.from(json["history_login"].map((x) => x)),
+        height: json["height"] ?? 0.0,
+        weight: json["weight"] ?? 0.0,
+        birth: json["birth"] ?? "-",
+        roles: (json["roles"] != null) ? List<String>.from(json["roles"]) : null,
+        family: (json["family"] != null) ? List<dynamic>.from(json["family"]) : null,
+        historyLogin: (json["history_login"] != null) ?  List<dynamic>.from(json["history_login"]) : null,
         token: json["token"],
     );
 
@@ -52,10 +64,14 @@ class RegisterResponseModel {
         "email": email,
         "phone": phone,
         "password": password,
+        "gender": gender,
         "avatar": avatar,
-        "roles": List<dynamic>.from(roles.map((x) => x)),
-        "family": List<dynamic>.from(family.map((x) => x)),
-        "history_login": List<dynamic>.from(historyLogin.map((x) => x)),
+        "heigth": height,
+        "weight": weight,
+        "birth": birth,
+        "roles": roles,
+        "family": family,
+        "history_login": historyLogin,
         "token": token,
     };
 }
