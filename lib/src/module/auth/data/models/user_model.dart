@@ -8,8 +8,8 @@ class UserModel {
   final String email;
   final String phone;
   final String? avatar;
-  final int height;
-  final int weight;
+  final double height;
+  final double weight;
   final String birth;
 
   const UserModel({
@@ -43,12 +43,10 @@ class UserModel {
         email: json["email"],
         phone: json["phone"],
         avatar: json["avatar"],
-        height: json["height"] ?? 0,
-        weight: json["weight"] ?? 0,
+        height: double.parse(json["height"].toString()),
+        weight: double.parse(json["weight"].toString()),
         birth: json["birth"] ?? "-",
       );
-
-
 
   factory UserModel.fromRegisterRespondeModel(RegisterResponseModel model) => UserModel(
         id: model.id,

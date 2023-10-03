@@ -13,8 +13,8 @@ class RegisterResponseModel {
     final String password;
     final String gender;
     final String? avatar;
-    final int height;
-    final int weight;
+    final double height;
+    final double weight;
     final String birth;
     final List<String>? roles;
     final List<dynamic>? family;
