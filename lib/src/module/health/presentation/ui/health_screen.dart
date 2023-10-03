@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import 'package:app/src/module/health/presentation/logic/blood_glucose_chart_controller.dart';
 import 'package:app/src/module/health/presentation/logic/heart_rate_chart_controller.dart';
 import 'package:app/src/module/health/presentation/ui/add_blood_glucose_screen.dart';
 import 'package:app/src/module/health/presentation/ui/health_testing_screen.dart';
-=======
-import 'package:app/src/module/health/presentation/logic/heart_rate_chart_controller.dart';
-import 'package:app/src/module/health/presentation/ui/health_testing_screen.dart';
-import 'package:app/src/shared/presentation/logic/workmanager_controller.dart';
->>>>>>> main
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +30,7 @@ class HealthScreen extends GetView<HealthController> {
             HeartRateChartController heartRateChartController = Get.find<HeartRateChartController>();
             //todo: quitar cuando termine la prueba
             bloodGlucoseChartController.initializeBloodGlucoseData();
-            // heartRateChartController.initializeSpots();
+            heartRateChartController.initializeSpots();
           },
         )
       ]),
