@@ -5,6 +5,7 @@ import 'package:app/src/module/health/presentation/ui/health_screen.dart';
 import 'package:app/src/module/main/presentation/logic/navigation_controller.dart';
 import 'package:app/src/module/profile/presentation/ui/profile_screen.dart';
 import 'package:app/src/module/secure/presentation/ui/secure_screen.dart';
+import 'package:app/src/shared/presentation/logic/workmanager_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,9 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WorkmanagerController workmanagerController = Get.find<WorkmanagerController>();
+    workmanagerController.startUploadHealthDataPointsTask();
+
     return GetBuilder<NavigationController>(builder: (controller) {
       return Scaffold(
         body: IndexedStack(

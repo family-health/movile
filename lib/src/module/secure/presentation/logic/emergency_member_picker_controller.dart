@@ -8,12 +8,12 @@ class EmergencyMemberPickerController extends GetxController {
   final AppController _appController = Get.find<AppController>();
   final FamilyProvider _familyProvider = FamilyProvider();
 
-  late RxList<FamilyMember> data = <FamilyMember>[].obs;
+  late RxList<FamilyMember> familyMembers = <FamilyMember>[].obs;
 
   @override
   void onInit() async {
     super.onInit();
-    data.value = await fetchFamilyMembers();
+    familyMembers.value = await fetchFamilyMembers();
   }
 
   Future<List<FamilyMember>> fetchFamilyMembers() async {
@@ -25,8 +25,12 @@ class EmergencyMemberPickerController extends GetxController {
           .where((member) => member.isEmergency == false)
           .toList();
       return data;
-    }else{
+    } else {
       return [];
     }
+  }
+
+  void updateFamilyMembers() async {
+    familyMembers.value = await fetchFamilyMembers();
   }
 }

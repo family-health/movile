@@ -25,4 +25,14 @@ class HealthDataSource implements IHealthDataSource {
   bool checkDataTypeAvailable(HealthDataType type) {
     return _health.isDataTypeAvailable(type);
   }
+  
+  @override
+  Future<bool> writeHealthData(double value, HealthDataType type, DateTime date, HealthDataUnit unit) async {
+    try {
+      bool response = await _health.writeHealthData(value, HealthDataType.BLOOD_GLUCOSE, date, date, unit: HealthDataUnit.MILLIGRAM_PER_DECILITER);
+      return response;
+    } catch (e) {
+      return false;
+    }
+  }
 }
