@@ -20,7 +20,6 @@ void callbackDispatcher() {
     return Future.value(true);
   });
 }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(

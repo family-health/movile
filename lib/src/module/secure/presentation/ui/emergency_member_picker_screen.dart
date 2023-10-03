@@ -12,42 +12,42 @@ class EmergencyMemberPickerScreen extends GetView<EmergencyMemberPickerControlle
   @override
   Widget build(BuildContext context) {
     Get.put(EmergencyMemberPickerController());
+    controller.update();
 
-    return Material(
-      child: CustomScrollView(slivers: [
-        SliverAppBar(
-          pinned: true,
-          expandedHeight: 250.0,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          flexibleSpace: FlexibleSpaceBar(
-            title: const Text('Family members', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-            background: Image.asset("assets/images/security/ambulance.png"),
+    return SafeArea(
+      child: Material(
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0, left: 25, right: 25, bottom: 30.0),
+            child: Column(children: [
+              const Text("Add to your emergency book", style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w800)),
+              const SizedBox(height: 5.0),
+              const Text("Please, select a family member", style: TextStyle(color: Colors.black, fontSize: 15.0)),
+              const SizedBox(height: 15.0),
+              Container(width: 80, height: 2, color: Colors.black),
+            ]),
           ),
-        ),
-        Obx(
-          () => SliverPadding(
-            padding: const EdgeInsets.all(10.0),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200.0,
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-                childAspectRatio: 1,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                childCount: controller.data.length,
-                (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () => Get.back<FamilyMember>(result: controller.data[index]),
-                    child: FamilyMemberCard(controller.data[index]),
-                  );
-                },
-              ),
-            ),
-          ),
-        )
-      ]),
+          Expanded(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Obx(() {
+                    if (controller.familyMembers.isEmpty) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    return GridView.count(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      children: List.generate(controller.familyMembers.length, (index) {
+                        return GestureDetector(
+                          onTap: ()=> Get.back<FamilyMember>(result: controller.familyMembers[index]),
+                          child: FamilyMemberCard(controller.familyMembers[index]),
+                        );
+                      }),
+                    );
+                  })))
+        ]),
+      ),
     );
   }
 }

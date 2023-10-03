@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:app/src/@core/error/failures.dart';
 import 'package:app/src/@core/usecases/usecases.dart';
 import 'package:app/src/module/health/domain/usecases/get_heart_rate_data_usecase.dart';
@@ -16,10 +15,18 @@ class HealthController extends GetxController {
   static final List<HealthDataType> _healthTypes = [
     HealthDataType.HEART_RATE,
     HealthDataType.STEPS,
+    HealthDataType.WATER,
     HealthDataType.WORKOUT,
+    HealthDataType.BLOOD_GLUCOSE,
   ];
 
-  final List<HealthDataAccess> _healthPermissions = _healthTypes.map((e) => HealthDataAccess.READ).toList();
+  final List<HealthDataAccess> _healthPermissions = [
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ_WRITE,
+  ];
 
   Future requestHealthPermissions() async {
     try {
@@ -33,6 +40,10 @@ class HealthController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future removeHealthPermissions() async {
+    await health.revokePermissions();
   }
 
   Future deleteHealthData(HealthDataType type, DateTime startTime, DateTime endTime) async {
@@ -67,6 +78,33 @@ class HealthController extends GetxController {
     }
 
     return [];
+  }
+
+  Future<List<HealthDataPoint>> getHealthDataPoint(HealthDataType type) async {
+    final now = DateTime.now();
+    final yesterday = now.subtract(const Duration(hours: 24));
+
+    try {
+      List<HealthDataPoint> data = await health.getHealthDataFromTypes(yesterday, now, [type]);
+      return data;
+    } catch (e) {
+      print("Get Health Data: $e");
+    }
+
+    return [];
+  }
+
+  Future<bool> addBloodGlucose() async {
+    final now = DateTime.now();
+    // final yesterday = now.subtract(const Duration(hours: 24));
+
+    try {
+      bool response = await health.writeHealthData(50.0, HealthDataType.BLOOD_GLUCOSE, now, now, unit: HealthDataUnit.MILLIGRAM_PER_DECILITER);
+      return response;
+    } catch (e) {
+      print("Get Health Data: $e");
+      return false;
+    }
   }
 
   void testUsecase() async {

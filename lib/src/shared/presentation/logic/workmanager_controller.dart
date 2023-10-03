@@ -11,12 +11,6 @@ class WorkmanagerController extends GetxController {
   final int pushHealthDataAlarmID = 0;
   final AppController _appController = Get.find<AppController>();
 
-  @override
-  void onInit() async {
-    super.onInit();
-    startUploadHealthDataPointsTask();
-  }
-
   void startUploadHealthDataPointsTask() {
     Workmanager().registerPeriodicTask(
       Tasks.uploadHealthDataPointsTask,
@@ -68,8 +62,6 @@ class UploadHealthDataTask {
       developer.log("Start push health data, count:${healthData.length}");
 
       await Future.forEach(healthData, (HealthDataPoint point) async {
-        HealthDataPoint test = point;
-
         // ignore: unused_local_variable
         Response response = await connect.post("/api/health-data/create", {
           "value": NumericHealthValue.fromJson(point.value.toJson()).numericValue,

@@ -192,9 +192,9 @@ class _HealthResume extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        HealthDataCard(assetName: "assets/icons/png/filled/people/exercise_running.png", text: "Steps", value: "25 km"),
-        HealthDataCard(assetName: "assets/icons/png/filled/devices/intravenous_bag.png", text: "Blood", value: "40 ml"),
-        HealthDataCard(assetName: "assets/icons/png/filled/symbols/water_treatment.png", text: "Water", value: "10 lts"),
+        HealthDataCard(assetName: "assets/icons/png/filled/people/exercise_running.png", text: "Steps", value: "0 km"),
+        HealthDataCard(assetName: "assets/icons/png/filled/devices/intravenous_bag.png", text: "Blood", value: "0 ml"),
+        HealthDataCard(assetName: "assets/icons/png/filled/symbols/water_treatment.png", text: "Water", value: "0 lts"),
       ],
     );
   }

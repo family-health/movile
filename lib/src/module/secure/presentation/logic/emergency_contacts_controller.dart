@@ -50,7 +50,5 @@ class EmergencyContactsController extends GetxController with StateMixin<List<Fa
     } catch (e) {
       print("Notify error");
     }
-
-    // todo: here update family member
   }
 }

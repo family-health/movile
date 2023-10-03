@@ -23,6 +23,7 @@ class MembersScreen extends StatelessWidget {
       appBar: const _AppBar(),
       body: const _GetBuilder(),
       floatingActionButton: FloatingActionButton(
+        heroTag: "navigatoToInviteMember",
         onPressed: router.navigateToInviteMember,
         child: const Icon(Icons.add, color: Colors.white),
       ),

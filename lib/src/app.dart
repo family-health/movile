@@ -1,4 +1,7 @@
 import 'package:app/src/module/health/data/datasources/local/health_local_data_source_impl.dart';
+import 'package:app/src/module/health/data/repositories/blood_repository_impl.dart';
+import 'package:app/src/module/health/data/repositories/health_repository_impl.dart';
+import 'package:app/src/module/health/domain/usecases/add_blood_glucose_usecase.dart';
 import 'package:app/src/shared/presentation/logic/workmanager_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,6 +43,16 @@ class App extends StatelessWidget {
         remote: HealthRemoteDataSource(),
       ),
     ));
+
+    Get.put(
+      AddBloodGlucoseUsecase(
+        BloodRepository(HealthDataSource(), HealthLocalDataSource(), HealthRemoteDataSource()),
+      ),
+    );
+
+    Get.put(
+      HealthRepository(HealthDataSource(), HealthLocalDataSource(), HealthRemoteDataSource()),
+    );
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
