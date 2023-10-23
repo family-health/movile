@@ -19,20 +19,22 @@ class InviteMemberScreen extends GetView<InviteFamilyMemberController> {
         title: const Text("Invite Member", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         leading: const BackButton(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-          GestureDetector(onTap: controller.updateAvatar, child: const _MemberPhoto()),
-          const SizedBox(height: 5.0),
-          _buildNameTextField(),
-          _buildSurnameTextField(),
-          _buildEmailTextField(),
-          _buildRelationTextField(),
-          _buildPhoneTextField(),
-          _buildSubmit(context),
-        ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            GestureDetector(onTap: controller.updateAvatar, child: const _MemberPhoto()),
+            const SizedBox(height: 5.0),
+            _buildNameTextField(),
+            _buildSurnameTextField(),
+            _buildEmailTextField(),
+            _buildRelationTextField(),
+            _buildPhoneTextField(),
+            _buildSubmit(context),
+          ]),
+        ),
       ),
     );
   }

@@ -34,7 +34,7 @@ class _Menu extends StatelessWidget {
     SecureRouterController secureRouterController = Get.find<SecureRouterController>();
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.30,
+      height: MediaQuery.of(context).size.height * 0.40,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

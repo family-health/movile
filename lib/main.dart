@@ -22,6 +22,7 @@ void callbackDispatcher() {
     return Future.value(true);
   });
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -33,8 +34,6 @@ void main() async {
   await dotenv.load();
 
   AuthRepository authRepository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
-
-
 
   runApp(
     DevicePreview(

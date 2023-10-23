@@ -1,5 +1,7 @@
 // import 'package:app/src/module/home/home_screen.dart';
 // import 'package:app/src/module/family/presentation/ui/family_screen.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:app/src/module/family/presentation/ui/members_screen.dart';
 import 'package:app/src/module/health/presentation/ui/health_screen.dart';
 import 'package:app/src/module/main/presentation/logic/navigation_controller.dart';
@@ -15,23 +17,14 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WorkmanagerController workmanagerController = Get.find<WorkmanagerController>();
-    workmanagerController.startUploadHealthDataPointsTask();
+    //todo: this cause permission error if not found
+    // workmanagerController.startUploadHealthDataPointsTask();
 
     return GetBuilder<NavigationController>(builder: (controller) {
       return Scaffold(
         body: IndexedStack(
           index: controller.currentIndex,
           children: const [
-            // Navigator(
-            //   initialRoute: '/auth',
-            //   onGenerateRoute: (RouteSettings routeSettings){
-            //   return GetPageRoute(
-            //     settings: routeSettings,
-            //     page: () => const AuthScreen(),
-            //     binding: AuthBindings(),
-            //   );
-            //   },
-            // ),
             HealthScreen(),
             MembersScreen(),
             SecureScreen(),

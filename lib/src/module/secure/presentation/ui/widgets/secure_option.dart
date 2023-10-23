@@ -8,8 +8,8 @@ class SecureOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
-      width: 150.0,
+      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.width * 0.45,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.black),

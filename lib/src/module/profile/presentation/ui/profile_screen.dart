@@ -13,14 +13,18 @@ class ProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-          const _ProfileHeader(),
-          const _HearthResume(),
-          const _HealthResume(),
-          buildSignOutButton(),
-        ]),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            const _ProfileHeader(),
+            const _HearthResume(),
+            const SizedBox(height: 15.0),
+            const _HealthResume(),
+            const SizedBox(height: 15.0),
+            buildSignOutButton(),
+          ]),
+        ),
       ),
     );
   }
@@ -60,7 +64,7 @@ class _ProfileHeader extends StatelessWidget {
 
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.30,
+      height: MediaQuery.of(context).size.height * 0.35,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,8 +141,8 @@ class _HearthResume extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width * 0.90,
-      padding: const EdgeInsets.all(20.0),
-      height: 200,
+      height: MediaQuery.of(context).size.height * 0.25,
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: Colors.white,
@@ -147,14 +151,14 @@ class _HearthResume extends StatelessWidget {
       child: Row(children: [
         Expanded(
           flex: 1,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text("Today", style: TextStyle(fontWeight: FontWeight.w500)),
-            const SizedBox(height: 5.0),
+            // const SizedBox(height: 5.0),
             const Text("Budget 2600 Cal", style: TextStyle(fontWeight: FontWeight.w400)),
-            const SizedBox(height: 15.0),
+            // const SizedBox(height: 5.0),
             AnimatedCircularChart(
               key: chartKey,
-              size: const Size(130, 100),
+              size: Size(MediaQuery.of(context).size.width * 0.25, 100),
               initialChartData: chartData,
               chartType: CircularChartType.Radial,
               edgeStyle: SegmentEdgeStyle.round,
@@ -165,15 +169,16 @@ class _HearthResume extends StatelessWidget {
           ]),
         ),
         Container(width: 1, color: Colors.grey),
-        const Expanded(
+        Expanded(
           flex: 1,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               ImageIcon(AssetImage("assets/icons/png/filled/symbols/heart_cardiogram.png")),
               Text("Heart"),
             ]),
-            SizedBox(height: 50.0),
-            Column(children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            const Column(
+              children: [
               Text("93,4", style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500)),
               Text("bpm", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey))
             ])

@@ -14,7 +14,7 @@ class HealthDataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: MediaQuery.of(context).size.height * 0.14,
       width: 100,
       padding: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(

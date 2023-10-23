@@ -42,11 +42,11 @@ class HealthScreen extends GetView<HealthController> {
       body: Column(children: [
         const SizedBox(height: 20.0),
         SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: MediaQuery.of(context).size.height * 0.35,
             width: 400,
             child: const Padding(padding: EdgeInsets.all(8.0), child: _HeartRateChart())),
         SizedBox(
-            height: MediaQuery.of(context).size.height * 0.38,
+            height: MediaQuery.of(context).size.height * 0.40,
             width: 400,
             child: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -101,7 +101,7 @@ class _BloodGlucoseChart extends GetView<BloodGlucoseChartController> {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Text("Blood Glucose", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18.0)),
           const SizedBox(height: 5.0),
@@ -119,124 +119,3 @@ class _BloodGlucoseChart extends GetView<BloodGlucoseChartController> {
     );
   }
 }
-
-
-// class _HeartRateChart extends GetView<HealthRateChartController> {
-//   _HeartRateChart();
-
-//   final Color bgColor = Colors.black;
-
-  
-//   SideTitles leftTitles() => SideTitles(
-//         getTitlesWidget: leftTitleWidgets,
-//         showTitles: true,
-//         interval: 1,
-//         reservedSize: 40,
-//       );
-
-//   SideTitles get bottomTitles => SideTitles(
-//         showTitles: true,
-//         reservedSize: 32,
-//         interval: 1,
-//         getTitlesWidget: bottomTitleWidgets,
-//       );
-
-//   FlTitlesData get titles => FlTitlesData(
-//         bottomTitles: AxisTitles(
-//           sideTitles: bottomTitles,
-//         ),
-//         rightTitles: const AxisTitles(
-//           sideTitles: SideTitles(showTitles: false),
-//         ),
-//         topTitles: const AxisTitles(
-//           sideTitles: SideTitles(showTitles: false),
-//         ),
-//         leftTitles: AxisTitles(
-//           sideTitles: leftTitles(),
-//         ),
-//       );
-
-//   List<LineChartBarData> get lineBarsData => [
-//         LineChartBarData(),
-//         LineChartBarData(),
-//         LineChartBarData(),
-//       ];
-
-//   LineChartData data = LineChartData(
-//     lineTouchData: lineTouchData1,
-//     gridData: gridData,
-//     titlesData: titles,
-//     borderData: borderData,
-//     lineBarsData: lineBarsData1,
-//     minX: 0,
-//     maxX: 14,
-//     maxY: 4,
-//     minY: 0,
-//   );
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return LineChart(
-//       data,
-//       duration: const Duration(milliseconds: 250),
-//     );
-//   }
-
-//   Widget leftTitleWidgets(double value, TitleMeta meta) {
-//     const style = TextStyle(
-//       fontWeight: FontWeight.bold,
-//       fontSize: 14,
-//     );
-//     String text;
-//     switch (value.toInt()) {
-//       case 1:
-//         text = '1m';
-//         break;
-//       case 2:
-//         text = '2m';
-//         break;
-//       case 3:
-//         text = '3m';
-//         break;
-//       case 4:
-//         text = '5m';
-//         break;
-//       case 5:
-//         text = '6m';
-//         break;
-//       default:
-//         return Container();
-//     }
-
-//     return Text(text, style: style, textAlign: TextAlign.center);
-//   }
-
-//   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-//     const style = TextStyle(
-//       fontWeight: FontWeight.bold,
-//       fontSize: 16,
-//     );
-
-//     Widget text;
-//     switch (value.toInt()) {
-//       case 2:
-//         text = const Text('SEPT', style: style);
-//         break;
-//       case 7:
-//         text = const Text('OCT', style: style);
-//         break;
-//       case 12:
-//         text = const Text('DEC', style: style);
-//         break;
-//       default:
-//         text = const Text('');
-//         break;
-//     }
-
-//     return SideTitleWidget(
-//       axisSide: meta.axisSide,
-//       space: 10,
-//       child: text,
-//     );
-//   }
-// }
