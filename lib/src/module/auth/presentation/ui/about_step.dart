@@ -28,7 +28,6 @@ class AboutStep extends GetView<CreateAccountController> {
         const _GenderSelector(),
         Obx(
           () => AuthTextFormField(
-            // initialValue: ,
             hintText: DateFormat('yyyy-MM-dd').format(controller.birthday.value),
             readOnly: true,
             obscureText: false,
@@ -36,11 +35,6 @@ class AboutStep extends GetView<CreateAccountController> {
             ontap: () => controller.updateBirthday(context),
           ),
         ),
-        // AuthTextFormField(
-        //   hintText: "Address",
-        //   obscureText: false,
-        //   onChanged: controller.updateAddress,
-        // ),
       ],
     );
   }
@@ -81,13 +75,13 @@ class _Gender extends StatelessWidget {
 
     return Container(
       height: 60,
-      width: 160,
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+      width: MediaQuery.of(context).size.width * 0.40,
       decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(8.0)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
         Text(text, style: const TextStyle(color: Colors.white)),
+        const SizedBox(width: 5),
         Icon(icon, color: Colors.white),
       ]),
     );

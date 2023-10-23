@@ -12,7 +12,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:app/src/app.dart';
 import 'package:workmanager/workmanager.dart';
 
-Completer uploadCompleter = Completer();
+
+//To test diferent devices
+import 'package:device_preview/device_preview.dart';
 
 void callbackDispatcher() {
   Workmanager().executeTask((taskName, inputData) async {
@@ -32,5 +34,11 @@ void main() async {
 
   AuthRepository authRepository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
 
-  runApp(App(authRepository: authRepository));
+
+
+  runApp(
+    DevicePreview(
+      builder: (context) => App(authRepository: authRepository),
+    ),
+  );
 }

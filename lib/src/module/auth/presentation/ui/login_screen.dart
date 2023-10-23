@@ -57,7 +57,7 @@ class _LoginContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           buildEmailTextField(),
           buildPasswordTextField(),

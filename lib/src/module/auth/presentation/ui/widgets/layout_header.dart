@@ -20,15 +20,15 @@ class LayoutHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double layoutHeight = height * 0.45;
-    double imageHeight = height * 0.35;
+    double layoutHeight = height * 0.35;
+    double imageHeight = height * 0.25;
     double titleHeight = height * 0.10;
 
     //?[HeaderOptions] setters.
     if (options != null) {
       if (options!.dimension == HeaderDimension.big) {
-        layoutHeight = height * 0.60;
-        imageHeight = height * 0.45;
+        layoutHeight = height * 0.55;
+        imageHeight = height * 0.40;
         titleHeight = height * 0.15;
       }
     }
@@ -80,7 +80,7 @@ class _HeaderText extends StatelessWidget {
       children: [
         buildTilte(),
         const SizedBox(height: 5.0),
-        SizedBox(width: MediaQuery.of(context).size.height * 0.40, child: buildSubtitle()),
+        SizedBox(width: MediaQuery.of(context).size.height * 0.45, child: buildSubtitle()),
       ],
     );
   }
