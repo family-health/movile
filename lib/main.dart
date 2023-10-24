@@ -14,7 +14,7 @@ import 'package:workmanager/workmanager.dart';
 
 
 //To test diferent devices
-import 'package:device_preview/device_preview.dart';
+// import 'package:device_preview/device_preview.dart';
 
 void callbackDispatcher() {
   Workmanager().executeTask((taskName, inputData) async {
@@ -36,8 +36,9 @@ void main() async {
   AuthRepository authRepository = AuthRepository(AuthGetDataSource(), AuthLocalDataSource());
 
   runApp(
-    DevicePreview(
-      builder: (context) => App(authRepository: authRepository),
-    ),
+    // DevicePreview(
+    //   builder: (context) => App(authRepository: authRepository),
+    // ),
+    App(authRepository: authRepository),
   );
 }

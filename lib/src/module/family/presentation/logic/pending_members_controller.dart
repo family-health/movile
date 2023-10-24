@@ -10,6 +10,7 @@ class PendingMembersController extends GetxController with StateMixin<List<Famil
   final FamilyProvider _familyProvider = FamilyProvider();
 
   late RxInt counter = 0.obs;
+  RxBool sendingInvitation = false.obs;
 
   Future fetchInvitations() async {
     change(null, status: RxStatus.loading());
@@ -44,5 +45,13 @@ class PendingMembersController extends GetxController with StateMixin<List<Famil
 
     await _familyProvider.deleteById(memberId, _appController.token!);
     fetchInvitations();
+  }
+
+  Future<bool> resendInvitation(String email) async {
+    sendingInvitation.value = true;
+    await Future.delayed(const Duration(seconds: 5));
+    await _familyProvider.sendInvitation(email, _appController.token!);
+    sendingInvitation.value = false;
+    return true;
   }
 }

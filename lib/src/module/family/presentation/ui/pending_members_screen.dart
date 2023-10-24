@@ -63,7 +63,10 @@ class _ListView extends GetView<PendingMembersController> {
     return ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
-          return PendingMemberCard(data[index], deleteCallback: () => controller.deleteInvitations(context, data[index].id!));
+          return PendingMemberCard(
+            data[index],
+            deleteCallback: () => controller.deleteInvitations(context, data[index].id!),
+          );
         });
   }
 }
