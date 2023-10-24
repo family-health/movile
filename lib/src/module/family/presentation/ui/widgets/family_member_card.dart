@@ -1,7 +1,9 @@
 import 'package:app/src/module/family/domain/entities/family_member.dart';
+import 'package:app/src/module/family/presentation/logic/family_members_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class FamilyMemberCard extends StatelessWidget {
+class FamilyMemberCard extends GetView<FamilyMembersController> {
   final FamilyMember member;
   const FamilyMemberCard(this.member, {super.key});
 
@@ -13,6 +15,10 @@ class FamilyMemberCard extends StatelessWidget {
       decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.black, width: 1)),
       child: ListTile(
           leading: const _Avatar(),
+          trailing: IconButton(onPressed: (){
+            //delete member
+            controller.deleteMember(context, member.id!);
+          }, icon: const Icon(Icons.delete, color: Colors.black)),
           title: Text("${member.name} ${member.lastName}", style: const TextStyle(fontWeight: FontWeight.w500)),
           subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("${member.email}"),

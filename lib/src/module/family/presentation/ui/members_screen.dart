@@ -80,7 +80,18 @@ class _GetBuilder extends GetView<FamilyMembersController> {
 
   Widget onLoaded(List<FamilyMember>? data) {
     if (data == null || data.isEmpty) {
-      return const Empty(title: "Members", message:"No members found");
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        const Empty(title: "Members", message: "No members found"),
+        ElevatedButton(
+          onPressed: () {
+            FamilyMembersController familyMemberController = Get.find<FamilyMembersController>();
+            familyMemberController.fetchMembers();
+          },
+          child: const Text("Fetch Family Members"),
+        )
+      ]);
     } else {
       return _ListView(data);
     }

@@ -28,8 +28,8 @@ class FamilyMembersController extends GetxController with StateMixin<List<Family
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Invitation'),
-          content: const Text('This action delete the invitation'),
+          title: const Text('Family Member'),
+          content: const Text('This action delete yor member'),
           actions: <Widget>[
             TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
             TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),

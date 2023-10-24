@@ -1,4 +1,6 @@
 import 'package:app/src/module/family/domain/entities/family_member.dart';
+import 'package:app/src/module/family/presentation/logic/family_router_controller.dart';
+import 'package:app/src/shared/presentation/ui/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,8 +33,19 @@ class EmergencyMemberPickerScreen extends GetView<EmergencyMemberPickerControlle
               child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(() {
+
                     if (controller.familyMembers.isEmpty) {
-                      return const Center(child: CircularProgressIndicator());
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        const Empty(title: "Members", message:"No members found"),
+                        const SizedBox(height: 10),
+                        ElevatedButton(onPressed: (){
+                          FamilyRouterController familyRouterController = Get.find<FamilyRouterController>();
+                          familyRouterController.navigateToInviteMember();
+
+                        }, child: const Text("Add a member"))
+                      ],);
                     }
 
                     return GridView.count(
