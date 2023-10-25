@@ -1,8 +1,11 @@
+import 'package:app/src/module/family/domain/entities/family_member.dart';
 import 'package:app/src/module/secure/domain/entities/emergency_contact.dart';
+import 'package:app/src/module/secure/presentation/logic/emergency_contacts_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
-class EmergencyContactCard extends StatelessWidget {
+class EmergencyContactCard extends GetView<EmergencyContactsController> {
   final EmergencyContact contact;
   const EmergencyContactCard(this.contact, {super.key});
 
@@ -15,7 +18,10 @@ class EmergencyContactCard extends StatelessWidget {
       decoration: const BoxDecoration(color: Colors.white),
       child: ListTile(
           leading: const _Avatar(),
-          trailing: const Icon(Icons.more_vert_rounded),
+          // trailing: const Icon(Icons.more_vert_rounded),
+          trailing: IconButton(onPressed: () async {
+            controller.removeEmergencyContact(context, FamilyMember.fromEmergencyContactModel(contact));
+          }, icon: const Icon(Icons.delete, color: Colors.black,)),
           title: Text("${contact.name} ${contact.lastName}", style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.black)),
           subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [

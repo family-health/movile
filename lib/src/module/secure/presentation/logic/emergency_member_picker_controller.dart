@@ -4,16 +4,14 @@ import 'package:app/src/shared/data/models/api/response_api_model.dart';
 import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:get/get.dart';
 
-class EmergencyMemberPickerController extends GetxController {
+class EmergencyMemberPickerController extends GetxController with StateMixin<List<FamilyMember>> {
   final AppController _appController = Get.find<AppController>();
   final FamilyProvider _familyProvider = FamilyProvider();
-
-  late RxList<FamilyMember> familyMembers = <FamilyMember>[].obs;
 
   @override
   void onInit() async {
     super.onInit();
-    familyMembers.value = await fetchFamilyMembers();
+    change(await fetchFamilyMembers(), status: RxStatus.success());
   }
 
   Future<List<FamilyMember>> fetchFamilyMembers() async {
@@ -28,9 +26,5 @@ class EmergencyMemberPickerController extends GetxController {
     } else {
       return [];
     }
-  }
-
-  void updateFamilyMembers() async {
-    familyMembers.value = await fetchFamilyMembers();
   }
 }

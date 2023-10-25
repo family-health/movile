@@ -40,6 +40,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     FamilyRouterController router = Get.put(FamilyRouterController());
+    FamilyMembersController familyMembersController = Get.find<FamilyMembersController>();
     PendingMembersController pendingMembersController = Get.find<PendingMembersController>();
     pendingMembersController.fetchInvitations();
 
@@ -48,6 +49,12 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.grey.shade100,
       title: const Text("My Family", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh, color: Colors.black),
+          onPressed: () {
+            familyMembersController.fetchMembers();
+          },
+        ),
         IconButton(
           onPressed: router.navigateToPendingMembers,
           color: Colors.black,

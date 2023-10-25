@@ -26,8 +26,7 @@ class FamilyProvider extends GetConnect {
   }
 
   Future<ResponseApiModel> updateById(FamilyMemberModel family, String token, String id) async {
-    Response response = await put('$url/$id', family.toJsonForCreateFamily(),
-        headers: {'Content-Type': 'application/json', 'Authorization': "Bearer $token"}); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
+    Response response = await put('$url/$id', family.toJsonForUpdateFamily(), headers: {'Content-Type': 'application/json', 'Authorization': "Bearer $token"});
 
     if (response.body == null) {
       Alertas.error('No se pudo actualizar la informacion');

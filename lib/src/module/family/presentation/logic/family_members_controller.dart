@@ -17,7 +17,7 @@ class FamilyMembersController extends GetxController with StateMixin<List<Family
       data = response.data!
           .map((e) => FamilyMember.fromMap(e))
           .where((member) => member.isVerified == true)
-          .where((member) => member.isEmergency == false)
+          // .where((member) => member.isEmergency == false)
           .toList();
     }
     change(data, status: RxStatus.success());

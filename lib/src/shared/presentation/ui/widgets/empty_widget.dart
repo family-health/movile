@@ -22,7 +22,7 @@ class Empty extends StatelessWidget {
         const SizedBox(height: 8.0),
         Text(title, style: titleStyle),
         const SizedBox(height: 3.0),
-        Text(message, style: messageStyle),
+        Text(message, style: messageStyle, textAlign: TextAlign.center),
       ]),
     );
   }

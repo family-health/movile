@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:app/src/module/secure/domain/entities/emergency_contact.dart';
+
 class FamilyMember {
   String? id;
   String? avatar;
@@ -9,7 +11,7 @@ class FamilyMember {
   String? email;
   String? relation;
   bool? isVerified;
-  bool isEmergency;
+  bool? isEmergency;
 
   FamilyMember({
     this.id,
@@ -20,7 +22,7 @@ class FamilyMember {
     this.email,
     this.relation,
     this.isVerified,
-    required this.isEmergency
+    this.isEmergency,
   });
 
   Map<String, dynamic> toMap() {
@@ -54,4 +56,16 @@ class FamilyMember {
   String toJson() => json.encode(toMap());
 
   factory FamilyMember.fromJson(String source) => FamilyMember.fromMap(json.decode(source));
+
+  factory FamilyMember.fromEmergencyContactModel(EmergencyContact model) => FamilyMember(
+    isEmergency: model.isEmergency,
+    avatar: model.avatar,
+    email: model.email,
+    id: model.id,
+    isVerified: model.isVerified,
+    lastName: model.lastName,
+    name: model.name,
+    phone: model.phone,
+    relation: model.relation,
+  );
 }

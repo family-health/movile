@@ -1,6 +1,8 @@
+import 'package:app/src/module/family/domain/entities/family_member.dart';
 import 'package:app/src/module/secure/domain/entities/emergency_contact.dart';
 import 'package:app/src/module/secure/presentation/logic/emergency_contacts_controller.dart';
 import 'package:app/src/module/secure/presentation/ui/widgets/emergency_contact_card.dart';
+import 'package:app/src/shared/presentation/ui/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,34 +13,33 @@ class EmergencyContactsScreen extends GetView<EmergencyContactsController> {
   Widget build(BuildContext context) {
     Get.put(EmergencyContactsController());
 
-    final EmergencyContact contact = EmergencyContact(
-        id: "1",
-        avatar: null,
-        email: "josephdgb1996@gmail.com",
-        name: "Joseph",
-        lastName: "Garcia",
-        phone: "0978757580",
-        isVerified: true,
-        relation: "Friend");
-
     return Scaffold(
-        appBar: AppBar(title: const Text("Emergency Contacts")),
-        body: Column(
-          children: [
-            const _AddNew(),
-            Expanded(
-              child: ListView.separated(
-                itemCount: 10 + 1,
-                itemBuilder: (context, index) {
-                  return EmergencyContactCard(contact);
+      appBar: AppBar(
+        title: const Text("Emergency Contacts"),
+      ),
+      body: controller.obx((state){
+        if (state == null || state.isEmpty) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Empty(title: "Emergency Contacts", message: "You dont have emergency \n contacts"),
+              ElevatedButton(
+                onPressed: (){
+                  controller.addEmergencyContactFromFamilyMembers();
                 },
-                separatorBuilder: (context, index) {
-                  return const Divider(height: 0.0, color: Colors.black);
-                },
-              ),
-            ),
-          ],
-        ));
+                child: const Text("Add emergency contact"),
+              )
+            ],
+          );
+        }
+
+        return Column(children: [
+          const _AddNew(),
+          Expanded(child: _ListView(state)),
+        ]);
+
+      }),
+    );
   }
 }
 
@@ -48,7 +49,7 @@ class _AddNew extends GetView<EmergencyContactsController> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: controller.addEmergencyContactFromFamilyMembers,
+      onTap: ()=> controller.addEmergencyContactFromFamilyMembers(),
       child: Container(
         margin: const EdgeInsets.only(top: 10, bottom: 10.0),
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -69,6 +70,25 @@ class _AddNew extends GetView<EmergencyContactsController> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ListView extends StatelessWidget {
+  final List<FamilyMember> data;
+  const _ListView(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        EmergencyContact emergencyContact = EmergencyContact.fromFamilyMember(data[index]);
+        return EmergencyContactCard(emergencyContact);
+      },
+      separatorBuilder: (context, index) {
+        return const Divider(height: 0.0, color: Colors.black);
+      },
     );
   }
 }
