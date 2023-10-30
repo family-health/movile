@@ -1,3 +1,4 @@
+import 'package:app/src/module/health/presentation/logic/health_controller.dart';
 import 'package:app/src/module/secure/presentation/logic/secure_router_controller.dart';
 import 'package:app/src/module/secure/presentation/logic/wearable_controller.dart';
 import 'package:app/src/module/secure/presentation/ui/widgets/secure_option.dart';
@@ -45,9 +46,14 @@ class _Menu extends StatelessWidget {
             ),
             const SecureOption(text: "Pill Reminder", assetPath: "assets/icons/png/outline/medications/medicines.png"),
           ]),
-          const Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            SecureOption(text: "Notifications Settings", assetPath: "assets/icons/png/outline/symbols/ui_preferences.png"),
-            SecureOption(text: "Health Permissions", assetPath: "assets/icons/png/outline/symbols/heart.png"),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            const SecureOption(text: "Notifications Settings", assetPath: "assets/icons/png/outline/symbols/ui_preferences.png"),
+            GestureDetector(
+              onTap: (){
+                HealthController healthController = Get.find<HealthController>();
+                healthController.requestHealthPermissions();
+              },
+              child: const SecureOption(text: "Health Permissions", assetPath: "assets/icons/png/outline/symbols/heart.png")),
           ]),
         ],
       ),

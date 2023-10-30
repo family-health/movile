@@ -1,3 +1,4 @@
+import 'package:app/src/@core/utilities/snackbar.dart';
 import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:get/get.dart';
 import 'package:health/health.dart';
@@ -6,12 +7,14 @@ import 'package:app/src/@core/utilities/tasks.dart';
 
 import 'dart:developer' as developer;
 
-
 class WorkmanagerController extends GetxController {
   final int pushHealthDataAlarmID = 0;
   final AppController _appController = Get.find<AppController>();
 
   void startUploadHealthDataPointsTask() {
+    Snackbar snackbar = Snackbar();
+    snackbar.success("Background Porcess","Starting upload health data background process");
+
     Workmanager().registerPeriodicTask(
       Tasks.uploadHealthDataPointsTask,
       Tasks.uploadHealthDataPointsTask,
@@ -24,6 +27,8 @@ class WorkmanagerController extends GetxController {
   }
 
   void cancelUploadHealthDataPointsTask(){
+    Snackbar snackbar = Snackbar();
+    snackbar.success("Background Porcess","Stopping upload health data background process");
     Workmanager().cancelByUniqueName(Tasks.uploadHealthDataPointsTask);
   }
 }
