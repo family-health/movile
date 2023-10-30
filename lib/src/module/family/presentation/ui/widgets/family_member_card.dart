@@ -14,7 +14,7 @@ class FamilyMemberCard extends GetView<FamilyMembersController> {
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.black, width: 1)),
       child: ListTile(
-          leading: const _Avatar(),
+          leading: _Avatar(member.avatar!),
           trailing: IconButton(onPressed: (){
             //delete member
             controller.deleteMember(context, member.id!);
@@ -32,7 +32,8 @@ class FamilyMemberCard extends GetView<FamilyMembersController> {
 
 
 class _Avatar extends StatelessWidget {
-  const _Avatar();
+  final String path;
+  const _Avatar(this.path);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _Avatar extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: Colors.grey.shade100,
         radius: 25.0,
-        child: ClipOval(child: Image.asset("assets/images/avatar/male-1.png", height: 45.0)),
+        child: ClipOval(child: Image.asset(path, height: 45.0)),
       ),
     );
   }

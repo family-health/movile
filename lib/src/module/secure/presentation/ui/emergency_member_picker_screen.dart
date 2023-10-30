@@ -56,9 +56,12 @@ class EmergencyMemberPickerScreen extends GetView<EmergencyMemberPickerControlle
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   children: List.generate(state.length, (index) {
-                    return GestureDetector(
-                      onTap: () => Get.back<FamilyMember>(result: state[index]),
-                      child: FamilyMemberCard(state[index]),
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        onTap: () => Get.back<FamilyMember>(result: state[index]),
+                        child: FamilyMemberCard(state[index]),
+                      ),
                     );
                   }),
                 );
