@@ -96,8 +96,8 @@ class FamilyProvider extends GetConnect {
     return responseApi;
   }
 
-  Future<ResponseApiModel> sendInvitation(String email, String token) async {
-    Response response = await get('$url/send-invitation/$email', headers: {'Content-Type': 'application/json', 'Authorization': "Bearer $token"});
+  Future<ResponseApiModel> sendInvitation(String email, String id, String token) async {
+    Response response = await get('$url/send-invitation/$email/$id', headers: {'Content-Type': 'application/json', 'Authorization': "Bearer $token"});
 
     if (response.body == null) {
       Alertas.error('No se pudo enviar la inivtacion');

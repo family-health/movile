@@ -5,6 +5,7 @@ import 'package:app/src/module/dashboard/ui/logic/dashboard_controller.dart';
 import 'package:app/src/@core/utilities/toaster_alert.dart';
 import 'package:app/src/@core/resources/router/routes_deprecated.dart';
 import 'package:app/src/@core/resources/storage/storage_deprecated.dart';
+import 'package:app/src/shared/presentation/logic/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,12 +19,14 @@ class FamilyListController extends GetxController {
   final FamilyProvider _familyProvider = FamilyProvider();
 
   void menuAction(dynamic selection, String id, BuildContext context, String email) {
+    AppController appController = Get.find<AppController>();
+
     if (selection == 'Editar') {
       goToFamilyEditPage(id);
     } else if (selection == 'Eliminar') {
       alertDialogEliminar('Elimiar', 'Estas seguro de eliminar este familiar?', id, context);
     } else if (selection == 'Invitar') {
-      _familyProvider.sendInvitation(email, user.token ?? "");
+      _familyProvider.sendInvitation(email, appController.user!.id, user.token ?? "");
     }
   }
 

@@ -50,7 +50,7 @@ class PendingMembersController extends GetxController with StateMixin<List<Famil
   Future<bool> resendInvitation(String email) async {
     sendingInvitation.value = true;
     await Future.delayed(const Duration(seconds: 5));
-    await _familyProvider.sendInvitation(email, _appController.token!);
+    await _familyProvider.sendInvitation(email, _appController.user!.id, _appController.token!);
     sendingInvitation.value = false;
     return true;
   }
